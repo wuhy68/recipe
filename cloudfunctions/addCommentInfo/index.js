@@ -8,7 +8,7 @@ exports.main = async (event, context) => {
   try {
     return await db.collection('comments').add({
       data: {
-        recipe: event.recipe,
+        recipe_id: event.recipe_id,
         name: event.name,
         comment: event.comment,
         date: new Date()

@@ -8,8 +8,8 @@ const _ = db.command
 exports.main = async (event, context) => {
   try {
     return await db.collection('comments').where({
-      recipe: event.recipe,
-      comment: event.comment
+      recipe_id: event.recipe_id,
+      _id: event._id
     }).update({
       data: {
         reply: {

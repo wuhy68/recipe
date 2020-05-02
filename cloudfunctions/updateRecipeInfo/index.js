@@ -2,15 +2,24 @@
 const cloud = require('wx-server-sdk')
 
 cloud.init()
-
+const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const wxContext = cloud.getWXContext()
-
-  return {
-    event,
-    openid: wxContext.OPENID,
-    appid: wxContext.APPID,
-    unionid: wxContext.UNIONID,
+  try {
+    return await db.collection('recipes').where({
+      _id: event._id
+    }).update({
+      data: {
+        ingredients: ingredients,
+        introduction: introduction,
+        name: name,
+        steps: steps,
+        type: type,
+        date: new Date()
+      }
+    })
+  }
+  catch (err) {
+    console.error(err);
   }
 }

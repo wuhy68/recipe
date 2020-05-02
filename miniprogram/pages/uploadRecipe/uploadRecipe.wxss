@@ -1,1 +1,36 @@
-/* miniprogram/pages/uploadRecipe/uploadRecipe.wxss */
+.addCover {
+  width: 100%;
+  height: 260px;
+  background-color: grey;
+  color: rgb(155, 153, 153);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.wholeStyle {
+  margin-left: 5%; 
+  margin-right: 5%
+}
+
+.addTitle {
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/*分割线样式*/
+.divLine{
+  background: #E0E3DA;
+  width: 100%;
+  height: 1rpx;
+}
+
+.addStory {
+  height: 80px; 
+  width: 90%; 
+  margin-top: 12px;
+}

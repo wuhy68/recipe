@@ -1,120 +1,84 @@
-//index.js
-const app = getApp()
-
+// miniprogram/pages/index/index.js
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    avatarUrl: './user-unlogin.png',
-    userInfo: {},
-    logged: false,
-    takeSession: false,
-    requestResult: ''
+
   },
 
-  onLoad: function() {
-    if (!wx.cloud) {
-      wx.redirectTo({
-        url: '../chooseLib/chooseLib',
-      })
-      return
-    }
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
 
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              this.setData({
-                avatarUrl: res.userInfo.avatarUrl,
-                userInfo: res.userInfo
-              })
-            }
-          })
-        }
-      }
-    })
   },
 
-  onGetUserInfo: function(e) {
-    if (!this.data.logged && e.detail.userInfo) {
-      this.setData({
-        logged: true,
-        avatarUrl: e.detail.userInfo.avatarUrl,
-        userInfo: e.detail.userInfo
-      })
-    }
-  },
 
-  onGetOpenid: function() {
-    // 调用云函数
+  /**
+   * 获取用户信息
+   * 
+   * @param {用户名} name 
+   */
+  getUserInfo: function (name) {
     wx.cloud.callFunction({
-      name: 'login',
-      data: {},
+      name: "getUserInfo",
+      data: {
+        name: name
+      },
       success: res => {
-        console.log('[云函数] [login] user openid: ', res.result.openid)
-        app.globalData.openid = res.result.openid
-        wx.navigateTo({
-          url: '../userConsole/userConsole',
-        })
+        console.log(res);
       },
       fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
-        wx.navigateTo({
-          url: '../deployFunctions/deployFunctions',
-        })
+        console.error(err);
       }
     })
   },
 
-  // 上传图片
-  doUpload: function () {
-    // 选择图片
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success: function (res) {
-
-        wx.showLoading({
-          title: '上传中',
-        })
-
-        const filePath = res.tempFilePaths[0]
-        
-        // 上传图片
-        const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
-          success: res => {
-            console.log('[上传文件] 成功：', res)
-
-            app.globalData.fileID = res.fileID
-            app.globalData.cloudPath = cloudPath
-            app.globalData.imagePath = filePath
-            
-            wx.navigateTo({
-              url: '../storageConsole/storageConsole'
-            })
-          },
-          fail: e => {
-            console.error('[上传文件] 失败：', e)
-            wx.showToast({
-              icon: 'none',
-              title: '上传失败',
-            })
-          },
-          complete: () => {
-            wx.hideLoading()
-          }
-        })
-
+  /**
+   * 添加用户信息
+   * 
+   * @param {用户名} name 
+   * @param {用户类型} type 
+   * @param {电话号码} telephone 
+   * @param {经度} longtitude 
+   * @param {纬度} latitude 
+   */
+  addUserInfo: function (name, telephone) {
+    wx.cloud.callFunction({
+      name: 'addUserInfo',
+      data: {
+        name: name,
+        telephone: telephone,
       },
-      fail: e => {
-        console.error(e)
+      success: res => {
+        console.log(res);
+      },
+      fail: err => {
+        console.error(err);
       }
     })
   },
-
+ 
+  /**
+   * 
+   * @param {关注数} fans 
+   * @param {获赞数} praises 
+   */
+  updateUserInfo: function(name, fans, praises) {
+    wx.cloud.callFunction({
+      name: 'updateUserInfo',
+      data: {
+        fans: fans,
+        praises: praises
+      },
+      success: res => {
+        console.log(res);
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
+  }
 })

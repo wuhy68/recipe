@@ -1,0 +1,215 @@
+/* pages/recipeInfo/recipeInfo.wxss */
+.wholeStyle{
+  margin-left: 5%; 
+  margin-right: 5%;
+}
+
+.backGround{
+  width: 100%;
+  height: 400rpx;
+}
+
+.backGroundImage{
+  width: 100%;
+  height: 400rpx;
+}
+
+.author{
+	width: 100%;
+	height: 139rpx;
+  margin-top: 40rpx;
+  display: flex;
+}
+
+.authorHead{
+	width: 99rpx;
+	height: 99rpx;
+	left: 20rpx;
+	top: 299rpx;
+	border-radius: 52rpx;
+}
+
+.authorHeadImage{
+  width: 97%;
+  height: 97%;
+  border-radius: 52rpx;
+}
+
+.authorName{
+	width: 189rpx;
+	height: 49rpx;
+  /* margin-top: 20rpx; */
+  margin-left: 40rpx;
+	color: rgba(0, 0, 0, 1);
+	font-size: 30rpx;
+	line-height: 150%;
+	text-align: left;
+}
+
+.authorName_hover{
+  color: rgb(67, 194, 233);
+}
+
+.authorFollow{
+  width: 70%;
+  height: 40%;
+  margin-left: 40rpx;
+  background-color: rgb(245, 115, 182);
+  color: white;
+  border-radius: 40rpx;
+  text-align: center;
+  font-size: 35rpx;
+}
+
+.materialList{
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.materialItem{
+	width: 100%;
+  height: 83rpx;
+  display: flex;
+  justify-content: space-around;
+}
+
+.materialItemFood{
+  width: 43%;
+  height: 100%;
+  font-size: small;
+  margin-top: 20rpx;
+  text-align: left;
+}
+
+.materialItemNum{
+  width: 43%;
+  height: 100%;
+  font-size: small;
+  margin-top: 20rpx;
+  color: gray;
+  text-align: right;
+}
+
+.materialItemImage{
+  width: 7%;
+  height: 30%;
+  margin-top: 30rpx;
+  text-align: left;
+}
+
+.StepList{
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.StepTitle{
+  margin-top: 40rpx;
+  margin-bottom: 10rpx;
+}
+
+.StepImage{
+  width: 100%;
+  height: 400rpx;
+  border-radius: 20rpx;
+  text-align: center;
+}
+
+.StepInfo{
+  margin-top: 10rpx;
+}
+
+.CommentList{
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.CommentItem{
+  width: 100%;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
+  text-align: center;
+  border-bottom: solid rgb(237, 235, 235) 1rpx;
+}
+
+.CommentUserInfoAndAgreeCount{
+  width: 100%;
+  height: 120rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+}
+
+.CommentUserHeadImage{
+  width: 99rpx;
+	height: 99rpx;
+	left: 20rpx;
+	top: 299rpx;
+	border-radius: 52rpx; 
+}
+
+.CommentUserHeadImageImage{
+  width: 99rpx;
+  height: 99rpx;  
+  border-radius: 52rpx; 
+}
+
+.CommentUserNameAndTime{
+  width: 90%;
+  height: 100rpx;
+  flex-direction: column;
+  display: flex;
+}
+
+.CommentUserName{
+  width: 100%;
+  height: 60rpx;
+  text-align: left;
+  margin-left: 30rpx;
+  font-size: 40rpx;
+}
+
+.CommentUserTime{
+  width: 100%;
+  height: 40rpx;
+  text-align: left;
+  margin-left: 30rpx;
+  font-size: 35rpx;
+  color: gray;
+}
+
+.CommentAgreeCount{
+  width: 10%;
+  height: 100rpx;
+  flex-direction: column;
+  display: flex; 
+  text-align: right; 
+}
+
+.CommentAgreeCountImage{
+  width: 60rpx;
+  height: 60rpx;  
+}
+
+.CommentAgreeCountIcon{
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.CommentAgreeCountText{
+  width: 100%;
+  height: 40rpx;
+  text-align: left;
+  font-size: 35rpx;
+  color: gray;
+}
+
+.CommentContext{
+  width: 100%;
+  margin-left: 10rpx;
+  margin-bottom: 20rpx;
+  font-size: 35rpx;
+  color: rgb(77, 66, 66);
+  text-align: left;
+}

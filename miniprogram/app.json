@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/recipeInfo/recipeInfo",
     "pages/search/search",
     "pages/index/index",
     "pages/uploadRecipe/uploadRecipe",

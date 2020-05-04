@@ -5,7 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    background: ['../../image/indexImage1.jpg', '../../image/indexImage2.jpg', '../../image/indexImage3.png'],
+    indicatorDots: true,
+    vertical: true,
+    autoplay: true,
+    interval: 2000,
+    duration: 800,
+    PictureComCount: 4
   },
 
   /**
@@ -79,6 +85,12 @@ Page({
       fail: err => {
         console.error(err);
       }
+    })
+  },
+
+  ToSearchPage: function(){
+    wx.navigateTo({
+      url: '../search/search',
     })
   }
 })

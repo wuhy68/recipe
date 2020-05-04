@@ -1,7 +1,11 @@
 {
   "pages": [
+    "pages/search/search",
+    "pages/index/index",
     "pages/uploadRecipe/uploadRecipe",
-    "pages/index/index"
+    "pages/AllList/AllList",
+    "pages/restaurant/restaurant",
+    "pages/mine/mine"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -11,5 +15,31 @@
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "style": "v2",
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "主页",
+      "iconPath": "../miniprogram/image/home.png",
+      "selectedIconPath": "../miniprogram/image/home_select.png"
+    },
+    {
+      "pagePath": "pages/AllList/AllList",
+      "text": "分区",
+      "iconPath": "../miniprogram/image/fenqu.png",
+      "selectedIconPath": "../miniprogram/image/fenqu_select.png"
+    },
+    {
+      "pagePath": "pages/restaurant/restaurant",
+      "text": "餐馆",
+      "iconPath": "../miniprogram/image/restaurant.png",
+      "selectedIconPath": "../miniprogram/image/restaurant_select.png"
+    },
+    {
+      "pagePath": "pages/mine/mine",
+      "text": "我的",
+      "iconPath": "../miniprogram/image/mine.png",
+      "selectedIconPath": "../miniprogram/image/mine_select.png"
+    }
+  ]}
 }

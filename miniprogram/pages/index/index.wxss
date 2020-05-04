@@ -1,13 +1,129 @@
 /* miniprogram/pages/index/index.wxss */
-.text_25X1{
-	width: 675rpx;
-	height: 68rpx;
-	left: 11rpx;
-	top: 87rpx;
-	color: rgba(153, 153, 153, 1);
-	background-color: rgba(255, 255, 255, 1);
-	border-radius: 14rpx;
-	font-size: 32rpx;
-	text-align: left;
+.wholeStyle {
+  margin-left: 5%; 
+  margin-right: 5%
 }
 
+.nextStep{
+	width: 660rpx;
+	height: 90rpx;
+	color: rgb(126, 122, 122);
+	background-color: rgb(235, 205, 220);
+	box-shadow: rgba(193, 52, 52, 1) solid 2rpx;
+	border-radius: 45rpx;
+	font-size: 32rpx;
+	line-height: 150%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.image-group {
+  display: flex;
+  white-space: nowrap;
+  margin-top: 30rpx;
+}
+.image-group image {
+  display: inline-block;
+  width: 660rpx;
+  height: 350rpx;
+  margin-right: 20rpx;
+}
+
+.swiper{
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
+}
+
+.IndexFourBox{
+	width: 660rpx;
+	height: 190rpx;
+	left: 2rpx;
+  top: 263rpx;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-around;
+}
+
+.IndexPerBox{
+	width: 160rpx;
+	height: 190rpx;
+	left: 2rpx;
+  top: 263rpx;
+  flex-direction: column;
+  display: flex;
+  text-align: center;
+}
+
+.ImageInIndexPerBox{
+  margin: 0 auto;
+	width: 100rpx;
+	height: 100rpx;
+	left: 20rpx;
+	top: 287rpx;
+}
+
+.TextInIndexPerBox{
+  margin: 15rpx auto;
+  font-size: small;
+}
+
+.PictureCom{
+  background-image: url("https://s1.ax1x.com/2020/05/04/Y9BcUH.md.jpg");
+	width: 660rpx;
+	height: 280rpx;
+	margin: 30rpx auto;
+  border: solid 2rpx;
+  border-radius: 20rpx;
+}
+
+.StarsAndScore{
+  flex-direction: row;
+  display: flex; 
+  justify-content: space-between;
+}
+
+.FiveStars{
+	width: 170rpx;
+	height: 55rpx;
+  margin:30rpx 0rpx 30rpx 30rpx;
+  flex-direction: row;
+  display: flex;
+}
+
+.Score{
+  width: 151rpx;
+  height: 55rpx;
+  text-align: right;
+  margin: 30rpx 30rpx 30rpx 0rpx;
+}
+
+.Name{
+  width: 170rpx;
+	height: 55rpx;
+  margin: 0rpx 0rpx 0rpx 30rpx;
+}
+
+.AuthorSet{
+  width: 300rpx;
+  height: 55rpx;
+}
+
+.AuthorSetIcon{
+  width: 30rpx;
+  height:30rpx;
+  margin-left:30rpx;
+}
+
+.AuthorSetText{
+  color:rgb(163, 163, 163);
+  font-size:30rpx;
+  margin-left:10rpx;
+}
+
+.CommentCount{
+  width: 300rpx;
+  height: 55rpx; 
+  margin-left:30rpx;
+  font-size: 30rpx;
+}

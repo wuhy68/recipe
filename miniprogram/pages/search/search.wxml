@@ -1,0 +1,29 @@
+<!--pages/search/search.wxml-->
+<view class="wholeStyle">
+  <view class="SearchInput">
+    <view class='select_box'>
+      <view class='select' catchtap='selectTap'>
+          <text class='select_text'>{{selectData[index]}}</text>
+          <image class='select_img {{show&&"select_img_rotate"}}' src='../../image/gobottom.png'></image>         
+      </view>
+      <view class='option_box' style='height:{{show?(selectData.length>5?300:selectData.length*60):0}}rpx;'>
+          <text class='option' style='{{index==selectData.length-1&&"border:0;"}}' wx:for='{{selectData}}' wx:key='this' data-index='{{index}}' catchtap='optionTap'>{{item}}</text>
+      </view>
+    </view>
+    <view class="searchItem">
+      <input placeholder="广东"></input>
+    </view>
+  </view>
+  <view>
+    <button class="searchButton" hover-class="searchButton_hover">搜索</button>
+  </view>
+  <view class="searchHistory">
+    <text>搜索历史</text>
+    <view wx:for="{{historyCount}}">
+      <view class="searchHistoryItem" hover-class='searchHistoryItem_hover' hover-stay-time="50">
+        <text class="searchHistoryItemText">背景</text>
+        <icon type="clear" size="15" style="margin:auto 30rpx;"></icon>
+      </view>
+    </view>
+  </view>
+</view>

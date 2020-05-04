@@ -1,2 +1,63 @@
 <!--miniprogram/pages/index/index.wxml-->
-<text>miniprogram/pages/index/index.wxml</text>
+<view class="wholeStyle">
+  <view bindtap="ToSearchPage" class="nextStep">
+      <icon type="search" size="48rpx" style="margin:20rpx"></icon>
+      <text style="margin:20rpx">搜索菜谱或餐厅</text>
+  </view>
+  <view class="swiper">
+    <swiper indicator-dots="{{indicatorDots}}"
+      autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{background}}" wx:key="*this">
+        <swiper-item>
+          <view class="swiper-item {{item}}">
+            <image style="border-radius: 10rpx" src="{{item}}"></image>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="IndexFourBox">
+    <view class="IndexPerBox">
+      <image class="ImageInIndexPerBox" src="../../image/IndexUpload.svg"></image>
+      <text class="TextInIndexPerBox">上传菜谱</text>
+    </view>
+    <view class="IndexPerBox">
+      <image class="ImageInIndexPerBox" src="../../image/MeiZhouBiQia.svg"></image>
+      <text class="TextInIndexPerBox">每周必恰</text>
+    </view>
+    <view class="IndexPerBox">
+      <image class="ImageInIndexPerBox" src="../../image/FuJinCanTing.svg"></image>
+      <text class="TextInIndexPerBox">附近餐厅</text>
+    </view>
+    <view class="IndexPerBox">
+      <image class="ImageInIndexPerBox" src="../../image/Paihangbang.svg"></image>
+      <text class="TextInIndexPerBox">排行榜</text>
+    </view>
+  </view>
+  <view wx:for = "{{PictureComCount}}">
+    <view class="PictureCom">
+      <view class="StarsAndScore">
+        <view class="FiveStars">
+          <image style="height:55rpx" src="../../image/star.svg"></image>
+          <image style="height:55rpx" src="../../image/star.svg"></image>
+          <image style="height:55rpx" src="../../image/star.svg"></image>
+          <image style="height:55rpx" src="../../image/star.svg"></image>
+          <image style="height:55rpx" src="../../image/star.svg"></image>
+        </view>
+        <view class="Score">
+          <text>9.9</text>
+        </view>
+      </view>
+      <view class="Name">
+        <text>宫爆鸡丁</text>
+      </view>
+      <view class="AuthorSet">
+        <image class="AuthorSetIcon" src="../../image/author.svg"></image>
+        <text class="AuthorSetText">肖霖畅</text>
+      </view>
+      <view class="CommentCount">
+        <text>500人评价过</text>
+      </view>
+    </view>
+  </view>
+</view>

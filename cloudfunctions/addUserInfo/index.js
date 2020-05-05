@@ -11,7 +11,11 @@ exports.main = async (event, context) => {
         name: event.name,
         fans: 0,
         praises: 0,
-        telephone: event.telephone
+        telephone: event.telephone,
+        introduction: event.introduction,
+        collections: [],
+        focus: [],
+        products: []
       }
     })
   }

@@ -10,11 +10,11 @@ exports.main = async (event, context) => {
       _id: event._id
     }).update({
       data: {
-        ingredients: ingredients,
-        introduction: introduction,
-        name: name,
-        steps: steps,
-        type: type,
+        ingredients: event.ingredients,
+        introduction: event.introduction,
+        name: event.name,
+        steps: event.steps,
+        type: event.type,
         date: new Date()
       }
     })

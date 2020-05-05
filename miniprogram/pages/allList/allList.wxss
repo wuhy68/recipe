@@ -1,0 +1,120 @@
+/* miniprogram/pages/allList/all.wxss */
+.body{
+  width: 100%;
+  box-sizing: border-box;
+  flex-direction: row;
+}
+.choice-bar {
+  margin-left: 20rpx;
+  position: fixed;
+  display: flex;
+  width: 76%;
+  font-size: 14px;
+  border-style: hidden;
+  z-index: 1;
+}
+.but{
+  width:20%;
+  height: 80rpx;
+  font-size:  18px;
+  margin-right: 0rpx;
+  background-color: rgb(252, 126, 67);
+  color: white;
+  background: bg_red;
+}
+.chioce-item {
+  background-color: rgb(191, 189, 189);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20rpx;
+  width: 100%;
+  height: 80rpx;
+  border-top: 1rpx solid #ddd;
+  border-bottom: 1rpx solid #ddd;
+  border-left: 1rpx solid #ddd;
+  border-radius: 6%;
+}
+  
+.icon-chioce {
+  height: 30rpx;
+  width: 30rpx;
+}
+.district-list,.sorting-list,.filter-list {
+  margin-top: 2rpx;
+  position: absolute;
+  top: 80rpx;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  z-index: -1;
+  font-size: 14px;
+  border-bottom: 1rpx solid #ddd;
+}
+.chioce-list-hide {
+  display: none !important;
+}
+.chioce-list-show {
+  animation: slide 500ms;
+}
+  
+.sorting-item {
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 40rpx;
+  border-bottom: 1rpx solid #ddd;
+}
+
+.category{
+  width: 100%;
+  margin-top: 30rpx;
+  display: flex;
+  justify-content:space-around;
+}
+
+.cat-but{
+  width: 25%;
+  background-color: grey;
+  font-size: small;
+}
+
+.item{
+  width: 100%;
+  font-size: small;
+  display: flex;
+  justify-content: space-around;
+  align-content:space-around;
+}
+
+.item-img{
+  margin-top: 8rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.item-img image{
+  margin-left: 40rpx;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.item-img text{
+  margin-left: 58rpx;
+}
+
+.item-img2{
+  margin-top: 8rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.item-img2 image{
+  margin-left: 40rpx;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.item-img2 text{
+  margin-left: 46rpx;
+}

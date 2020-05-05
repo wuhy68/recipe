@@ -1,7 +1,11 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/recipeInfo/recipeInfo",
     "pages/uploadRecipe/uploadRecipe",
-    "pages/index/index"
+    "pages/restaurant/restaurant",
+    "pages/mine/mine",
+    "pages/allList/allList"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -10,5 +14,33 @@
     "navigationBarTitleText": "Recipe",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "主页",
+        "iconPath": "../miniprogram/images/home.png",
+        "selectedIconPath": "../miniprogram/images/home_select.png"
+      },
+      {
+        "pagePath": "pages/allList/allList",
+        "text": "分区",
+        "iconPath": "../miniprogram/images/fenqu.png",
+        "selectedIconPath": "../miniprogram/images/fenqu_select.png"
+      },
+      {
+        "pagePath": "pages/restaurant/restaurant",
+        "text": "餐馆",
+        "iconPath": "../miniprogram/images/restaurant.png",
+        "selectedIconPath": "../miniprogram/images/restaurant_select.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "../miniprogram/images/mine.png",
+        "selectedIconPath": "../miniprogram/images/mine_select.png"
+      }
+    ]
+  }
 }

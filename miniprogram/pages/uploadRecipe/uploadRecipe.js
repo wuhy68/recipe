@@ -5,7 +5,17 @@ Page({
    * 页面的初始数据
    */
   data: {
+    /**
+     * 封面图片
+     */
     cover: "",
+
+    /**
+     * 配料
+     * 初始为两组空配料组合
+     * @member {配料} food
+     * @member {对应数量} count
+     */
     ingredients: [{
       food: "",
       count: ""
@@ -13,6 +23,13 @@ Page({
       food: "",
       count: ""
     }],
+
+    /**
+     * 步骤
+     * 初始为两组空步骤组合
+     * @member {图片地址} picture
+     * @member {步骤} step
+     */
     steps: [{
       picture: "",
       step: ""
@@ -20,6 +37,10 @@ Page({
       picture: "",
       step: ""
     }],
+
+    /**
+     * 控制局部页面
+     */
     temp1: 1,
     temp2: 1
   },
@@ -32,54 +53,9 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 上传封面图片
+   * 获得临时地址
    */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
   uploadCover: function () {
     wx.chooseImage({
       count: 1,
@@ -93,24 +69,9 @@ Page({
     })
   },
 
-  uploadPicture: function (e) {
-    let index = e.currentTarget.dataset.index
-    let tag = e.currentTarget.dataset.tag
-    let array = this.data.steps
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['original'],
-      sourceType: ['album', 'camera'],
-      complete: (res) => {
-        array[index][tag] = res.tempFilePaths    
-        this.setData({
-          steps: array
-        })
-      }
-    })
-
-  },
-
+  /**
+   * 设置配料内容
+   */
   setIngredientsValue: function (e) {
     let index = e.target.dataset.index
     let tag = e.target.dataset.tag
@@ -121,6 +82,10 @@ Page({
     })
   },
 
+  /**
+   * 更改配料内容
+   * @param {dataset} e 
+   */
   setStepsValue: function (e) {
     let index = e.target.dataset.index
     let tag = e.target.dataset.tag
@@ -131,6 +96,9 @@ Page({
     })
   },
 
+  /**
+   * 添加配料内容
+   */
   addIngredient: function () {
     const newIngredient = {
       food: "",
@@ -141,16 +109,10 @@ Page({
     })
   },
 
-  addStep: function () {
-    const newStep = {
-      picture: "",
-      step: ""
-    }
-    this.setData({
-      steps: this.data.steps.concat(newStep)
-    })
-  },
-
+    /**
+   * 删除配料内容
+   * @param {dataset} e 
+   */
   deleteIngredient: function (e) {
     let index = e.target.dataset.index
     let length = this.data.ingredients.length
@@ -167,6 +129,44 @@ Page({
     }
   },
 
+  /**
+   * 添加步骤内容
+   */
+  addStep: function () {
+    const newStep = {
+      picture: "",
+      step: ""
+    }
+    this.setData({
+      steps: this.data.steps.concat(newStep)
+    })
+  },
+
+  /**
+   * 上传步骤图片
+   * @param {dataset} e 
+   */
+  uploadPicture: function (e) {
+    let index = e.currentTarget.dataset.index
+    let tag = e.currentTarget.dataset.tag
+    let array = this.data.steps
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original'],
+      sourceType: ['album', 'camera'],
+      complete: (res) => {
+        array[index][tag] = res.tempFilePaths    
+        this.setData({
+          steps: array
+        })
+      }
+    })
+  },
+
+  /**
+   * 删除相应步骤
+   * @param {dataset} e 
+   */
   deleteStep: function (e) {
     let index = e.target.dataset.index
     let length = this.data.steps.length
@@ -183,6 +183,9 @@ Page({
     }
   },
 
+  /**
+   * 控制修改配料内容
+   */
   changeTemp1: function () {
     if (this.data.temp1 == 1) {
       this.setData({
@@ -195,6 +198,9 @@ Page({
     }
   },
 
+  /**
+   * 控制修改步骤内容
+   */
   changeTemp2: function () {
     if (this.data.temp2 == 1) {
       this.setData({

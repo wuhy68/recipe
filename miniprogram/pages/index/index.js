@@ -5,6 +5,24 @@ Page({
    * 页面的初始数据
    */
   data: {
+    /**
+     * 循环背景图片
+     */
+    background: ['../../images/indexImage1.jpg', '../../images/indexImage2.jpg', '../../images/indexImage3.png'],
+    indicatorDots: true,
+    vertical: true,
+    autoplay: true,
+    interval: 2000,
+    duration: 800,
+    /**
+     * 控制页面显示
+     */
+    search: 0,
+
+    /**
+     * 数据库数据
+     */
+    recipes: []
 
   },
 
@@ -12,73 +30,41 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getRecipeInfo()
   },
 
-
   /**
-   * 获取用户信息
-   * 
-   * @param {用户名} name 
+   * 获取所有菜单信息
    */
-  getUserInfo: function (name) {
+  getRecipeInfo: function () {
     wx.cloud.callFunction({
-      name: "getUserInfo",
-      data: {
-        name: name
-      },
+      name: "getAllRecipeInfo",
       success: res => {
-        console.log(res);
+        this.setData({
+          recipes: res.result.data
+        })
+        console.log(res.result.data);
       },
       fail: err => {
-        console.error(err);
+        console.log(err);
       }
+    }) 
+  },
+
+  /**
+   * 通过控制search来跳转到查询页面
+   */
+  ToSearchPage: function () {
+    this.setData({
+      search: 1
     })
   },
 
   /**
-   * 添加用户信息
-   * 
-   * @param {用户名} name 
-   * @param {用户类型} type 
-   * @param {电话号码} telephone 
-   * @param {经度} longtitude 
-   * @param {纬度} latitude 
+   * 正则查询（模糊搜索）
    */
-  addUserInfo: function (name, telephone) {
-    wx.cloud.callFunction({
-      name: 'addUserInfo',
-      data: {
-        name: name,
-        telephone: telephone,
-      },
-      success: res => {
-        console.log(res);
-      },
-      fail: err => {
-        console.error(err);
-      }
-    })
-  },
- 
-  /**
-   * 
-   * @param {关注数} fans 
-   * @param {获赞数} praises 
-   */
-  updateUserInfo: function(name, fans, praises) {
-    wx.cloud.callFunction({
-      name: 'updateUserInfo',
-      data: {
-        fans: fans,
-        praises: praises
-      },
-      success: res => {
-        console.log(res);
-      },
-      fail: err => {
-        console.error(err);
-      }
-    })
+  search: function () {
+
   }
+
 })

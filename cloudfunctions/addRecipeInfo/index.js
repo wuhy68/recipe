@@ -8,13 +8,13 @@ exports.main = async (event, context) => {
   try {
     return await db.collection('recipes').add({
       data: {
-        chef: chef,
-        ingredients: ingredients,
-        introduction: introduction,
-        name: name,
+        chef: event.chef,
+        ingredients: event.ingredients,
+        introduction: event.introduction,
+        name: event.name,
         praise: 0,
-        steps: steps,
-        type: type,
+        steps: event.steps,
+        type: event.type,
         date: new Date()
       }
     })

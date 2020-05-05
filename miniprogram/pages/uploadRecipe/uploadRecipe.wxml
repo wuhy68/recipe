@@ -18,7 +18,7 @@
   <view class="weui_cells__title">用料</view>
   <view class="weui-cell__input">
     <view wx:for="{{ingredients}}" class="weui-cell">
-      <icon wx:if="{{temp1 == 0}}" type="clear" data-index="{{index}}" bindtap="deleteIngredient"></icon>
+      <image src="../../images/停用.svg" wx:if="{{temp1 == 0}}" data-index="{{index}}" bindtap="deleteIngredient" style="height: 25px; width: 25px"></image>
       <input placeholder="食材" value="{{item.food}}" data-tag="food" data-index="{{index}}" bindblur="setIngredientsValue" style="margin-left:10px"></input>
       <input placeholder="用量" value="{{item.count}}" data-tag="count" data-index="{{index}}" bindblur="setIngredientsValue"></input>
     </view>
@@ -33,7 +33,7 @@
 
   <view> <text>做法</text> </view>
   <view wx:for="{{steps}}">
-    <icon wx:if="{{temp2 == 0}}" type="clear" data-index="{{index}}" bindtap="deleteStep"></icon>
+    <image src="../../images/停用.svg" wx:if="{{temp2 == 0}}" data-index="{{index}}" bindtap="deleteStep" style="height: 25px; width: 25px"></image>
     <view wx:if="{{item.picture==''}}" data-index="{{index}}" data-tag="picture" class='addCover' bindtap="uploadPicture">
       <text>+步骤图\n上传至少两张步骤图</text>
     </view>

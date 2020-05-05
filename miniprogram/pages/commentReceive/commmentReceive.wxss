@@ -1,0 +1,117 @@
+/* pages/commentReceive/commmentReceive.wxss */
+.wholeStyle{
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.CommentList {
+  width: 100%;
+  height: 100rpx;
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.CommentItem {
+  width: 100%;
+  height: 230rpx;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
+  text-align: center;
+  border-bottom: solid rgb(237, 235, 235) 1rpx;
+  overflow:hidden;
+}
+
+.CommentUserInfoAndAgreeCount {
+  width: 100%;
+  height: 120rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+}
+
+.CommentUserHeadImage {
+  width: 99rpx;
+  height: 99rpx;
+  left: 20rpx;
+  top: 299rpx;
+  border-radius: 52rpx;
+}
+
+.CommentUserHeadImageImage {
+  width: 99rpx;
+  height: 99rpx;
+  border-radius: 52rpx;
+}
+
+.CommentUserNameAndTime {
+  width: 90%;
+  height: 100rpx;
+  flex-direction: column;
+  display: flex;
+}
+
+.CommentUserName {
+  width: 100%;
+  height: 60rpx;
+  text-align: left;
+  margin-left: 30rpx;
+  margin-top: 10rpx;
+  font-size: 35rpx;
+  display: -webkit-box ;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:1;
+}
+
+.CommentUserTime {
+  width: 100%;
+  height: 40rpx;
+  text-align: left;
+  margin-left: 30rpx;
+  font-size: 30rpx;
+  color: gray;
+}
+
+.CommentAgreeCount {
+  width: 30%;
+  height: 100rpx;
+  flex-direction: row;
+  display: flex;
+  text-align: right;
+  margin-top: 60rpx;
+}
+
+.CommentAgreeCountImage {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.CommentAgreeCountIcon {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.CommentAgreeCountText {
+  width: 100%;
+  height: 40rpx;
+  text-align: left;
+  font-size: 35rpx;
+  color: gray;
+}
+
+.CommentContext {
+  width: 98%;
+  height: 100rpx;
+  margin-left: 10rpx;
+  margin-bottom: 20rpx;
+  font-size: 35rpx;
+  color: rgb(138, 116, 116);
+  text-align: left;
+  display: -webkit-box ;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:2;
+}

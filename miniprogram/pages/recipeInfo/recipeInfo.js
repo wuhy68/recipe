@@ -5,9 +5,15 @@ Page({
    * 页面的初始数据
    */
   data: {
+    content: "",//评论框的内容
     materialListCount: 7,
     StepListCount: 3,
     MaxShowComment: 2,
+    cfBg: false,
+    followingCount: 350,
+    score: 8.7,
+    reading: 15000,
+    isFollowing: false,
     StepListIndex: [
       {
         'index':1,
@@ -50,7 +56,7 @@ Page({
         'agreeCount':563,
         'context':"matrix团队有一个内部测试项目，现需要15~20名大二、大三同学参与和配合。工作时间暂定五月和六月，或面议。待遇从优。如果感兴趣的同学请填写问卷https://wj.qq.com/s2/5804387/326d/。请在五月三日前填报。！",
       },
-    ]
+    ],
   },
 
   /**
@@ -110,5 +116,46 @@ Page({
   },
   addMaxShowComment: function(){
     this.MaxShowComment += 2;
-  }
+  },
+  cemojiCfBg: function () {
+    this.setData({
+      isShow: false,
+      cfBg: false
+    })
+  },
+  //点击表情显示隐藏表情盒子
+  emojiShowHide: function () {
+    this.setData({
+      isShow: !this.data.isShow,
+      isLoad: false,
+      cfBg: !this.data.false
+    })
+  },
+  //表情选择
+  emojiChoose: function (e) {
+    //当前输入内容和表情合并
+    this.setData({
+      content: this.data.content + e.currentTarget.dataset.emoji
+    })
+  },
+  //点击emoji背景遮罩隐藏emoji盒子
+  cemojiCfBg: function () {
+    this.setData({
+      isShow: false,
+      cfBg: false
+    })
+  },
+  //文本域失去焦点时 事件处理
+  textAreaBlur: function (e) {
+    //获取此时文本域值
+    console.log(e.detail.value)
+    this.setData({
+      content: e.detail.value
+    })
+  },
+    //解决滑动穿透问题
+    emojiScroll: function (e) {
+      console.log(e)
+    },
+
 })

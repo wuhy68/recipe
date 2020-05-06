@@ -1,0 +1,63 @@
+/* pages/MyAuthentication/MyAuthentication.wxss */
+.wholeStyle{
+  margin-left: 5%;
+  margin-right: 5%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.HeadImage{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 80rpx;
+  margin: 100rpx auto;
+}
+
+.UserName{
+  margin: 50rpx auto;
+  font-weight: bold;
+}
+
+.AuthenticationList{
+  display: flex;
+  flex-wrap: wrap-reverse;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.GreenAuth{
+  width: 140rpx;
+  height: 60rpx;
+  border-radius: 15rpx;
+  background-color: rgb(180, 209, 137);
+  color: white;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+
+.YellowAuth{
+  width: 140rpx;
+  height: 60rpx;
+  border-radius: 15rpx;
+  background-color: rgb(221, 223, 115);
+  color: white;
+  margin-left: 10rpx;
+  margin-right: 10rpx;  
+}
+
+.BlueAuth{
+  width: 140rpx;
+  height: 60rpx;
+  border-radius: 15rpx;
+  background-color: rgb(103, 177, 174);
+  color: white;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+
+.restaurant{
+  margin: 200rpx auto;
+  background-color: #e64340;
+  color: white;
+}

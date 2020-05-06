@@ -1,0 +1,11 @@
+<!--pages/aboutUs/aboutUs.wxml-->
+<view class="wholeStyle">
+  <view class="HeadImage">
+    <image class="HeadImage" src="../../image/head.jpg"></image>
+  </view>
+  <text class="Teamname">TQL团队</text>
+  <text class="TextNormal">二十一周战士</text>
+  <text class="TextNormal" url="https://github.com/wuhy68/recipe">GITHUB地址</text>
+  <text class="TextNormal">QQ群: 123456789</text>
+  <button class="addGroup">加入群聊</button>
+</view>

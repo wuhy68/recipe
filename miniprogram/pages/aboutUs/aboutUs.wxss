@@ -1,0 +1,30 @@
+/* pages/aboutUs/aboutUs.wxss */
+.wholeStyle{
+  margin-left: 5%;
+  margin-right: 5%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.HeadImage{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 80rpx;
+  margin: 100rpx auto;
+}
+
+.Teamname{
+  margin: 50rpx auto;
+  font-weight: bold;
+}
+
+.TextNormal{
+  margin: 30rpx auto;
+}
+
+.addGroup{
+  margin-top: 50rpx;
+  color: rgb(255, 255, 255);
+  background-color: #e64340;
+}

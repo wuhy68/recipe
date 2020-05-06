@@ -1,0 +1,47 @@
+/* pages/RegisterForm/RegisterForm.wxss */
+.wholeStyle {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.weui-cells__title {
+  margin-top: 0;
+}
+
+.weui-cell__Item{
+  height: 80rpx;
+  border-bottom: solid rgb(232, 231, 231) 1rpx;
+  border-top: solid rgb(232, 231, 231) 1rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.weui-input {
+  margin-top: 13rpx;
+  margin-left: 30rpx;
+  overflow: hidden;
+}
+
+.radio-group {
+  padding: 10px 0px !important;
+}
+
+.weui-label {
+  margin-top: 13rpx;
+  margin-left: 30rpx;
+  color: black;
+}
+
+.radio text {
+  margin: 0rpx 8rpx;
+}
+
+.radio {
+  margin-right: 12rpx;
+}
+
+.weui-btn {
+  background: #f4de3b !important;
+  color: #000 !important;
+}
+

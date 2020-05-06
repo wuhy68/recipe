@@ -1,0 +1,11 @@
+<!--pages/MyRecipe/MyRecipe.wxml-->
+<view class="wholeStyle">
+  <view class="favoritesList">
+    <view wx:for="{{favoritesItemList}}" wx:for-item="item">
+      <view class="favoritesItem">
+        <image src="{{item.headImageUrl}}" class="favoritesItemImage" mode="aspectFill"></image>
+        <text class="favoritesItemTime">发布于: {{item.favoritesTime}}</text>
+      </view>
+    </view>
+  </view>
+</view>

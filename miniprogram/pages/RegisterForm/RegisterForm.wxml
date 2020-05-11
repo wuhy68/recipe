@@ -1,5 +1,4 @@
 <!--pages/RegisterForm/RegisterForm.wxml-->
-<!-- 还没做完20200507 -->
 <view class="wholeStyle">
 	<form bindsubmit="formSubmit">
 		<!-- <view class="weui-cells__title">请填写基本信息</view> -->
@@ -60,16 +59,18 @@
 			</label>
 		</checkbox-group>
 		<view class="weui-btn-area">
-			<button class="weui-btn_yes" type="primary" formType="submit" bindtap="powerDrawer">确定</button>
+			<button class="weui-btn_yes" type="primary" formType="submit" catchtap='clickPup'>确定</button>
 			<button class="weui-btn_reset" formType="reset">重置</button>
 		</view>
 	</form>
 </view>
 
-<view class="drawer_screen" bindtap="powerDrawer" wx:if="{{showModalStatus}}"></view>
-<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">
-  <!--drawer content-->
-  <view class="drawer_title">弹窗标题</view>
+<view class='drawer_box {{click? "showContent": "hideContent"}} {{option? "open": "close"}}' hover-stop-propagation='true'>
+  <view class="drawer_title">
+		<image src="../../image/close.png" class="closeIcon" catchtap='clickPup'></image>
+		<text>信息确认</text>
+		<image src="../../image/question.png" class="questionIcon"></image>
+	</view>
   <view class="drawer_content">
     <view class="top grid">
       <label class="title col-0">店名</label>
@@ -92,5 +93,5 @@
       <view class="input_base input_h30 col-1">{{mobPhone}}</view>
     </view>
   </view>
-  <view class="btn_ok" bindtap="powerDrawer" data-statu="close">确定</view>
+  <button class="btn_ok" bindtap="powerDrawer" data-statu="close">确定</button>
 </view>

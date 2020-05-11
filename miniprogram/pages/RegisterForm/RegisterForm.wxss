@@ -96,93 +96,125 @@
   color: rgb(41, 236, 236);
 }
 
-/* .drawer_screen {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  background: #000;
-  opacity: 0.5;
-  overflow: hidden;
-}
- 
 .drawer_box {
-  width: 650rpx;
+  width: 100%;
   overflow: hidden;
   position: fixed;
   top: 50%;
   left: 0;
   z-index: 1001;
   background: #FAFAFA;
-  margin: -150px 50rpx 0 50rpx;
+  margin: -100rpx 0 0 0;
   border-radius: 3px;
 }
- 
+
 .drawer_title{
-  padding:15px;
-  font: 20px "microsoft yahei";
+  padding:35rpx;
   text-align: center;
-}
-.drawer_content {
-  height: 210px;
-  overflow-y: scroll; 
-}
- 
-.btn_ok{
-  padding: 10px;
-  font: 20px "microsoft yahei";
-  text-align: center;
-  border-top: 1px solid #E8E8EA;
-  color: #3CC51F;
-}
- 
-.top{
-	padding-top:8px;
-}
-.bottom {
-	padding-bottom:8px;
-}
-.title {
-	height: 30px;
-	line-height: 30px;
-	width: 160rpx;
-	text-align: center;
-	display: inline-block;
-	font: 300 28rpx/30px "microsoft yahei";
-}
- 
-.input_base {
-	border: 2rpx solid #ccc;
-	padding-left: 10rpx;
-	margin-right: 50rpx;
-}
-.input_h30{
-	height: 30px;
-	line-height: 30px;
-}
-.input_h60{
-	height: 60px;
-}
-.input_view{
-	font: 12px "microsoft yahei";
-	background: #fff;
-	color:#000;
-	line-height: 30px;
-}
- 
-input {
-	font: 12px "microsoft yahei";
-	background: #fff;
-	color:#000 ;
-}
-radio{
-	margin-right: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.grid { display: -webkit-box; display: box; }
-.col-0 {-webkit-box-flex:0;box-flex:0;}
-.col-1 {-webkit-box-flex:1;box-flex:1;}
-.fl { float: left;}
-.fr { float: right;} */
+.closeIcon{
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.questionIcon{
+  width: 55rpx;
+  height: 55rpx;
+}
+
+.top{
+  padding-top:18rpx;
+  border-bottom: solid rgb(230, 226, 226) 1rpx;
+}
+
+.grid { 
+  display: -webkit-box; 
+  display: box; 
+}
+
+.title {
+	height: 60rpx;
+	line-height: 30rpx;
+	width: 280rpx;
+  text-align: left;
+  margin-left: 25rpx;
+  display: inline-block;
+  font-size: small;
+}
+
+.col-0 {
+  -webkit-box-flex:0;
+  box-flex:0;
+}
+
+.input_base {
+  height: 60rpx;
+	line-height: 30rpx;
+	width: 420rpx;
+  text-align: left;
+  margin-right: 25rpx;
+  display: inline-block;
+  font-size: small;
+  color: rgb(124, 122, 122);
+}
+
+.input_h30{
+	height: 60rpx;
+  line-height: 30rpx;
+  text-align: right;
+}
+
+.col-1 {
+  -webkit-box-flex:1;
+  box-flex:1;
+}
+
+.btn_ok{
+  color: white;
+  background: #24cdeb !important;
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+}
+
+.showContent {
+  display: block;
+}
+
+.hideContent {
+  display: none;
+}
+
+@keyframes slideContentUp {
+  from {
+    height: 0rpx;
+  }
+
+  to {
+    height: 800rpx;
+  }
+}
+
+@keyframes slideContentDown {
+  from {
+    height: 800rpx;
+  }
+
+  to {
+    height: 0;
+  }
+}
+
+/* 显示或关闭内容时动画 */
+.open {
+  animation: slideContentUp 0.05s ease-in both;
+  /* animation-fill-mode: both 动画将会执行 forwards 和 backwards 执行的动作。 */
+}
+
+.close {
+  animation: slideContentDown 0.05s ease-in both;
+  /* animation-fill-mode: both 动画将会执行 forwards 和 backwards 执行的动作。 */
+}

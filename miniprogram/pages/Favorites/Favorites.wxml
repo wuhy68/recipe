@@ -4,6 +4,7 @@
     <view wx:for="{{favoritesItemList}}" wx:for-item="item">
       <view class="favoritesItem">
         <image src="{{item.headImageUrl}}" class="favoritesItemImage" mode="aspectFill"></image>
+        <text class="favoritesItemName">{{item.name}}</text>
         <view class="favoritesItemAuthor">
           <image src="../../image/author.svg" class="favoritesItemAuthorIcon"></image>
           <text class="favoritesItemAuthorText">{{item.author}}</text>

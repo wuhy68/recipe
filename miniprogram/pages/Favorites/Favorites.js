@@ -7,24 +7,28 @@ Page({
   data: {
     favoritesItemList:[
       {
+        'name':'酱草黑鸦1111',
         'index':1,
         'headImageUrl':'../../image/indexImage1.jpg',
         'author':'linthings',
         'favoritesTime':'2020-05-05',
       },
       {
+        'name':'酱草黑鸦1111111111111111111111111111111111111111111',
         'index':2,
         'headImageUrl':'../../image/indexImage2.jpg',
         'author':'linthings',
         'favoritesTime':'2020-05-05',
       },
       {
+        'name':'酱草黑鸦11111',
         'index':3,
         'headImageUrl':'../../image/indexImage4.jpg',
         'author':'linthings',
         'favoritesTime':'2020-05-05',
       },
       {
+        'name':'酱草黑鸦1',
         'index':4,
         'headImageUrl':'../../image/indexImage5.jpg',
         'author':'linthin撒大苏打顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶gs',

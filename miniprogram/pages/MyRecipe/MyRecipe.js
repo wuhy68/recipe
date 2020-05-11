@@ -8,24 +8,28 @@ Page({
     favoritesItemList:[
       {
         'index':1,
+        'name':'北京烤鸭',
         'headImageUrl':'../../image/indexImage1.jpg',
         'author':'linthings',
         'favoritesTime':'2020-05-05',
       },
       {
         'index':2,
+        'name':'北京烤鸭',
         'headImageUrl':'../../image/indexImage2.jpg',
         'author':'linthings',
         'favoritesTime':'2020-05-05',
       },
       {
         'index':3,
+        'name':'北京烤鸭',
         'headImageUrl':'../../image/indexImage4.jpg',
         'author':'linthings',
         'favoritesTime':'2020-05-05',
       },
       {
         'index':4,
+        'name':'北京烤鸭',
         'headImageUrl':'../../image/indexImage5.jpg',
         'author':'linthin撒大苏打顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶gs',
         'favoritesTime':'2020-05-05',

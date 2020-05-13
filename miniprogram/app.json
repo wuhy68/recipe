@@ -4,8 +4,10 @@
     "pages/recipeInfo/recipeInfo",
     "pages/uploadRecipe/uploadRecipe",
     "pages/restaurant/restaurant",
-    "pages/mine/mine",
-    "pages/allList/allList"
+    "pages/userInfo/userInfo",
+    "pages/classification/classification",
+    "pages/restaurantRegister/restaurantRegister",
+    "pages/notice/notice"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -24,10 +26,10 @@
         "selectedIconPath": "../miniprogram/images/home_select.png"
       },
       {
-        "pagePath": "pages/allList/allList",
+        "pagePath": "pages/classification/classification",
         "text": "分区",
-        "iconPath": "../miniprogram/images/fenqu.png",
-        "selectedIconPath": "../miniprogram/images/fenqu_select.png"
+        "iconPath": "../miniprogram/images/classification.png",
+        "selectedIconPath": "../miniprogram/images/classification_select.png"
       },
       {
         "pagePath": "pages/restaurant/restaurant",
@@ -36,10 +38,10 @@
         "selectedIconPath": "../miniprogram/images/restaurant_select.png"
       },
       {
-        "pagePath": "pages/mine/mine",
+        "pagePath": "pages/userInfo/userInfo",
         "text": "我的",
-        "iconPath": "../miniprogram/images/mine.png",
-        "selectedIconPath": "../miniprogram/images/mine_select.png"
+        "iconPath": "../miniprogram/images/user.png",
+        "selectedIconPath": "../miniprogram/images/user_select.png"
       }
     ]
   }

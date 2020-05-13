@@ -1,8 +1,9 @@
 <!--miniprogram/pages/index/index.wxml-->
 <view class="wholeStyle">
-  <input bindtap="ToSearchPage" placeholder="搜索餐厅或者菜谱" class="nextStep">
+  <input bindtap="toSearchPage" bindinput="input" placeholder="搜索餐厅或者菜谱" value="{{searchVal}}" class="nextStep">
       <icon type="search" size="48rpx" style="margin:20rpx" bindtap="search"></icon>
   </input>
+  <!--搜索界面-->
   <view wx:if ="{{search == 1}}">
     <view class="searchHistory">
       <text>搜索历史</text>
@@ -14,7 +15,11 @@
       </view>
     </view>
   </view>
+
+  <!--主页-->
   <view  wx:elif="{{search == 0}}">
+
+    <!--头版菜谱-->
     <view class="swiper">
       <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
         <block wx:for="{{background}}" wx:key="*this">
@@ -26,49 +31,74 @@
         </block>
       </swiper>
     </view>
+
+    <!--内容导航栏-->
     <view class="indexFourBox">
-      <view class="indexPerBox">
-        <image class="imageInIndexPerBox" src="../../images/IndexUpload.svg"></image>
+      <view class="indexPerBox" bindtap="toUploadRecipe">
+        <image class="imageInIndexPerBox" src="../../images/upload.png"></image>
         <text class="textInIndexPerBox">上传菜谱</text>
       </view>
-      <view class="indexPerBox">
-        <image class="imageInIndexPerBox" src="../../images/MeiZhouBiQia.svg"></image>
+      <view class="indexPerBox" bindtap="toRecommendation">
+        <image class="imageInIndexPerBox" src="../../images/recommend.png"></image>
         <text class="textInIndexPerBox">每周必恰</text>
       </view>
-      <view class="indexPerBox">
-        <image class="imageInIndexPerBox" src="../../images/FuJinCanTing.svg"></image>
+      <view class="indexPerBox" bindtap="toNearby">
+        <image class="imageInIndexPerBox" src="../../images/nearby.png"></image>
         <text class="textInIndexPerBox">附近餐厅</text>
       </view>
-      <view class="indexPerBox">
-        <image class="imageInIndexPerBox" src="../../images/Paihangbang.svg"></image>
+      <view class="indexPerBox" bindtap="toRank">
+        <image class="imageInIndexPerBox" src="../../images/rank.png"></image>
         <text class="textInIndexPerBox">排行榜</text>
       </view>
     </view>
-    <view>
-      <view wx:for="{{recipes}}" class="pictureCom">
-        <view class="starsAndScore">
-          <view class="fiveStars">
-            <image style="height:55rpx" src="../../images/star.svg"></image>
-            <image style="height:55rpx" src="../../images/star.svg"></image>
-            <image style="height:55rpx" src="../../images/star.svg"></image>
-            <image style="height:55rpx" src="../../images/star.svg"></image>
-            <image style="height:55rpx" src="../../images/star.svg"></image>
+
+    <!--每日必恰-->
+    <view wx:if="{{recommend == 1 && nearby == 0 && rank == 0}}">
+      <view wx:for="{{recipes}}" wx:key="*this" class="pictureCom">
+        <navigator url="../recipeInfo/recipeInfo?_id={{item._id}}&&openid={{item.openid}}">
+          <view class="starsAndScore">
+            <view class="fiveStars">
+              <image style="height:55rpx" src="../../images/star.svg"></image>
+              <image style="height:55rpx" src="../../images/star.svg"></image>
+              <image style="height:55rpx" src="../../images/star.svg"></image>
+              <image style="height:55rpx" src="../../images/star.svg"></image>
+              <image style="height:55rpx" src="../../images/star.svg"></image>
+            </view>
+            <view class="score">
+              <text>9.9</text>
+            </view>
           </view>
-          <view class="score">
-            <text>9.9</text>
+          <view class="name">
+            <text>{{item.name}}</text>
           </view>
-        </view>
-        <view class="name">
-          <text>{{item.name}}</text>
-        </view>
-        <view class="authorSet">
-          <image class="authorSetIcon" src="../../image/author.svg"></image>
-          <text class="authorSetText">{{item.chef}}</text>
-        </view>
-        <view class="commentCount">
-          <text>500人评价过</text>
-        </view>
+          <view class="authorSet">
+            <image class="authorSetIcon" src="../../images/author.svg"></image>
+            <text class="authorSetText">{{item.chef}}</text>
+          </view>
+          <view class="commentCount">
+            <text>500人评价过</text>
+          </view>
+        </navigator>
       </view>
     </view>
+
+    <!--附近餐厅-->
+    <view wx:elif="{{recommend == 0 && nearby == 1 && rank == 0}}">
+      <view wx:if="nearbyRestaurant.length == 0">
+        暂无附近餐厅
+      </view>
+      <view wx:else>
+      
+      </view>
+    </view>
+
+    <!--排行榜-->
+    <view wx:else>  
+      <view wx:if="rankRecipe.length == 0">
+        排行榜尚未更新
+      </view>
+      <view wx:else></view>
+    </view>
+
   </view>
 </view>

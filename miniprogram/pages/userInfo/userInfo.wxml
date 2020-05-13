@@ -1,0 +1,89 @@
+<!--pages/mine/mine.wxml--> 
+<view wx:if="{{isHide}}">
+  <view wx:if="{{canIUse}}">
+    <view>
+      <text class="title">开始准备好好吃饭</text>
+      <textarea class="subtitle" value=""></textarea>
+      <button type='primary' open-type='getUserInfo' bindgetuserinfo='bindGetUserInfo'>微信授权登录</button>
+    </view>
+  </view>
+  <view wx:else>请升级微信版本</view>
+</view>
+<view wx:else>
+  <view class="layout" style="margin-top: 20px;">
+    <view style="flex: 2; margin-left: 5%">
+      <open-data type="userNickName"></open-data> 
+      <view class="layout" style="margin-top: 60px;">
+        <text>关注</text>
+        <text>粉丝</text>
+      </view>
+    </view>
+    <view style="flex: 1; margin-right: 5%"> 
+      <open-data type="userAvatarUrl" class="avatar"></open-data>
+    </view>
+  </view>
+  <view class="container">
+      <!-- 分割线 -->
+    <view class="divLine"></view>
+  </view>
+
+  <view class="layout" style="justify-content: center; margin-top: 10px">
+    <text bindtap="toCollection">收藏</text>
+    <text style="margin-left: 5px" bindtap="toRecipe">菜谱</text>
+    <text style="margin-left: 5px" bindtap="toRestaurant">餐馆</text>
+  </view>
+  <!--收藏-->
+  <view wx:if="{{collection == 1 && recipe == 0 && restaurant == 0}}">
+    <view wx:if="{{userCollections.length == 0}}">
+      无收藏
+    </view>
+    <view wx:else>
+      <view class="wholeStyle">
+        <view class="favoritesList">
+          <view wx:for="{{userCollections}}" wx:for-item="item">
+            <view class="favoritesItem">
+              <image src="{{item.imageUrl}}" class="favoritesItemImage" mode="aspectFill"></image>
+              <text class="favoritesItemName">{{item.recipe.name}}</text>
+              <view class="favoritesItemAuthor">
+                <image src="../../image/author.svg" class="favoritesItemAuthorIcon"></image>
+                <text class="favoritesItemAuthorText">{{item.recipe.chef}}</text>
+              </view>
+              <text class="favoritesItemTime">收藏于: {{item.date}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!--菜谱-->
+  <view wx:elif="{{collection == 0 && recipe == 1 && restaurant == 0}}">
+    <view wx:if="{{userRecipes.length == 0}}">
+      无菜谱
+    </view>
+    <view wx:else>
+      <view class="wholeStyle">
+        <view class="favoritesList">
+          <view wx:for="{{userRecipes}}" wx:for-item="item">
+            <view class="favoritesItem">
+              <image src="{{item.headImageUrl}}" class="favoritesItemImage" mode="aspectFill"></image>
+              <text class="favoritesItemName">{{item.name}}</text>
+              <text class="favoritesItemTime">发布于: {{item.date}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!--餐厅-->
+  <view wx:else>
+    <view wx:if="{{userRecipes.length == 0}}">
+      <navigator url="../restaurantRegister/restaurantRegister">创建餐厅</navigator>
+    </view>
+    <view wx:else>
+      
+    </view>
+  </view> 
+</view>
+

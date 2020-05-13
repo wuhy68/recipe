@@ -6,14 +6,14 @@
 </view>
 <view class="wholeStyle">
   <view class='addTitle'>
-    <input placeholder="输入这道美食的名字" placeholder-style="text-align: center" style="text-align: center"></input>
+    <input placeholder="输入这道美食的名字" placeholder-style="text-align: center" style="text-align: center" bindinput="{{name}}"></input>
   </view>
   <view class="container">
       <!-- 分割线 -->
     <view class="divLine"></view>
   </view>
   <view>
-    <textarea class="addStory" placeholder="输入这道美食背后的故事"></textarea>
+    <textarea class="addStory" placeholder="输入这道美食背后的故事" bindinput="{{introduction}}"></textarea>
   </view>
   <view class="weui_cells__title">用料</view>
   <view class="weui-cell__input">
@@ -51,7 +51,7 @@
   </view>
   <view> <text>小贴士</text> </view>
   <view>
-    <textarea class="addStory" placeholder="这道菜还有哪些需要注意的细节和小技巧"></textarea>
+    <textarea class="addStory" placeholder="这道菜还有哪些需要注意的细节和小技巧" bindinput="{{tip}}"></textarea>
   </view>
   <button>发布这个菜谱</button>
 </view>

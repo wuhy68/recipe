@@ -11,6 +11,16 @@ Page({
     cover: "",
 
     /**
+     * 菜名
+     */
+    name: "",
+
+    /**
+     * 食谱简介
+     */
+    introduction: "",
+
+    /**
      * 配料
      * 初始为两组空配料组合
      * @member {配料} food
@@ -37,6 +47,11 @@ Page({
       picture: "",
       step: ""
     }],
+
+    /**
+     * 小贴士
+     */
+    tip: "",
 
     /**
      * 控制局部页面
@@ -211,5 +226,12 @@ Page({
         temp2: 1
       })
     }
+  },
+
+  /**
+   * 上传菜谱
+   */
+  uploadRecipe: function () {
+
   }
 })

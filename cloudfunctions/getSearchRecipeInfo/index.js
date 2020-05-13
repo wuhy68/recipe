@@ -5,7 +5,10 @@ cloud.init()
 const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
-  return await db.collection("users").where({
-    openid: event.openid
+  return await db.collection("recipes").where({
+    name: db.RegExp({
+      regexp: event.name,
+      options: 'i'
+    })
   }).get()
 }

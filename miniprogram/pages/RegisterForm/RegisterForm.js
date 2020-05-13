@@ -105,4 +105,19 @@ Page({
       })
     }
   },
+  getLocation: function(){
+    var that = this
+    wx.chooseLocation({
+      success: function (res) {
+        console.log(res.address)
+        console.log(res.latitude)
+        console.log(res.longitude)
+        console.log(res.name)
+        var location = res.address
+        that.setData({
+          location: location
+        })
+      }
+    })
+  }
 })

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/RegisterForm/RegisterForm",
     "pages/ListInfo/ListInfo",
     "pages/UserAllRecipe/UserAllRecipe",
     "pages/UserInfo/UserInfo",
@@ -9,7 +10,7 @@
     "pages/recipeInfo/recipeInfo",
     "pages/MyRecipe/MyRecipe",
     "pages/AllList/AllList",
-    "pages/RegisterForm/RegisterForm",
+    
     "pages/notice/notice",
     "pages/MyAuthentication/MyAuthentication",
     "pages/Favorites/Favorites",

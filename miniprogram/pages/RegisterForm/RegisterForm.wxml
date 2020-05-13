@@ -26,7 +26,10 @@
 				</view>
 				<view class="weui-cell__Item">
 					<view class="weui-label">餐厅地址</view>
-					<input class="weui-input" type="text" name="location" value="{{location}}" placeholder="请输入餐厅地址" />
+					<view class="weui-input2">
+						<input type="text" name="location" value="{{location}}" placeholder="请输入餐厅地址" />
+						<view class="weui-getVari" bindtap='getLocation' hover-class="weui-getVari-hover">获取位置</view>
+					</view>
 				</view>
 				<view class="weui-cell__Item">
 					<view class="weui-label">法人固定电话</view>
@@ -34,7 +37,10 @@
 				</view>
 				<view class="weui-cell__Item">
 					<view class="weui-label">法人移动电话</view>
-					<input class="weui-input" type="text" name="mobPhone" value="{{mobPhone}}" placeholder="请输入11位手机号" />
+					<view class="weui-input2">
+						<input type="text" name="mobPhone" value="{{mobPhone}}" placeholder="请输入11位手机号" />
+						<view class="weui-getVari" hover-class="weui-getVari-hover">获取验证码</view>
+					</view>
 				</view>
 				<view class="weui-cell__Item">
 					<view class="weui-label">验证码</view>

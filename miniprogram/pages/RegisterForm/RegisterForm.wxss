@@ -33,6 +33,27 @@
   overflow: hidden;
 }
 
+.weui-input2{
+  width: 65%;
+  margin-top: 13rpx;
+  margin-left: 30rpx;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+}
+
+.weui-getVari{
+  width: 43%;
+  margin-top: 8rpx;
+  text-align: right;
+  font-size: small;
+  color: rgb(169, 244, 57);
+}
+
+.weui-getVari-hover{
+  color: rgb(106, 211, 235);
+}
+
 .radio-group {
   padding: 10px 0px !important;
 }

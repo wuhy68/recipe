@@ -5,8 +5,7 @@ cloud.init()
 const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const _ = db.command
-  return await db.collection("recipes").where({
-    tag: _all(event.tag)
+  return await db.collection("restaurants").where({
+    openid: event.openid
   }).get()
 }

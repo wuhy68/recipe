@@ -1,5 +1,11 @@
 <!--miniprogram/pages/restaurantRegister/restaurantRegister.wxml-->
 <view class="wholeStyle">
+	<view wx:if="{{cover==''}}" class='addCover' bindtap="uploadCover">
+		<text>展示餐厅的面貌</text>
+	</view>
+	<view wx:elif="{{cover!=''}}" bindtap="uploadCover">
+		<image src="{{cover}}"></image>
+	</view>
 	<form bindsubmit="formSubmit">
 		<!-- <view class="weui-cells__title">请填写基本信息</view> -->
 		<view class="weui-cells weui-cells_after-title">
@@ -26,7 +32,10 @@
 				</view>
 				<view class="weui-cell__Item">
 					<view class="weui-label">餐厅地址</view>
-					<input class="weui-input" type="text" name="location" value="{{location}}" placeholder="请输入餐厅地址" />
+					<view class="weui-input2">
+						<input type="text" name="address" value="{{address}}" placeholder="请输入餐厅地址" />
+						<view class="weui-getVari" bindtap='getLocation' hover-class="weui-getVari-hover">获取位置</view>
+					</view>
 				</view>
 				<view class="weui-cell__Item">
 					<view class="weui-label">法人固定电话</view>
@@ -34,7 +43,10 @@
 				</view>
 				<view class="weui-cell__Item">
 					<view class="weui-label">法人移动电话</view>
-					<input class="weui-input" type="text" name="mobPhone" value="{{mobPhone}}" placeholder="请输入11位手机号" />
+					<view class="weui-input2">
+						<input type="text" name="mobPhone" value="{{mobPhone}}" placeholder="请输入11位手机号" />
+						<view class="weui-getVari" hover-class="weui-getVari-hover">获取验证码</view>
+					</view>
 				</view>
 				<view class="weui-cell__Item">
 					<view class="weui-label">验证码</view>
@@ -54,7 +66,7 @@
 						<icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{isAgree}}"></icon>
 					</view>
 					<text class="weui-agree__checkbox-text">阅读并同意</text>
-					<view bindtap="gotoNotice" class="weui-agree__link" hover-class="weui-agree__link_hover">《免责声明》</view> 
+					<view bindtap="toNotice" class="weui-agree__link" hover-class="weui-agree__link_hover">《免责声明》</view> 
 				</view>
 			</label>
 		</checkbox-group>
@@ -93,5 +105,5 @@
       <view class="input_base input_h30 col-1">{{mobPhone}}</view>
     </view>
   </view>
-  <button class="btn_ok" bindtap="powerDrawer" data-statu="close">确定</button>
+  <button class="btn_ok" bindtap="uploadRestaurant" data-statu="close">确定</button>
 </view>

@@ -1,11 +1,11 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/recipeInfo/recipeInfo",
-    "pages/uploadRecipe/uploadRecipe",
     "pages/restaurant/restaurant",
     "pages/userInfo/userInfo",
     "pages/classification/classification",
+    "pages/recipeInfo/recipeInfo",
+    "pages/uploadRecipe/uploadRecipe",
     "pages/restaurantRegister/restaurantRegister",
     "pages/notice/notice"
   ],

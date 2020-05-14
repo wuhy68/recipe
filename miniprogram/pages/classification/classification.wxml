@@ -1,2 +1,129 @@
 <!--miniprogram/pages/classification/classification.wxml-->
-<text>miniprogram/pages/classification/classification.wxml</text>
+<view class="body">
+<text class="tag">热门分类</text>
+<view class="food">
+    <navigator>
+    <view class="food-img"> 
+      <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/jiachangcai.jpg" mode="aspectFill">
+      </image>
+      <view class="txt">
+      家常菜
+      </view>
+    </view> 
+    </navigator>
+    <navigator>
+    <view class="food-img">
+      <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/xiafancai.jpg" mode="aspectFill"></image>
+      <view class="txt">下饭菜</view>
+    </view> 
+    </navigator>
+    <navigator>
+    <view class="food-img">
+      <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/hongpei.jpg" mode="aspectFill"></image>
+      <view class="txt2">烘焙</view>
+    </view> 
+    </navigator>
+    <navigator>
+    <view class="food-img">
+      <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/roulei.jpg" mode="aspectFill"></image>
+      <view class="txt2">肉类</view>
+    </view>
+    </navigator>
+    <navigator>
+    <view class="food-img">
+      <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/zaocan.png" mode="aspectFill"></image>
+      <view class="txt2">早餐</view>
+    </view> 
+    </navigator>
+    <navigator>
+    <view class="food-img">
+      <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/shucai.jpg" mode="aspectFill"></image>
+      <view class="txt2">蔬菜</view>
+    </view> 
+    </navigator>
+    <navigator>
+    <view class="food-img">
+      <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/tangzhouzhushi.jpg" mode="aspectFill"></image>
+      <view class="txt">汤粥主食</view>
+    </view>
+    </navigator>
+  </view>
+</view>
+
+<view class="body">
+  <text class="tag">菜式</text>
+  <view class="food">
+    <navigator>
+    <view class="food-img"> 
+      <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/kuaishoucai.jpg" mode="aspectFill">
+      </image>
+      <view class="txt">快手菜</view>
+    </view> 
+    </navigator>
+    <navigator>
+    <view class="food-img">
+      <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/sucai.jpg" mode="aspectFill"></image>
+      <view class="txt2">素菜</view>
+    </view> 
+    </navigator>
+    <view class="food-img">
+      <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/tianpinyinpin.jpg" mode="aspectFill"></image>
+      <view class="txt">甜品饮品</view>
+    </view> 
+    <navigator>
+    <view class="food-img">
+      <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/xiaochi.jpg" mode="aspectFill"></image>
+      <view class="txt2">小吃</view>
+    </view>
+    </navigator>
+    <navigator>
+    <view class="food-img">
+      <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/lingshi.jpeg" mode="aspectFill"></image>
+      <view class="txt2">零食</view>
+    </view> 
+    </navigator>
+    <navigator>
+    <view class="food-img">
+      <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/lanrencaipu.jpg" mode="aspectFill"></image>
+      <view class="txt">懒人菜谱</view>
+    </view>
+    </navigator>
+    <navigator>
+    <view class="food-img">
+      <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/shala.jpg" mode="aspectFill"></image>
+      <view class="txt">沙拉凉菜</view>
+    </view>
+    </navigator>
+  </view>
+</view>
+
+<view class="body">
+  <text class="tag">场景</text>
+  <view class="food">
+    <navigator>
+    <view class="food-img">
+      <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/yirenshi.jpeg" mode="aspectFill"></image>
+      <view class="txt">单人份</view>
+    </view>
+    </navigator>
+    <navigator>
+    <view class="food-img">
+      <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/yanqing.png" mode="aspectFill"></image>
+      <view class="txt2">宴请</view>
+    </view>
+    </navigator>
+    <navigator>
+    <view class="food-img">
+      <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/xiawuca.jpg" mode="aspectFill"></image>
+      <view class="txt">下午茶</view>
+    </view>
+    </navigator>
+    <navigator>
+    <view class="food-img">
+      <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/biandang.jpg" mode="aspectFill"></image>
+      <view class="txt2">便当</view>
+    </view>
+    </navigator>
+    </view>
+</view>
+

@@ -78,7 +78,7 @@
 
   <!--餐厅-->
   <view wx:else>
-    <view wx:if="{{userRecipes.length == 0}}">
+    <view wx:if="{{userRestaurant.length == 0}}">
       <navigator url="../restaurantRegister/restaurantRegister">创建餐厅</navigator>
     </view>
     <view wx:else>

@@ -1,8 +1,16 @@
 <!--miniprogram/pages/index/index.wxml-->
 <view class="wholeStyle">
-  <input bindtap="toSearchPage" bindinput="input" placeholder="搜索餐厅或者菜谱" value="{{searchVal}}" class="nextStep">
+  <view wx:if ="{{search == 0}}" style="display: flex; flex-direction: row">
+    <input bindtap="toSearchPage" bindinput="input" placeholder="搜索餐厅或者菜谱" value="{{searchVal}}" class="nextStep" style="width: 660rpx;">
       <icon type="search" size="48rpx" style="margin:20rpx" bindtap="search"></icon>
-  </input>
+    </input>
+  </view>
+  <view wx:else style="display: flex; flex-direction: row">
+    <input bindtap="toSearchPage" bindinput="input" placeholder="搜索餐厅或者菜谱" value="{{searchVal}}" class="nextStep" style="width: 590rpx;">
+      <icon type="search" size="48rpx" style="margin:20rpx" bindtap="search"></icon>
+    </input>
+    <view  bindtap="toIndex"> <text>取消</text> </view>
+  </view>
   <!--搜索界面-->
   <view wx:if ="{{search == 1}}">
     <view class="searchHistory">
@@ -35,19 +43,19 @@
     <!--内容导航栏-->
     <view class="indexFourBox">
       <view class="indexPerBox" bindtap="toUploadRecipe">
-        <image class="imageInIndexPerBox" src="../../images/upload.png"></image>
+        <image class="imageInIndexPerBox" src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/upload.png"></image>
         <text class="textInIndexPerBox">上传菜谱</text>
       </view>
       <view class="indexPerBox" bindtap="toRecommendation">
-        <image class="imageInIndexPerBox" src="../../images/recommend.png"></image>
+        <image class="imageInIndexPerBox" src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/recommend.png"></image>
         <text class="textInIndexPerBox">每周必恰</text>
       </view>
       <view class="indexPerBox" bindtap="toNearby">
-        <image class="imageInIndexPerBox" src="../../images/nearby.png"></image>
+        <image class="imageInIndexPerBox" src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/nearby.png"></image>
         <text class="textInIndexPerBox">附近餐厅</text>
       </view>
       <view class="indexPerBox" bindtap="toRank">
-        <image class="imageInIndexPerBox" src="../../images/rank.png"></image>
+        <image class="imageInIndexPerBox" src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/rank.png"></image>
         <text class="textInIndexPerBox">排行榜</text>
       </view>
     </view>

@@ -4,6 +4,17 @@
   margin-right: 5%;
 }
 
+.addCover {
+  width: 100%;
+  height: 260px;
+  background-color: grey;
+  color: rgb(155, 153, 153);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .weui-cells__title {
   margin-top: 0;
 }
@@ -31,6 +42,27 @@
   margin-top: 13rpx;
   margin-left: 30rpx;
   overflow: hidden;
+}
+
+.weui-input2{
+  width: 65%;
+  margin-top: 13rpx;
+  margin-left: 30rpx;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+}
+
+.weui-getVari{
+  width: 43%;
+  margin-top: 8rpx;
+  text-align: right;
+  font-size: small;
+  color: rgb(169, 244, 57);
+}
+
+.weui-getVari-hover{
+  color: rgb(106, 211, 235);
 }
 
 .radio-group {

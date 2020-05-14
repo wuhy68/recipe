@@ -130,6 +130,8 @@ Page({
    * 获取菜谱作者信息
    */
   getUserInfo: function () {
+    console.log(this.data.openid + "haha");
+    console.log(this.data._id + "haha");
     wx.cloud.callFunction({
       name: "getUserInfo",
       data: {
@@ -138,7 +140,7 @@ Page({
       success: res => {
         console.log(res);
         this.setData({
-          userInfo: res.result.data
+          userInfo: res.result.data[0]
         })
       },
       fail: err => {
@@ -159,8 +161,8 @@ Page({
       success: res => {
         console.log(res);
         this.setData({
-          stepList: res.result.data.steps,
-          ingredientList: res.result.data.ingredients
+          stepList: res.result.data[0].steps,
+          ingredientList: res.result.data[0].ingredients
         })
       },
       fail: err => {

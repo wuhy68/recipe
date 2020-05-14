@@ -8,14 +8,16 @@ exports.main = async (event, context) => {
   try {
     return await db.collection('users').add({
       data: {
-        name: event.name,
+        openid: event.openid,
+        nickname: event.nickname,
+        avatarUrl: event.avatarUrl,
         fans: 0,
         praises: 0,
-        telephone: event.telephone,
-        introduction: event.introduction,
+        introduction: "",
         collections: [],
         focus: [],
-        products: []
+        recipes: [],
+        date: new Date()
       }
     })
   }

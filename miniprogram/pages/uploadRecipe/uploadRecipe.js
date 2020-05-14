@@ -1,4 +1,5 @@
 // miniprogram/pages/uploadRecipe/uploadRecipe.js
+const app = getApp()
 Page({
 
   /**
@@ -57,14 +58,40 @@ Page({
      * 控制局部页面
      */
     temp1: 1,
-    temp2: 1
+    temp2: 1,
+
+    /**
+     * 菜谱数量
+     * 用来确定图片存放位置
+     */
+    inedx: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getUserRecipeIndex()
+  },
 
+  /**
+   * 获取菜谱数量
+   */
+  getUserRecipeIndex: function () {
+    wx.cloud.callFunction({
+      name: "getUserRecipeInfo",
+      data: {
+        openid: app.globalData.openid
+      },
+      success: res => {
+        this.setData({
+          index: res.result.data.length
+        })
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
   },
 
   /**
@@ -77,9 +104,24 @@ Page({
       sizeType: ['original'],
       sourceType: ['album', 'camera'],
       complete: (res) => {
+        //选择完成会先返回一个临时地址保存备用
+        const tempFilePaths = res.tempFilePaths
         this.setData({
-          cover: res.tempFilePaths
+          cover: tempFilePaths
         })
+        //将照片上传至云端需要刚才存储的临时地址
+        wx.cloud.uploadFile({
+          cloudPath: app.globalData.openid + "/" + this.data.index + "/" + "cover.png",
+          filePath: tempFilePaths[0],
+          success(res) {
+            //上传成功后会返回永久地址
+            console.log(res.fileID);
+            this.setData({
+              cover: res.fileID
+            })
+          }
+        })    
+        console.log(this.data.cover);
       },
     })
   },
@@ -94,20 +136,6 @@ Page({
     array[index][tag] = e.detail.value
     this.setData({
       ingredients: array
-    })
-  },
-
-  /**
-   * 更改配料内容
-   * @param {dataset} e 
-   */
-  setStepsValue: function (e) {
-    let index = e.target.dataset.index
-    let tag = e.target.dataset.tag
-    let array = this.data.steps
-    array[index][tag] = e.detail.value
-    this.setData({
-      steps: array
     })
   },
 
@@ -158,6 +186,20 @@ Page({
   },
 
   /**
+   * 更改步骤内容
+   * @param {dataset} e 
+   */
+  setStepsValue: function (e) {
+    let index = e.target.dataset.index
+    let tag = e.target.dataset.tag
+    let array = this.data.steps
+    array[index][tag] = e.detail.value
+    this.setData({
+      steps: array
+    })
+  },
+
+  /**
    * 上传步骤图片
    * @param {dataset} e 
    */
@@ -170,10 +212,24 @@ Page({
       sizeType: ['original'],
       sourceType: ['album', 'camera'],
       complete: (res) => {
-        array[index][tag] = res.tempFilePaths    
+        const tempFilePaths = res.tempFilePaths
+        array[index][tag] = tempFilePaths    
         this.setData({
           steps: array
         })
+        //将照片上传至云端需要刚才存储的临时地址
+        wx.cloud.uploadFile({
+          cloudPath: app.globalData.openid + "/" + this.data.index + "/" + index + "/" + "step.png",
+          filePath: tempFilePaths[0],
+          success(res) {
+            //上传成功后会返回永久地址
+            console.log(res.fileID);
+            array[index][tag] = res.fileID
+            this.setData({
+              steps: array
+            })
+          }
+        }) 
       }
     })
   },
@@ -232,6 +288,29 @@ Page({
    * 上传菜谱
    */
   uploadRecipe: function () {
-
+    wx.cloud.callFunction({
+      name: "addRecipeInfo",
+      data: {
+        chef: app.globalData.userInfo.nickName,
+        openid: app.globalData.openid,
+        ingredients: this.data.ingredients,
+        introduction: this.data.introduction,
+        name: this.data.name,
+        steps: this.data.steps,
+        tip: this.data.tip
+      },
+      success: res => {
+        console.log(res);
+        console.log("上传成功");
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
+    wx.navigateBack({
+      complete: (res) => {
+        console.log(res)    
+      },
+    })
   }
 })

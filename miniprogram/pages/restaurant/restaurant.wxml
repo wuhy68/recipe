@@ -1,15 +1,14 @@
 <!--pages/restaurant/restaurant.wxml-->
 <view class="wholeStyle">
   <view class="favoritesList">
-    <view wx:for="{{favoritesItemList}}" wx:for-item="item">
+    <view wx:for="{{restaurantList}}" wx:for-item="item">
       <view class="favoritesItem">
-        <image src="{{item.headImageUrl}}" class="favoritesItemImage" mode="aspectFill"></image>
+        <image src="{{item.cover}}" class="favoritesItemImage" mode="aspectFill"></image>
         <text class="favoritesItemName">{{item.name}}</text>
         <view class="favoritesItemAuthor">
           <image src="../../image/position.png" class="favoritesItemAuthorIcon"></image>
-          <text class="favoritesItemAuthorText">{{item.location}}</text>
+          <text class="favoritesItemAuthorText">{{item.address}}</text>
         </view>
-        <text class="favoritesItemTime">评分: {{item.favoritesScore}}</text>
       </view>
     </view>
   </view>

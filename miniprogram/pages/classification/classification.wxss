@@ -1,1 +1,42 @@
 /* miniprogram/pages/classification/classification.wxss */
+.body{
+  padding-top: 20rpx;
+}
+
+.tag{
+  font-weight: 550;
+  top: 10rpx;
+  margin-left: 20rpx;
+}
+
+.food{
+  width: 100%;
+  display: flex;
+  display: -webkit-flex; 
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.food-img{
+display: flex;
+flex-direction: column;
+}
+
+.food-img image{
+  width: 160rpx;
+  height: 140rpx;
+  margin-top: 30rpx;
+  margin-left: 20rpx;
+  border-radius: 3%;
+}
+
+.txt{
+  color:darkgray;
+  margin-left: 45rpx; 
+}
+
+.txt2{
+  color:darkgray;
+  margin-left: 63rpx; 
+}
+  

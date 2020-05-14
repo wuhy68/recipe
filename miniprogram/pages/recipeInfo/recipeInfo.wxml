@@ -5,14 +5,13 @@
 	</view>
   <view class="ReadAndStar">
     <text>阅读量: {{reading}}</text>
-    <text>评分: {{score}}</text>
   </view>
 	<view class="author">
 		<view class="authorHead">
-			<image class="authorHeadImage" src="../../image/head.jpg"></image>
+			<image class="authorHeadImage" src="{{userInfo.avatarUrl}}"></image>
 		</view>
 		<view>
-			<view class="authorName" hover-class="authorName_hover" hover-stay-time="50"><text>Lintiang!</text></view>
+			<view class="authorName" hover-class="authorName_hover" hover-stay-time="50"><text>{{userInfo.nickname}}</text></view>
       <view class="authorFollowingCount"><text>关注: {{followingCount}}</text></view>
 		</view>
     <view wx:if="{{isFollowing}}" class="authorFollow" hover-class="authorFollow-hover" hover-stay-time="50">关注</view>
@@ -22,8 +21,8 @@
 		<text style="margin-bottom: 40rpx">————原料表————</text>
 		<view wx:for="{{ingredientList}}">
 			<view class="materialItem">
-				<view class="materialItemFood"><text>鸡肉</text></view>
-				<view class="materialItemNum"><text>100g</text></view>
+				<view class="materialItemFood"><text>{{item.food}}</text></view>
+				<view class="materialItemNum"><text>{{item.count}}</text></view>
 				<image src="../../image/next.png" class="materialItemImage"></image>
 			</view>
 		</view>

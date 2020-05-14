@@ -5,7 +5,6 @@
 }
 
 .nextStep{
-	width: 660rpx;
 	height: 90rpx;
 	color: rgb(126, 122, 122);
 	background-color: rgb(235, 205, 220);

@@ -1,22 +1,41 @@
 // miniprogram/pages/restaurantRegister/restaurantRegister.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    /**
+     * 控制弹窗动画
+     */
     click: false, //是否显示弹窗内容
     option: false, //显示弹窗或关闭弹窗的操作动画
-    name: '小明',
-    lawName: 'lintiang',
-    userId: '458153193511543333',
-    type: '北京菜',
-    foodId: '40000000000000000000',
-    location: '广东省广州市海珠区新港东路1000号',
-    fixedPhone: '8801488',
-    mobPhone: '12345678901',
-    confirmId: 'ssssss',
-    introduction: '鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟婂晩鍟',
+
+    /**
+     * 表单数据
+     */
+    name: "",
+    lawName: "",
+    userId: "",
+    type: "",
+    foodId: "",
+    address: "",
+    fixedPhone: "",
+    mobPhone: "",
+    confirmId: "",
+    introduction: "",
+
+    /**
+     * 位置信息
+     */
+    latitude: 0,
+    longitude: 0,
+
+    /**
+     * 封面
+     */
+    cover: ""
   },
 
   /**
@@ -25,63 +44,51 @@ Page({
   onLoad: function (options) {
 
   },
-
+  
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 上传封面图片
+   * 获得临时地址
    */
-  onReady: function () {
-
+  uploadCover: function () {
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original'],
+      sourceType: ['album', 'camera'],
+      complete: (res) => {
+        //选择完成会先返回一个临时地址保存备用
+        const tempFilePaths = res.tempFilePaths
+        this.setData({
+          cover: tempFilePaths
+        })
+        //将照片上传至云端需要刚才存储的临时地址
+        wx.cloud.uploadFile({
+          cloudPath: app.globalData.openid + "/" + "restaurant" + "/" + "cover.png",
+          filePath: tempFilePaths[0],
+          success(res) {
+            //上传成功后会返回永久地址
+            console.log(res.fileID);
+            this.setData({
+              cover: res.fileID
+            })
+          }
+        })    
+        console.log(this.data.cover);
+      },
+    })
   },
 
   /**
-   * 生命周期函数--监听页面显示
+   * 前往用户协议
    */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
-  gotoNotice: function () {
+  toNotice: function () {
     wx.navigateTo({
       url: '../notice/notice',
     })
   },
   
-  // 用户点击显示弹窗
+  /**
+   * 弹窗操作
+   */
   clickPup: function() {
     let _that = this;
     if (!_that.data.click) {
@@ -106,5 +113,76 @@ Page({
         option: true
       })
     }
+  },
+
+  /**
+   * 获取位置信息
+   */
+  getLocation: function(){
+    var that = this
+    wx.chooseLocation({
+      success: res => {
+        that.setData({
+          address: res.address,
+          latitude: res.latitude,
+          longitude: res.longitude
+        })
+        console.log(this.data.address)
+        console.log(this.data.latitude)
+        console.log(this.data.longitude)
+      }
+    })
+  },
+
+  formSubmit: function (e) {
+    this.setData({
+      name: e.detail.value.name,
+      lawName: e.detail.value.lawName,
+      userId: e.detail.value.userId,
+      type: e.detail.value.type,
+      foodId: e.detail.value.foodId,
+      address: e.detail.value.address,
+      fixedPhone: e.detail.value.fixedPhone,
+      mobPhone: e.detail.value.mobPhone,
+      confirmId: e.detail.value.confirmId,
+      introduction: e.detail.value.introduction,
+    })
+    console.log(this.data);
+    
+  },
+
+  uploadRestaurant: function () {
+    wx.cloud.callFunction({
+      name: "addRestaurant",
+      data: {
+        openid: app.globalData.openid,
+        nickName: app.globalData.userInfo.nickName,
+        cover: this.data.cover,
+        name: this.data.name,
+        lawName: this.data.lawName,
+        userId: this.data.userId,
+        type: this.data.type,
+        foodId: this.data.foodId,
+        address: this.data.address,
+        longitude: this.data.longitude,
+        latitude: this.data.latitude,
+        fixedPhone: this.data.fixedPhone,
+        mobPhone: this.data.mobPhone,
+        confirmId: this.data.confirmId,
+        introduction: this.data.introduction,
+      },
+      success: res => {
+        console.log(res);
+        console.log("餐厅创建成功");
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
+    wx.navigateBack({
+      complete: (res) => {
+        console.log(res)
+      },
+    })
   }
 })

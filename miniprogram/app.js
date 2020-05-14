@@ -1,5 +1,6 @@
 //app.js
 App({
+
   onLaunch: function () {
     
     if (!wx.cloud) {
@@ -15,6 +16,29 @@ App({
       })
     }
 
-    this.globalData = {}
+    /**
+     * 初始化全局变量
+     */
+    this.globalData = {
+      hasLogin: false,
+      userinfo: {}
+    },
+
+    /**
+     * 获取用户openid
+     */
+    wx.cloud.callFunction({
+      name: "getOpenId",
+      data: {},
+      success: res => {
+        this.globalData = {
+          openid: res.result.openid
+        }
+        console.log(res.result.openid);
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
   }
 })

@@ -1,0 +1,329 @@
+/* pages/recipeInfo/recipeInfo.wxss */
+.wholeStyle {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.backGround {
+  width: 100%;
+  height: 400rpx;
+}
+
+.backGroundImage {
+  width: 100%;
+  height: 400rpx;
+}
+
+.ReadAndStar{
+  display: flex;
+  flex-direction:row;
+  margin-top: 30rpx;
+  justify-content: space-evenly;
+  text-align: center;
+  font-size: 30rpx;
+  color: gray;
+}
+
+.author {
+  width: 100%;
+  height: 139rpx;
+  margin-top: 40rpx;
+  display: flex;
+}
+
+.authorHead {
+  width: 99rpx;
+  height: 99rpx;
+  left: 20rpx;
+  top: 299rpx;
+  border-radius: 52rpx;
+}
+
+.authorHeadImage {
+  width: 97%;
+  height: 97%;
+  border-radius: 52rpx;
+}
+
+.authorName {
+  width: 189rpx;
+  height: 49rpx;
+  /* margin-top: 20rpx; */
+  margin-left: 40rpx;
+  color: rgba(0, 0, 0, 1);
+  font-size: 30rpx;
+  line-height: 150%;
+  text-align: left;
+}
+
+.authorName_hover {
+  color: rgb(67, 194, 233);
+}
+
+.authorFollow {
+  width: 20%;
+  height: 40%;
+  margin-left: 200rpx;
+  margin-top: 48rpx;
+  background-color: #e64340;
+  color: white;
+  border-radius: 10rpx;
+  text-align: center;
+  font-size: 35rpx;
+}
+
+.authorFollowOK{
+  width: 20%;
+  height: 40%;
+  margin-left: 200rpx;
+  margin-top: 48rpx;
+  background-color: rgb(150, 150, 150);
+  color: white;
+  border-radius: 10rpx;
+  text-align: center;
+  font-size: 35rpx;
+}
+
+.authorFollowOK-hover{
+  background-color: pink;
+}
+
+.authorFollow-hover{
+  background-color: pink;
+}
+
+.authorFollowingCount{
+  width: 189rpx;
+  height: 49rpx;
+  margin-top: 10rpx;
+  margin-left: 40rpx;
+  color: rgb(181, 179, 179);
+  font-size: 30rpx;
+  line-height: 150%;
+  text-align: left;
+}
+
+.materialList {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.materialItem {
+  width: 100%;
+  height: 83rpx;
+  display: flex;
+  justify-content: space-around;
+}
+
+.materialItemFood {
+  width: 43%;
+  height: 100%;
+  font-size: small;
+  margin-top: 20rpx;
+  text-align: left;
+}
+
+.materialItemNum {
+  width: 43%;
+  height: 100%;
+  font-size: small;
+  margin-top: 20rpx;
+  color: gray;
+  text-align: right;
+}
+
+.materialItemImage {
+  width: 7%;
+  height: 30%;
+  margin-top: 30rpx;
+  text-align: left;
+}
+
+.StepList {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.StepTitle {
+  margin-top: 40rpx;
+  margin-bottom: 10rpx;
+}
+
+.StepImage {
+  width: 100%;
+  height: 400rpx;
+  border-radius: 20rpx;
+  text-align: center;
+}
+
+.StepInfo {
+  margin-top: 10rpx;
+}
+
+.CommentList {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.CommentItem {
+  width: 100%;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
+  text-align: center;
+  border-bottom: solid rgb(237, 235, 235) 1rpx;
+}
+
+.CommentUserInfoAndAgreeCount {
+  width: 100%;
+  height: 120rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+}
+
+.CommentUserHeadImage {
+  width: 99rpx;
+  height: 99rpx;
+  left: 20rpx;
+  top: 299rpx;
+  border-radius: 52rpx;
+}
+
+.CommentUserHeadImageImage {
+  width: 99rpx;
+  height: 99rpx;
+  border-radius: 52rpx;
+}
+
+.CommentUserNameAndTime {
+  width: 90%;
+  height: 100rpx;
+  flex-direction: column;
+  display: flex;
+}
+
+.CommentUserName {
+  width: 100%;
+  height: 60rpx;
+  text-align: left;
+  margin-left: 30rpx;
+  font-size: 40rpx;
+}
+
+.CommentUserTime {
+  width: 100%;
+  height: 40rpx;
+  text-align: left;
+  margin-left: 30rpx;
+  font-size: 35rpx;
+  color: gray;
+}
+
+.CommentAgreeCount {
+  width: 10%;
+  height: 100rpx;
+  flex-direction: column;
+  display: flex;
+  text-align: right;
+}
+
+.CommentAgreeCountImage {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.CommentAgreeCountIcon {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.CommentAgreeCountText {
+  width: 100%;
+  height: 40rpx;
+  text-align: left;
+  font-size: 35rpx;
+  color: gray;
+}
+
+.CommentContext {
+  width: 100%;
+  margin-left: 10rpx;
+  margin-bottom: 20rpx;
+  font-size: 35rpx;
+  color: rgb(77, 66, 66);
+  text-align: left;
+}
+
+.addMaxShowCommentButton{
+  margin-bottom: 240rpx;
+  color: rgb(143, 166, 223);
+}
+
+.cf-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: transparent;
+  z-index: 99;
+}
+
+.comment-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.cf-box-and-stars{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8px 5px;
+}
+
+.cf-box {
+  padding: 8px 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.cf-content {
+  background-color: #f2f2f2;
+  padding: 8px 5px;
+  font-size: 12px;
+  height: 30px;
+  max-height: 40px;
+  width: 100%;
+}
+
+.cf-send {
+  width: 50px;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 5px;
+  border-radius: 2px;
+  text-align: center;
+  padding: 0 2px !important;
+  font-size: 12px;
+  background-color: #e64340;
+  color: #fff;
+}
+
+.cf-send.touch-active:active {
+  background-color: #b03f3e;
+}
+
+.FiveStars{
+	width: 100%;
+  height: 40rpx;
+  margin: 0 auto;
+  flex-direction: row;
+  display: flex;
+}

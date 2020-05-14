@@ -1,0 +1,57 @@
+<view wx:if="{{cover==''}}" class='addCover' bindtap="uploadCover">
+  <text>+菜谱封面\n诱人的封面是吸引人们的关键</text>
+</view>
+<view wx:elif="{{cover!=''}}" bindtap="uploadCover">
+  <image src="{{cover}}"></image>
+</view>
+<view class="wholeStyle">
+  <view class='addTitle'>
+    <input placeholder="输入这道美食的名字" placeholder-style="text-align: center" style="text-align: center" bindinput="{{name}}"></input>
+  </view>
+  <view class="container">
+      <!-- 分割线 -->
+    <view class="divLine"></view>
+  </view>
+  <view>
+    <textarea class="addStory" placeholder="输入这道美食背后的故事" bindinput="{{introduction}}"></textarea>
+  </view>
+  <view class="weui_cells__title">用料</view>
+  <view class="weui-cell__input">
+    <view wx:for="{{ingredients}}" class="weui-cell">
+      <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/停用.svg" wx:if="{{temp1 == 0}}" data-index="{{index}}" bindtap="deleteIngredient" style="height: 25px; width: 25px"></image>
+      <input placeholder="食材" value="{{item.food}}" data-tag="food" data-index="{{index}}" bindblur="setIngredientsValue" style="margin-left:10px"></input>
+      <input placeholder="用量" value="{{item.count}}" data-tag="count" data-index="{{index}}" bindblur="setIngredientsValue"></input>
+    </view>
+  </view>
+  <view style="display:flex; flex-direction: row; justify-content: space-between">
+    <view><text bindtap="addIngredient">添加用料</text></view>
+    <view>
+      <text wx:if="{{temp1 == 1}}" bindtap="changeTemp1">修改</text>
+      <text wx:elif="{{temp1 == 0}}" bindtap="changeTemp1">完成</text>
+    </view>
+  </view>
+
+  <view> <text>做法</text> </view>
+  <view wx:for="{{steps}}">
+    <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/停用.svg" wx:if="{{temp2 == 0}}" data-index="{{index}}" bindtap="deleteStep" style="height: 25px; width: 25px"></image>
+    <view wx:if="{{item.picture==''}}" data-index="{{index}}" data-tag="picture" class='addCover' bindtap="uploadPicture">
+      <text>+步骤图\n上传至少两张步骤图</text>
+    </view>
+    <view wx:elif="{{item.picture!=''}}" data-index="{{index}}" data-tag="picture" class='addCover' bindtap="uploadPicture">
+      <image src="{{item.picture}}"></image>
+    </view>
+    <input placeholder="添加说明步骤，至少两步" data-index="{{index}}" data-tag="step" value="{{item.step}}" bindblur="setStepsValue"></input>
+  </view>
+  <view style="display:flex; flex-direction: row; justify-content: space-between">
+    <view><text bindtap="addStep">添加用料</text></view>
+    <view>
+      <text wx:if="{{temp2 == 1}}" bindtap="changeTemp2">修改</text>
+      <text wx:elif="{{temp2 == 0}}" bindtap="changeTemp2">完成</text>
+    </view>
+  </view>
+  <view> <text>小贴士</text> </view>
+  <view>
+    <textarea class="addStory" placeholder="这道菜还有哪些需要注意的细节和小技巧" bindinput="{{tip}}"></textarea>
+  </view>
+  <button bindtap="uploadRecipe">发布这个菜谱</button>
+</view>

@@ -1,120 +1,214 @@
-//index.js
+// miniprogram/pages/index/index.js
 const app = getApp()
-
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    avatarUrl: './user-unlogin.png',
-    userInfo: {},
-    logged: false,
-    takeSession: false,
-    requestResult: ''
+    /**
+     * 循环背景图片
+     */
+    background: ['cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/indexImage1.jpg', 'cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/indexImage2.jpg', 'cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/indexImage3.png'],
+    indicatorDots: true,
+    vertical: true,
+    autoplay: true,
+    interval: 2000,
+    duration: 800,
+    /**
+     * 控制页面显示
+     */
+    search: 0,
+    recommend: 1,
+    nearby: 0,
+    rank: 0,
+
+    /**
+     * 数据库数据
+     */
+    recipes: [],
+    nearbyRestaurant: [],
+    rankRecipe: [],
+
+    /**
+     * 查询数据
+     */
+    searchVal: ""
   },
 
-  onLoad: function() {
-    if (!wx.cloud) {
-      wx.redirectTo({
-        url: '../chooseLib/chooseLib',
-      })
-      return
-    }
-
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              this.setData({
-                avatarUrl: res.userInfo.avatarUrl,
-                userInfo: res.userInfo
-              })
-            }
-          })
-        }
-      }
-    })
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.getRecipeInfo()
   },
 
-  onGetUserInfo: function(e) {
-    if (!this.data.logged && e.detail.userInfo) {
-      this.setData({
-        logged: true,
-        avatarUrl: e.detail.userInfo.avatarUrl,
-        userInfo: e.detail.userInfo
-      })
-    }
-  },
-
-  onGetOpenid: function() {
-    // 调用云函数
+  /**
+   * 获取所有菜单信息
+   */
+  getRecipeInfo: function () {
     wx.cloud.callFunction({
-      name: 'login',
-      data: {},
+      name: "getAllRecipeInfo",
       success: res => {
-        console.log('[云函数] [login] user openid: ', res.result.openid)
-        app.globalData.openid = res.result.openid
-        wx.navigateTo({
-          url: '../userConsole/userConsole',
+        this.setData({
+          recipes: res.result.data
         })
+        console.log(res.result.data);
       },
       fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
-        wx.navigateTo({
-          url: '../deployFunctions/deployFunctions',
+        console.log(err);
+      }
+    }) 
+  },
+
+  /**
+   * 通过控制search来跳转到查询页面
+   */
+  toSearchPage: function () {
+    this.setData({
+      search: 1
+    })
+  },
+
+  /**
+   * 通过控制search回到主页
+   */
+  toIndex: function () {
+    this.setData({
+      search: 0
+    })
+  },
+
+  /**
+   * 读取搜索框输入的数据
+   * @param {dataset} e 
+   */
+  input: function (e) {
+    this.setData({
+      searchVal: e.detail.value
+    })
+    console.log(this.data.searchVal);
+  },
+
+  /**
+   * 正则查询（模糊搜索）
+   */
+  search: function () {
+    wx.cloud.callFunction({
+      name: "getSearchRecipeInfo",
+      data: {
+        name: this.data.searchVal
+      },
+      success: res => {
+        this.setData({
+          recipes: res.result.data
         })
+        console.log(res.result.data);
+      },
+      fail: err => {
+        console.error(err);
       }
     })
   },
 
-  // 上传图片
-  doUpload: function () {
-    // 选择图片
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success: function (res) {
+  /**
+   * 
+   */
+  toUploadRecipe: function () {
+    const that = this
+    //查看是否授权
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          console.log("用户授权了")
+          app.globalData.hasLogin = true
+          wx.getUserInfo({
+            success: res => {
+              console.log("获取用户信息成功", res)
+              app.globalData.userInfo = res.userInfo
+            },
+            fail: res => {
+              console.log("获取用户信息失败", res)
+            }
+          })
+          wx.navigateTo({
+            url: '../uploadRecipe/uploadRecipe'
+          })
+        } else {
+          //用户没有授权
+          console.log("用户没有授权")
+          app.globalData.hasLogin = false
+          wx.switchTab({
+            url: '../userInfo/userInfo',
+          })
+        }
+      }
+    })
+  },
 
-        wx.showLoading({
-          title: '上传中',
-        })
+  /**
+   * 跳转到每日必恰界面
+   */
+  toRecommendation: function () {
+    this.setData({
+      recommend: 1,
+      nearby: 0,
+      rank: 0
+    })
+  },
 
-        const filePath = res.tempFilePaths[0]
-        
-        // 上传图片
-        const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
+  /**
+   * 跳转到附近餐厅界面
+   * 获取附近餐厅列表
+   */
+  toNearby: function () {
+    this.setData({
+      recommend: 0,
+      nearby: 1,
+      rank: 0
+    })
+    wx.chooseLocation({
+      success: res => {
+        wx.cloud.callFunction({
+          name: "getNearby",
+          data: {
+            longitude: res.longitude,
+            latitude: res.latitude
+          },
           success: res => {
-            console.log('[上传文件] 成功：', res)
-
-            app.globalData.fileID = res.fileID
-            app.globalData.cloudPath = cloudPath
-            app.globalData.imagePath = filePath
-            
-            wx.navigateTo({
-              url: '../storageConsole/storageConsole'
-            })
+            console.log(res);
           },
-          fail: e => {
-            console.error('[上传文件] 失败：', e)
-            wx.showToast({
-              icon: 'none',
-              title: '上传失败',
-            })
-          },
-          complete: () => {
-            wx.hideLoading()
+          fail: err => {
+            console.error(err);
           }
         })
-
-      },
-      fail: e => {
-        console.error(e)
       }
     })
   },
+
+  /**
+   * 跳转到排行榜界面
+   * 获取排行榜列表
+   */
+  toRank: function () {
+    this.setData({
+      recommend: 0,
+      nearby: 0,
+      rank: 1,
+    })
+    wx.cloud.callFunction({
+      name: "getRank",
+      data: {
+
+      },
+      success: res => {
+        console.log(res);
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
+  }
+
 
 })

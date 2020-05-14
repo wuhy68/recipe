@@ -1,0 +1,109 @@
+<!--miniprogram/pages/restaurantRegister/restaurantRegister.wxml-->
+<view class="wholeStyle">
+	<view wx:if="{{cover==''}}" class='addCover' bindtap="uploadCover">
+		<text>展示餐厅的面貌</text>
+	</view>
+	<view wx:elif="{{cover!=''}}" bindtap="uploadCover">
+		<image src="{{cover}}"></image>
+	</view>
+	<form bindsubmit="formSubmit">
+		<!-- <view class="weui-cells__title">请填写基本信息</view> -->
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell weui-cell_input">
+				<view class="weui-cell__Item">
+					<view class="weui-label">店名</view>
+					<input class="weui-input" type="text" name="name" value="{{name}}" placeholder="请输入店名" />
+				</view>
+				<view class="weui-cell__Item">
+					<view class="weui-label">法人姓名</view>
+					<input class="weui-input" type="text" name="lawName" value="{{lawName}}" placeholder="请输入法人姓名" />
+				</view>
+				<view class="weui-cell__Item">
+					<view class="weui-label">法人身份证号</view>
+					<input class="weui-input" type="text" name="userId" value="{{userId}}" placeholder="请输入18位身份证号" />
+				</view>
+				<view class="weui-cell__Item">
+					<view class="weui-label">餐厅类型</view>
+					<input class="weui-input" type="text" name="type" value="{{type}}" placeholder="川菜馆、粤菜馆、烧烤店等" />
+				</view>
+				<view class="weui-cell__Item">
+					<view class="weui-label">许可证编号</view>
+					<input class="weui-input" type="text" name="foodId" value="{{foodId}}" placeholder="请输入食品经营许可证编号" />
+				</view>
+				<view class="weui-cell__Item">
+					<view class="weui-label">餐厅地址</view>
+					<view class="weui-input2">
+						<input type="text" name="address" value="{{address}}" placeholder="请输入餐厅地址" />
+						<view class="weui-getVari" bindtap='getLocation' hover-class="weui-getVari-hover">获取位置</view>
+					</view>
+				</view>
+				<view class="weui-cell__Item">
+					<view class="weui-label">法人固定电话</view>
+					<input class="weui-input" type="text" name="fixedPhone" value="{{fixedPhone}}" placeholder="请输入固定电话" />
+				</view>
+				<view class="weui-cell__Item">
+					<view class="weui-label">法人移动电话</view>
+					<view class="weui-input2">
+						<input type="text" name="mobPhone" value="{{mobPhone}}" placeholder="请输入11位手机号" />
+						<view class="weui-getVari" hover-class="weui-getVari-hover">获取验证码</view>
+					</view>
+				</view>
+				<view class="weui-cell__Item">
+					<view class="weui-label">验证码</view>
+					<input class="weui-input" type="text" name="confirmId" value="{{confirmId}}" placeholder="请输入6位验证码" />
+				</view>
+				<view class="weui-cell__Item2">
+					<view class="weui-label2">餐厅介绍</view>
+					<textarea class="weui-input" type="text" maxlength="200" name="introduction" value="{{introduction}}" placeholder="请输入餐厅介绍（不超过200字）" />
+				</view>
+			</view>
+		</view>
+		<checkbox-group bindchange="bindAgreeChange" name="isAgree">
+			<label class="weui-agree" for="weuiAgree">
+				<view class="weui-agree__text">
+					<checkbox class="weui-agree__checkbox" id="weuiAgree" value="agree" checked="{{isAgree}}" />
+					<view class="weui-agree__checkbox-icon">
+						<icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{isAgree}}"></icon>
+					</view>
+					<text class="weui-agree__checkbox-text">阅读并同意</text>
+					<view bindtap="toNotice" class="weui-agree__link" hover-class="weui-agree__link_hover">《免责声明》</view> 
+				</view>
+			</label>
+		</checkbox-group>
+		<view class="weui-btn-area">
+			<button class="weui-btn_yes" type="primary" formType="submit" catchtap='clickPup'>确定</button>
+			<button class="weui-btn_reset" formType="reset">重置</button>
+		</view>
+	</form>
+</view>
+
+<view class='drawer_box {{click? "showContent": "hideContent"}} {{option? "open": "close"}}' hover-stop-propagation='true'>
+  <view class="drawer_title">
+		<image src="../../image/close.png" class="closeIcon" catchtap='clickPup'></image>
+		<text>信息确认</text>
+		<image src="../../image/question.png" class="questionIcon"></image>
+	</view>
+  <view class="drawer_content">
+    <view class="top grid">
+      <label class="title col-0">店名</label>
+      <view class="input_base input_h30 col-1">{{name}}</view>
+    </view>
+    <view class="top grid">
+      <label class="title col-0">法人姓名</label>
+      <view class="input_base input_h30 col-1">{{lawName}}</view>
+    </view>
+    <view class="top grid">
+      <label class="title col-0">法人身份证号</label>
+      <view class="input_base input_h30 col-1">{{userId}}</view>
+    </view>
+    <view class="top grid">
+      <label class="title col-0">许可证编号</label>
+      <view class="input_base input_h30 col-1">{{foodId}}</view>
+    </view>
+    <view class="top bottom grid">
+      <label class="title col-0">法人手机号</label>
+      <view class="input_base input_h30 col-1">{{mobPhone}}</view>
+    </view>
+  </view>
+  <button class="btn_ok" bindtap="uploadRestaurant" data-statu="close">确定</button>
+</view>

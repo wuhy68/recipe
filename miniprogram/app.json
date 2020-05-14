@@ -1,26 +1,48 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-    "pages/openapi/openapi",
-    "pages/openapi/serverapi/serverapi",
-    "pages/openapi/callback/callback",
-    "pages/openapi/cloudid/cloudid",
-    "pages/im/im",
-    "pages/im/room/room"
+    "pages/restaurant/restaurant",
+    "pages/userInfo/userInfo",
+    "pages/classification/classification",
+    "pages/recipeInfo/recipeInfo",
+    "pages/uploadRecipe/uploadRecipe",
+    "pages/restaurantRegister/restaurantRegister",
+    "pages/notice/notice"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTitleText": "Recipe",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "主页",
+        "iconPath": "../miniprogram/images/home.png",
+        "selectedIconPath": "../miniprogram/images/home_select.png"
+      },
+      {
+        "pagePath": "pages/classification/classification",
+        "text": "分区",
+        "iconPath": "../miniprogram/images/classification.png",
+        "selectedIconPath": "../miniprogram/images/classification_select.png"
+      },
+      {
+        "pagePath": "pages/restaurant/restaurant",
+        "text": "餐馆",
+        "iconPath": "../miniprogram/images/restaurant.png",
+        "selectedIconPath": "../miniprogram/images/restaurant_select.png"
+      },
+      {
+        "pagePath": "pages/userInfo/userInfo",
+        "text": "我的",
+        "iconPath": "../miniprogram/images/user.png",
+        "selectedIconPath": "../miniprogram/images/user_select.png"
+      }
+    ]
+  }
 }

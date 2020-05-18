@@ -1,4 +1,5 @@
 // pages/recipeInfo/recipeInfo.js
+const app = getApp()
 Page({
 
   /**
@@ -23,6 +24,11 @@ Page({
      */
     _id: "",
     openid: "",
+
+    /**
+     * 封面
+     */
+    cover: "",
 
     /**
      * 用料数据
@@ -58,6 +64,13 @@ Page({
     this.getUserInfo()
     this.getRecipeInfo()
     this.getCommentInfo()
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    
   },
 
   /**
@@ -153,6 +166,7 @@ Page({
    * 获取菜谱信息
    */
   getRecipeInfo: function () {
+    console.log(this.data._id);
     wx.cloud.callFunction({
       name: "getRecipeInfo",
       data: {
@@ -162,7 +176,8 @@ Page({
         console.log(res);
         this.setData({
           stepList: res.result.data[0].steps,
-          ingredientList: res.result.data[0].ingredients
+          ingredientList: res.result.data[0].ingredients,
+          cover: res.result.data[0].cover
         })
       },
       fail: err => {
@@ -188,6 +203,55 @@ Page({
       },
       fail: err => {
         console.error(err);
+      }
+    })
+  },
+
+  /**
+   * 发表评论
+   */
+  send: function () {
+    const that = this
+    //查看是否授权
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          console.log("用户授权了")
+          app.globalData.hasLogin = true
+          wx.getUserInfo({
+            success: res => {
+              console.log("获取用户信息成功", res)
+              app.globalData.userInfo = res.userInfo
+              wx.cloud.callFunction({
+                name: "addCommentInfo",
+                data: {
+                  recipe_id: this.data._id,
+                  name: app.globalData.userInfo.nickName,
+                  avatarUrl: app.globalData.userInfo.avatarUrl,
+                  comment: this.data.content
+                },
+                success: res => {
+                  console.log(res);
+                  // 重新获取评论
+                  this.getCommentInfo()
+                },
+                fail: err => {
+                  console.error(err);
+                }
+              })
+            },
+            fail: res => {
+              console.log("获取用户信息失败", res)
+            }
+          })
+        } else {
+          //用户没有授权
+          console.log("用户没有授权")
+          app.globalData.hasLogin = false
+          wx.switchTab({
+            url: '../userInfo/userInfo',
+          })
+        }
       }
     })
   }

@@ -43,6 +43,10 @@ Page({
     this.getRecipeInfo()
   },
 
+  onShow: function () {
+    this.onLoad()
+  },
+
   /**
    * 获取所有菜单信息
    */

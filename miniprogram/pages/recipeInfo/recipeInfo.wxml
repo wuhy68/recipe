@@ -1,7 +1,7 @@
 <!--pages/recipeInfo/recipeInfo.wxml-->
 <view class="wholeStyle">
 	<view class="backGround">
-		<image class="backGroundImage" src="../../image/indexImage1.jpg"></image>
+		<image class="backGroundImage" src="{{cover}}"></image>
 	</view>
   <view class="ReadAndStar">
     <text>阅读量: {{reading}}</text>
@@ -12,7 +12,7 @@
 		</view>
 		<view>
 			<view class="authorName" hover-class="authorName_hover" hover-stay-time="50"><text>{{userInfo.nickname}}</text></view>
-      <view class="authorFollowingCount"><text>关注: {{followingCount}}</text></view>
+      <view class="authorFollowingCount"><text>关注: {{userInfo.fans}}</text></view>
 		</view>
     <view wx:if="{{isFollowing}}" class="authorFollow" hover-class="authorFollow-hover" hover-stay-time="50">关注</view>
     <view wx:else class="authorFollowOK" hover-class="authorFollowOK-hover" hover-stay-time="50">已关注</view>

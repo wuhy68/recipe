@@ -16,6 +16,7 @@ exports.main = async (event, context) => {
         praise: 0,
         steps: event.steps,
         tip: event.tip,
+        tags: event.tags,
         date: new Date()
       }
     })

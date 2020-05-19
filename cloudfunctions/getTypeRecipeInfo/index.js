@@ -7,6 +7,6 @@ const db = cloud.database()
 exports.main = async (event, context) => {
   const _ = db.command
   return await db.collection("recipes").where({
-    tag: _all(event.tag)
+    tag: _.all(event.tag)
   }).get()
 }

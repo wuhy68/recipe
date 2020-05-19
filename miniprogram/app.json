@@ -7,7 +7,8 @@
     "pages/recipeInfo/recipeInfo",
     "pages/uploadRecipe/uploadRecipe",
     "pages/restaurantRegister/restaurantRegister",
-    "pages/notice/notice"
+    "pages/notice/notice",
+    "pages/classificationList/classificationList"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

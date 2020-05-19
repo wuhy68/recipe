@@ -261,69 +261,74 @@
   color: rgb(143, 166, 223);
 }
 
-.cf-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: transparent;
-  z-index: 99;
-}
 
-.comment-fixed {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
-  z-index: 100;
-}
-
-.cf-box-and-stars{
+.input-section {
+  position: absolute;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 8px 5px;
+  align-items: center;
+  height: 110rpx;
+  bottom: 0rpx;
+  left: 0rpx;
+  right: 0rpx;
+  z-index: 500;
+  background: #fff;
 }
 
-.cf-box {
-  padding: 8px 5px;
+.input_input {
+  background: #fff;
+  margin-top: 12rpx;
+  z-index: 500;
+  width: 580rpx;
+  height: 110rpx;
+  padding-left: 35rpx;
+
+}
+
+.send_btn {
+  width: 110rpx;
+  height: 66rpx;
+  position: absolute;
+  top: 24rpx;
+  right: 30rpx;
+  background: rgb(47, 80, 19);
+  z-index: 550;
+  border-radius: 10rpx;
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
-.cf-content {
-  background-color: #f2f2f2;
-  padding: 8px 5px;
-  font-size: 12px;
-  height: 30px;
-  max-height: 40px;
-  width: 100%;
-}
-
-.cf-send {
-  width: 50px;
-  display: flex !important;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 5px;
-  border-radius: 2px;
-  text-align: center;
-  padding: 0 2px !important;
-  font-size: 12px;
-  background-color: #e64340;
+.send_btn_text {
+  display: flex;
+  font-size: 32rpx;
+  font-family: 'PingFang';
   color: #fff;
+  z-index: 560;
 }
 
-.cf-send.touch-active:active {
-  background-color: #b03f3e;
-}
-
-.FiveStars{
-	width: 100%;
-  height: 40rpx;
-  margin: 0 auto;
-  flex-direction: row;
+.commentInput{
+  width:70%;
+  background-color:#fff;
+  font-size:15px;
+  border-radius:15rpx;
   display: flex;
+  align-items: center;
 }
+
+.send{
+  margin-left: 20px;
+  height: 80rpx;
+  color: #fff;
+  font-size: 34rpx;
+  background-color: green;
+  border: 0;
+}
+
+
+
+
+
+
+
+
+

@@ -53,5 +53,53 @@
   <view>
     <textarea class="addStory" placeholder="这道菜还有哪些需要注意的细节和小技巧" bindinput="{{tip}}"></textarea>
   </view>
+  <view class='select_box'>
+    <view class='select' catchtap='selectTap'>
+      <text class='select_text'>推荐分类</text>
+      <image class='select_img {{show&&"select_img_rotate"}}' src='image/gobottom.png'></image>   
+    </view>
+    <view class="section {{reply? 'on':'off'}}">
+      <view>
+        <view wx:if="{{tags.length == 0}}">
+          <text>请选择标签，最多两个</text>
+        </view>
+        <view wx:else style="display: flex; flex-direction: row; flex-wrap: wrap;">
+          <view wx:for="{{tags}}">
+            <button class="myButton">{{item}}</button>
+          </view>
+        </view>
+      </view>
+      <view style="display: flex; flex-direction: row">
+        <text bindtap="toA">热门分类 </text>
+        <text style="margin-left: 10px" bindtap="toB">菜式 </text>
+        <text style="margin-left: 10px" bindtap="toC">场景</text>
+      </view>
+      <view wx:if="{{showA}}" style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        <button class="myButton" data-tag="家常菜" bindtap="addTag">家常菜</button>
+        <button class="myButton" data-tag="下饭菜" bindtap="addTag">下饭菜</button>
+        <button class="myButton" data-tag="烘培" bindtap="addTag">烘培</button>
+        <button class="myButton" data-tag="肉类" bindtap="addTag">肉类</button>
+        <button class="myButton" data-tag="早餐" bindtap="addTag">早餐</button>
+        <button class="myButton" data-tag="蔬菜" bindtap="addTag">蔬菜</button>
+        <button class="myButton" data-tag="汤粥主食" bindtap="addTag">汤粥主食</button>
+      </view>
+      <view wx:elif="{{showB}}" style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        <button class="myButton" data-tag="快手菜" bindtap="addTag">快手菜</button>
+        <button class="myButton" data-tag="素菜" bindtap="addTag">素菜</button>
+        <button class="myButton" data-tag="甜品饮品" bindtap="addTag">甜品饮品</button>
+        <button class="myButton" data-tag="小吃" bindtap="addTag">小吃</button>
+        <button class="myButton" data-tag="零食" bindtap="addTag">零食</button>
+        <button class="myButton" data-tag="懒人菜谱" bindtap="addTag">懒人菜谱</button>
+        <button class="myButton" data-tag="沙拉凉菜" bindtap="addTag">沙拉凉菜</button>
+      </view>
+      <view wx:else style="display: flex; flex-direction: row; flex-wrap: wrap;"> 
+        <button class="myButton" data-tag="单人份" bindtap="addTag">单人份</button>
+        <button class="myButton" data-tag="宴请" bindtap="addTag">宴请</button>
+        <button class="myButton" data-tag="下午茶" bindtap="addTag">下午茶</button>
+        <button class="myButton" data-tag="便当" bindtap="addTag">便当</button>
+      </view>
+    </view>
+  </view>
+
   <button bindtap="uploadRecipe">发布这个菜谱</button>
 </view>

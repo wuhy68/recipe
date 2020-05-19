@@ -55,6 +55,11 @@ Page({
     tip: "",
 
     /**
+     * 标签
+     */
+    tags: [],
+
+    /**
      * 控制局部页面
      */
     temp1: 1,
@@ -64,7 +69,20 @@ Page({
      * 菜谱数量
      * 用来确定图片存放位置
      */
-    inedx: 0
+    index: 0,
+
+    /**
+     * 下拉框数据
+     */
+    show: false,
+    reply: false,//控制下拉列表的显示隐藏，false隐藏、true显示
+
+    /**
+     * 标签控制
+     */
+    showA: true,
+    showB: false,
+    showC: false
   },
 
   /**
@@ -297,7 +315,8 @@ Page({
         introduction: this.data.introduction,
         name: this.data.name,
         steps: this.data.steps,
-        tip: this.data.tip
+        tip: this.data.tip,
+        tags: this.data.tags
       },
       success: res => {
         console.log(res);
@@ -312,5 +331,62 @@ Page({
         console.log(res)    
       },
     })
+  },
+
+  /**
+   * 
+   */
+  selectTap(){
+    this.setData({
+      show: !this.data.show,
+      reply: !this.data.reply
+    });
+  },
+
+  /**
+   * 点击下拉列表
+   * @param {*} e 
+   */
+  optionTap(){
+    this.setData({
+      show: !this.data.show
+    });
+  },
+
+  toA: function () {
+    this.setData({
+      showA: true,
+      showB: false,
+      showC: false
+    })
+  },
+
+  toB: function () {
+    this.setData({
+      showA: false,
+      showB: true,
+      showC: false
+    })
+  },
+  
+  toC: function () {
+    this.setData({
+      showA: false,
+      showB: false,
+      showC: true
+    })
+  },
+
+  addTag: function (e) {
+    let tag = e.target.dataset.tag
+    let tags = this.data.tags
+    if (tags.length == 2) {
+      console.log("不得多于两个");
+    } else {
+      tags.push(tag)
+      this.setData({
+        tags: tags
+      })
+    }
   }
 })

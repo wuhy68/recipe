@@ -66,7 +66,28 @@ Page({
         }
       }
     })
+
+    this.getRecipes()
+    this.getRestaurant()
   },
+
+  getRecipes: function () {
+    wx.cloud.callFunction({
+      name: "getUserRecipeInfo",
+      data: {
+        openid: app.globalData.openid
+      },
+      success: res => {
+        console.log(res);
+        this.setData({
+          userRecipes: res.result.data,
+        })
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
+  },
 
   getRestaurant: function () {
     wx.cloud.callFunction({

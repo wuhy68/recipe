@@ -21,7 +21,8 @@ App({
      */
     this.globalData = {
       hasLogin: false,
-      userinfo: {}
+      userinfo: {},
+      statusBarHeight: wx.getSystemInfoSync()['statusBarHeight'],
     },
 
     /**

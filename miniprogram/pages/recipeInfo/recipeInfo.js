@@ -17,7 +17,20 @@ Page({
     followingCount: 350,
     score: 8.7,
     reading: 15000,
+
+    /**
+     * 评论框控制
+     */
+    isHide: false,
+
+    /**
+     * 关注,收藏，点赞
+     */
     isFollowing: false,
+    isFocus: false,
+    isPraise: false,
+    isCommentPraise: false,
+    agree: [],
 
     /**
      * 传输数据
@@ -46,9 +59,15 @@ Page({
     commentList: [],
 
     /**
+     * 点赞数据
+     */
+    praise: [],
+
+    /**
      * 用户数据
      */
-    userInfo: {}
+    userInfo: {},
+    currentUserInfo: {}
   },
 
   /**
@@ -64,6 +83,7 @@ Page({
     this.getUserInfo()
     this.getRecipeInfo()
     this.getCommentInfo()
+    this.getCurrentUserInfo()
   },
 
   /**
@@ -80,41 +100,13 @@ Page({
     this.MaxShowComment += 2;
   },
 
-  cemojiCfBg: function () {
-    this.setData({
-      isShow: false,
-      cfBg: false
-    })
-  },
-
   /**
-   * 点击表情显示隐藏表情盒子
+   * 
+   * @param {*} e 
    */
-  emojiShowHide: function () {
+  textAreaFocus: function () {
     this.setData({
-      isShow: !this.data.isShow,
-      isLoad: false,
-      cfBg: !this.data.false
-    })
-  },
-
-  /**
-   * 表情选择
-   */
-  emojiChoose: function (e) {
-    //当前输入内容和表情合并
-    this.setData({
-      content: this.data.content + e.currentTarget.dataset.emoji
-    })
-  },
-
-  /**
-   * 点击emoji背景遮罩隐藏emoji盒子
-   */
-  cemojiCfBg: function () {
-    this.setData({
-      isShow: false,
-      cfBg: false
+      isHide: true
     })
   },
 
@@ -128,23 +120,62 @@ Page({
     this.setData({
       content: e.detail.value
     })
+    this.setData({
+      isHide: false
+    })
   },
 
   /**
-   * 解决滑动穿透问题
-   * @param {*} e 
+   * 获取当前用户
    */
-  
-  emojiScroll: function (e) {
-    console.log(e)
+  getCurrentUserInfo: function () {
+    wx.cloud.callFunction({
+      name: "getUserInfo",
+      data: {
+        openid: app.globalData.openid
+      },
+      success: res => {
+        console.log(res);
+        this.setData({
+          currentUserInfo: res.result.data[0]
+        })
+        console.log(this.data.currentUserInfo);
+        // 获取当前用户是否关注
+        let flag = this.data.currentUserInfo.focus.indexOf(this.data.openid)
+        console.log(flag);
+        if (flag == -1) {
+          this.setData({
+            isFocus: false
+          })
+        } else {
+          this.setData({
+            isFocus: true
+          })
+        }
+
+        // 获取当前用户是否收藏
+        flag = this.data.currentUserInfo.collections.indexOf(this.data._id)
+        console.log(flag);
+        if (flag == -1) {
+          this.setData({
+            isFollowing: false
+          })
+        } else {
+          this.setData({
+            isFollowing: true
+          })
+        }
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
   },
 
   /**
    * 获取菜谱作者信息
    */
   getUserInfo: function () {
-    console.log(this.data.openid + "haha");
-    console.log(this.data._id + "haha");
     wx.cloud.callFunction({
       name: "getUserInfo",
       data: {
@@ -177,8 +208,19 @@ Page({
         this.setData({
           stepList: res.result.data[0].steps,
           ingredientList: res.result.data[0].ingredients,
-          cover: res.result.data[0].cover
+          cover: res.result.data[0].cover,
+          praise: res.result.data[0].praise
         })
+        let flag = this.data.praise.indexOf(app.globalData.openid)
+        if (flag == -1) {
+          this.setData({
+            isPraise: false
+          })
+        } else {
+          this.setData({
+            isPraise: true
+          })
+        }
       },
       fail: err => {
         console.error(err);
@@ -199,6 +241,263 @@ Page({
         console.log(res);
         this.setData({
           commentList: res.result.data
+        })
+        let agree = []
+        for (let i = 0; i < this.data.commentList.length; i++) {
+          if (this.data.commentList[i].agree.indexOf(app.globalData.openid) == -1) {
+            agree[i] = false
+          } else {
+            agree[i] = true
+          }
+        }
+        this.setData({
+          agree: agree
+        })
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
+  },
+
+  /**
+   * 添加关注
+   */
+  addFocus: function () {
+    let focus = this.data.currentUserInfo.focus
+    focus.push(this.data.openid)
+    wx.cloud.callFunction({
+      name: "updateUserInfo",
+      data: {
+        openid: app.globalData.openid,
+        focus: focus
+      },
+      success: res => {
+        console.log(res);
+        console.log("关注成功");
+        this.setData({
+          isFocus: true
+        })
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
+  },
+
+  /**
+   * 取消关注
+   */
+  deleteFocus: function () {
+    let focus = []
+    for (let i = 0; i < this.data.currentUserInfo.focus.length; i++) {
+      if (this.data.currentUserInfo.focus[i] != this.data.openid) {
+        focus.push(this.data.currentUserInfo.focus[i])
+      }
+    }
+    wx.cloud.callFunction({
+      name: "updateUserInfo",
+      data: {
+        openid: app.globalData.openid,
+        focus: focus
+      },
+      success: res => {
+        console.log(res);
+        console.log("取消关注");
+        this.setData({
+          isFocus: false
+        })
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
+  },
+
+  /**
+   * 添加收藏
+   */
+  addCollection: function () {
+    let collections = this.data.currentUserInfo.collections
+    collections.push(this.data._id)
+    wx.cloud.callFunction({
+      name: "updateUserInfo",
+      data: {
+        openid: app.globalData.openid,
+        collections: collections
+      },
+      success: res => {
+        console.log(res);
+        console.log("收藏成功");
+        this.setData({
+          isFollowing: true,
+        })
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
+  },
+
+  /**
+   * 取消收藏
+   */
+  deleteColletion: function () {
+    let collections = []
+    for (let i = 0; i < this.data.currentUserInfo.collections.length; i++) {
+      if (this.data.currentUserInfo.collections[i] != this.data._id) {
+        focus.push(this.data.currentUserInfo.collections[i])
+      }
+    }
+    wx.cloud.callFunction({
+      name: "updateUserInfo",
+      data: {
+        openid: app.globalData.openid,
+        collections: collections
+      },
+      success: res => {
+        console.log(res);
+        console.log("取消收藏");
+        this.setData({
+          isFollowing: false
+        })
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
+  },
+
+  /**
+   * 点赞
+   */
+  addPraise: function () {
+    let praise = this.data.praise
+    praise.push(app.globalData.openid)
+    wx.cloud.callFunction({
+      name: "updateRecipeInfo",
+      data: {
+        _id: this.data._id,
+        praise: praise
+      },
+      success: res => {
+        console.log(res);
+        console.log("点赞成功");
+        this.setData({
+          isPraise: true
+        })
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
+  },
+
+
+  /**
+   * 取消点赞
+   */
+  deletePraise: function () {
+    let praise = []
+    for (let i = 0; i < this.data.praise.length; i++) {
+      if (this.data.praise[i] != app.globalData.openid) {
+        praise.push(this.data.praise[i])
+      }
+    }
+    wx.cloud.callFunction({
+      name: "updateRecipeInfo",
+      data: {
+        _id: this.data._id,
+        praise: praise
+      },
+      success: res => {
+        console.log(res);
+        console.log("取消点赞");
+        this.setData({
+          isPraise: false
+        })
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
+  },
+
+  /**
+   * 点赞评论
+   */
+  addCommentAgree: function (e) {
+    let agree = []
+    let _id = e.target.dataset.comment_id
+    for (let i = 0; i < this.data.commentList.length; i++) {
+      if (this.data.commentList[i]._id == e.target.dataset.comment_id) {
+        agree = this.data.commentList[i].agree
+      }
+    }
+    agree.push(app.globalData.openid)
+    console.log(agree);
+    
+    wx.cloud.callFunction({
+      name: "updateCommentInfo",
+      data: {
+        _id: _id,
+        agree: agree
+      },
+      success: res => {
+        console.log(res);
+        console.log("评论点赞成功");
+        let agree = this.data.agree
+        for (let i = 0; i < this.data.commentList.length; i++) {
+          if (this.data.commentList[i]._id == e.target.dataset.comment_id) {
+            agree[i] = true
+          }
+        }
+        this.setData({
+          agree: agree
+        })
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
+    
+  },
+
+  /**
+   * 删除评论点赞
+   */
+  deleteCommentAgree: function (e) {
+    let temp = []
+    let agree = []
+    for (let i = 0; i < this.data.commentList.length; i++) {
+      if (this.data.commentList[i]._id == e.target.dataset.comment_id) {
+        temp = this.data.commentList[i].agree
+      }
+    }
+
+    for (let i = 0; i < temp.length; i++) {
+      if (temp[i] != app.globalData.openid) {
+        agree.push(temp[i])
+      }
+    }
+
+    wx.cloud.callFunction({
+      name: "updateCommentInfo",
+      data: {
+        _id: e.target.dataset.comment_id,
+        agree: agree
+      },
+      success: res => {
+        console.log(res);
+        console.log("取消评论点赞");
+        let agree = this.data.agree
+        for (let i = 0; i < this.data.commentList.length; i++) {
+          if (this.data.commentList[i]._id == e.target.dataset.comment_id) {
+            agree[i] = false
+          }
+        }
+        this.setData({
+          agree: agree
         })
       },
       fail: err => {

@@ -41,10 +41,41 @@ Page({
    */
   onLoad: function (options) {
     this.getRecipeInfo()
+    this.getAuth()
   },
 
   onShow: function () {
     this.onLoad()
+  },
+
+  /**
+   * 获取授权
+   */
+  getAuth: function () {
+    const that = this
+    //查看是否授权
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          console.log("用户授权了")
+          app.globalData.hasLogin = true
+          wx.getUserInfo({
+            success: res => {
+              console.log("获取用户信息成功", res)
+              app.globalData.userInfo = res.userInfo
+              console.log(app.globalData.userInfo);
+            },
+            fail: res => {
+              console.log("获取用户信息失败", res)
+            }
+          })
+        } else {
+          //用户没有授权
+          console.log("用户没有授权")
+          app.globalData.hasLogin = false
+        }
+      }
+    })
   },
 
   /**

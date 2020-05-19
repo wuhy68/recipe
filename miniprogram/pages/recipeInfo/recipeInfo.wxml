@@ -14,8 +14,8 @@
 			<view class="authorName" hover-class="authorName_hover" hover-stay-time="50"><text>{{userInfo.nickname}}</text></view>
       <view class="authorFollowingCount"><text>关注: {{userInfo.fans}}</text></view>
 		</view>
-    <view wx:if="{{isFollowing}}" class="authorFollow" hover-class="authorFollow-hover" hover-stay-time="50">关注</view>
-    <view wx:else class="authorFollowOK" hover-class="authorFollowOK-hover" hover-stay-time="50">已关注</view>
+    <view wx:if="{{!isFocus}}" class="authorFollow" hover-class="authorFollow-hover" hover-stay-time="50" bindtap="addFocus">关注</view>
+    <view wx:else class="authorFollowOK" hover-class="authorFollowOK-hover" hover-stay-time="50" bindtap="deleteFocus">已关注</view>
 	</view>
 	<view class="materialList">
 		<text style="margin-bottom: 40rpx">————原料表————</text>
@@ -37,8 +37,8 @@
 	</view>
 	<view class="CommentList">
 		<text style="margin-bottom: 40rpx">————评论————</text>
-		<view wx:for="{{commentList}}" wx:for-item="item" wx:if="{{item.index <= MaxShowComment}}">
-			<view class="CommentItem">
+		<view>
+			<view class="CommentItem"  wx:for="{{commentList}}">
 				<view class="CommentUserInfoAndAgreeCount">
 					<view class="CommentUserHeadImage">
 						<image class="CommentUserHeadImageImage" src="{{item.avatarUrl}}"></image>
@@ -49,30 +49,42 @@
 					</view>
 					<view class="CommentAgreeCount">
 						<view class="CommentAgreeCountImage">
-							<image class="CommentAgreeCountIcon" src="../../image/agree.png"></image>
+							<view wx:if="{{!agree[index]}}" style="margin-left: 10px;">
+								<image class="CommentAgreeCountIcon" src="../../images/点赞.png" data-comment_id="{{item._id}}" bindtap="addCommentAgree"></image>
+							</view>
+							<view wx:else style="margin-left: 10px;" >
+								<image class="CommentAgreeCountIcon" src="../../images/点赞-o.png" data-comment_id="{{item._id}}" bindtap="deleteCommentAgree"></image>
+							</view>
 						</view>
-						<view class="CommentAgreeCountText"><text>{{item.agreeCount}}</text></view>
+						<view class="CommentAgreeCountText"><text>{{item.agree.length}}</text></view>
 					</view>
 				</view>
 				<view class="CommentContext"><text>{{item.comment}}</text></view>
 			</view>
 		</view>
     <!-- addMaxShowComment 这里想要做的是每次点击More就多显示2个 -->
-		<button bindtap="addMaxShowComment" class="addMaxShowCommentButton">More</button>
-		<view class="comment-fixed">
-			<view class="cf-box-and-stars">
-        <view class="FiveStars">
-          <image style="height:55rpx; width: 55rpx" src="../../image/star_select.svg"></image>
-          <image style="height:55rpx; width: 55rpx" src="../../image/star_select.svg"></image>
-          <image style="height:55rpx; width: 55rpx" src="../../image/star_select.svg"></image>
-          <image style="height:55rpx; width: 55rpx" src="../../image/star_select.svg"></image>
-          <image style="height:55rpx; width: 55rpx" src="../../image/star.svg"></image>
-        </view>
-        <view class="cf-box">
-          <textarea class="cf-content" bindfocus="textAreaFocus" maxlength="200" bindblur="textAreaBlur" auto-height value="{{content}}" placeholder="我要评论" />
-          <text class="cf-send touch-active" bindtap="send">发送</text>
-        </view>
-      </view>
-    </view>
-  </view>
+
+		<view style="display: flex; flex-direction: row;">
+			<view class='commentInput'>
+				<input bindfocus="textAreaFocus" bindblur="textAreaBlur" auto-height value="{{content}}" placeholder="我要评论" cursor-spacing="100px"></input>
+			</view>
+			<view wx:if="{{!isHide}}" style="display: flex; flex-direction: row;">
+				<view wx:if="{{!isFollowing}}" style="margin-left: 10px;">
+					<image class="CommentAgreeCountIcon" src="../../images/收藏.png" bindtap="addCollection"></image>
+				</view>
+				<view wx:else style="margin-left: 10px;">
+					<image class="CommentAgreeCountIcon" src="../../images/收藏-o.png" bindtap="deleteColletion"></image>
+				</view>
+				<view wx:if="{{!isPraise}}" style="margin-left: 10px;" bindtap="">
+					<image class="CommentAgreeCountIcon" src="../../images/点赞.png" bindtap="addPraise"></image>
+				</view>
+				<view wx:else style="margin-left: 10px;" >
+					<image class="CommentAgreeCountIcon" src="../../images/点赞-o.png" bindtap="deletePraise"></image>
+				</view>
+			</view>
+			<view wx:else>
+				<button class="send" bindtap="send">发送</button>
+			</view>
+		</view>
+	</view>
 </view>

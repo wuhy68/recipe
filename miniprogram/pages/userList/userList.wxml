@@ -1,25 +1,15 @@
-<!--pages/mine/mine.wxml--> 
-<view wx:if="{{isHide}}">
-  <view wx:if="{{canIUse}}">
-    <view>
-      <text class="title">开始准备好好吃饭</text>
-      <textarea class="subtitle" value=""></textarea>
-      <button type='primary' open-type='getUserInfo' bindgetuserinfo='bindGetUserInfo'>微信授权登录</button>
-    </view>
-  </view>
-  <view wx:else>请升级微信版本</view>
-</view>
-<view wx:else>
+<!--miniprogram/pages/userList/userList.wxml-->
+<view>
   <view class="layout" style="margin-top: 20px;">
     <view style="flex: 2; margin-left: 5%">
-      <open-data type="userNickName"></open-data> 
+      <text>{{userInfo.nickname}}</text>
       <view class="layout" style="margin-top: 60px;">
         <text>关注:{{userInfo.focus.length}}</text>
         <text>粉丝{{userInfo.fans.length}}</text>
       </view>
     </view>
     <view style="flex: 1; margin-right: 5%"> 
-      <open-data type="userAvatarUrl" class="avatar"></open-data>
+      <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
     </view>
   </view>
   <view class="container">
@@ -79,11 +69,12 @@
   <!--餐厅-->
   <view wx:else>
     <view wx:if="{{userRestaurant.length == 0}}">
-      <navigator url="../restaurantRegister/restaurantRegister">创建餐厅</navigator>
+      <text>暂无餐厅</text>
     </view>
     <view wx:else>
       
     </view>
   </view> 
 </view>
+
 

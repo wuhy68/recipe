@@ -7,12 +7,14 @@
     <text>阅读量: {{reading}}</text>
   </view>
 	<view class="author">
+		<navigator url="../userList/userList?openid={{openid}}">
 		<view class="authorHead">
 			<image class="authorHeadImage" src="{{userInfo.avatarUrl}}"></image>
 		</view>
+		</navigator>
 		<view>
 			<view class="authorName" hover-class="authorName_hover" hover-stay-time="50"><text>{{userInfo.nickname}}</text></view>
-      <view class="authorFollowingCount"><text>关注: {{userInfo.fans}}</text></view>
+      <view class="authorFollowingCount"><text>关注: {{userInfo.fans.length}}</text></view>
 		</view>
     <view wx:if="{{!isFocus}}" class="authorFollow" hover-class="authorFollow-hover" hover-stay-time="50" bindtap="addFocus">关注</view>
     <view wx:else class="authorFollowOK" hover-class="authorFollowOK-hover" hover-stay-time="50" bindtap="deleteFocus">已关注</view>
@@ -41,7 +43,9 @@
 			<view class="CommentItem"  wx:for="{{commentList}}">
 				<view class="CommentUserInfoAndAgreeCount">
 					<view class="CommentUserHeadImage">
-						<image class="CommentUserHeadImageImage" src="{{item.avatarUrl}}"></image>
+						<navigator url="../userList/userList?openid={{item.openid}}">
+							<image class="CommentUserHeadImageImage" src="{{item.avatarUrl}}"></image>
+						</navigator>
 					</view>
 					<view class="CommentUserNameAndTime">
 						<view class="CommentUserName"><text>{{item.name}}</text></view>
@@ -50,10 +54,10 @@
 					<view class="CommentAgreeCount">
 						<view class="CommentAgreeCountImage">
 							<view wx:if="{{!agree[index]}}" style="margin-left: 10px;">
-								<image class="CommentAgreeCountIcon" src="../../images/点赞.png" data-comment_id="{{item._id}}" bindtap="addCommentAgree"></image>
+								<image class="CommentAgreeCountIcon" src="../../images/agree.png" data-comment_id="{{item._id}}" bindtap="addCommentAgree"></image>
 							</view>
 							<view wx:else style="margin-left: 10px;" >
-								<image class="CommentAgreeCountIcon" src="../../images/点赞-o.png" data-comment_id="{{item._id}}" bindtap="deleteCommentAgree"></image>
+								<image class="CommentAgreeCountIcon" src="../../images/agree-o.png" data-comment_id="{{item._id}}" bindtap="deleteCommentAgree"></image>
 							</view>
 						</view>
 						<view class="CommentAgreeCountText"><text>{{item.agree.length}}</text></view>
@@ -70,16 +74,16 @@
 			</view>
 			<view wx:if="{{!isHide}}" style="display: flex; flex-direction: row;">
 				<view wx:if="{{!isFollowing}}" style="margin-left: 10px;">
-					<image class="CommentAgreeCountIcon" src="../../images/收藏.png" bindtap="addCollection"></image>
+					<image class="CommentAgreeCountIcon" src="../../images/like.png" bindtap="addCollection"></image>
 				</view>
 				<view wx:else style="margin-left: 10px;">
-					<image class="CommentAgreeCountIcon" src="../../images/收藏-o.png" bindtap="deleteColletion"></image>
+					<image class="CommentAgreeCountIcon" src="../../images/like-o.png" bindtap="deleteColletion"></image>
 				</view>
 				<view wx:if="{{!isPraise}}" style="margin-left: 10px;" bindtap="">
-					<image class="CommentAgreeCountIcon" src="../../images/点赞.png" bindtap="addPraise"></image>
+					<image class="CommentAgreeCountIcon" src="../../images/agree.png" bindtap="addPraise"></image>
 				</view>
 				<view wx:else style="margin-left: 10px;" >
-					<image class="CommentAgreeCountIcon" src="../../images/点赞-o.png" bindtap="deletePraise"></image>
+					<image class="CommentAgreeCountIcon" src="../../images/agree.png" bindtap="deletePraise"></image>
 				</view>
 			</view>
 			<view wx:else>

@@ -11,6 +11,7 @@ exports.main = async (event, context) => {
         recipe_id: event.recipe_id,
         name: event.name,
         avatarUrl: event.avatarUrl,
+        openid: event.openid,
         comment: event.comment,
         agree: [],
         date: new Date()

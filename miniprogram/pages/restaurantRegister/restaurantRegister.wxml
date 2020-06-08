@@ -38,19 +38,10 @@
 					</view>
 				</view>
 				<view class="weui-cell__Item">
-					<view class="weui-label">法人固定电话</view>
-					<input class="weui-input" type="text" name="fixedPhone" value="{{fixedPhone}}" placeholder="请输入固定电话" />
-				</view>
-				<view class="weui-cell__Item">
-					<view class="weui-label">法人移动电话</view>
+					<view class="weui-label">法人联系方式</view>
 					<view class="weui-input2">
 						<input type="text" name="mobPhone" value="{{mobPhone}}" placeholder="请输入11位手机号" />
-						<view class="weui-getVari" hover-class="weui-getVari-hover">获取验证码</view>
 					</view>
-				</view>
-				<view class="weui-cell__Item">
-					<view class="weui-label">验证码</view>
-					<input class="weui-input" type="text" name="confirmId" value="{{confirmId}}" placeholder="请输入6位验证码" />
 				</view>
 				<view class="weui-cell__Item2">
 					<view class="weui-label2">餐厅介绍</view>

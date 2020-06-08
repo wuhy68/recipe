@@ -15,8 +15,6 @@ Page({
     MaxShowComment: 2,
     cfBg: false,
     followingCount: 350,
-    score: 8.7,
-    reading: 15000,
 
     /**
      * 评论框控制
@@ -54,6 +52,11 @@ Page({
     stepList: [],
 
     /**
+     * 阅读数据
+     */
+    reading: 0,
+
+    /**
      * 评论数据
      */
     commentList: [],
@@ -84,6 +87,7 @@ Page({
     this.getRecipeInfo()
     this.getCommentInfo()
     this.getCurrentUserInfo()
+    this.addReading()
   },
 
   /**
@@ -209,7 +213,8 @@ Page({
           stepList: res.result.data[0].steps,
           ingredientList: res.result.data[0].ingredients,
           cover: res.result.data[0].cover,
-          praise: res.result.data[0].praise
+          praise: res.result.data[0].praise,
+          reading: res.result.data[0].reading
         })
         let flag = this.data.praise.indexOf(app.globalData.openid)
         if (flag == -1) {
@@ -278,6 +283,23 @@ Page({
         this.setData({
           isFocus: true
         })
+        this.getCurrentUserInfo()
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
+    let fans = this.data.userInfo.fans
+    fans.push(app.globalData.openid)
+    wx.cloud.callFunction({
+      name: "updateUserInfo",
+      data: {
+        openid: this.data.openid,
+        fans: fans
+      },
+      success: res => {
+        console.log(res);
+        this.getUserInfo();
       },
       fail: err => {
         console.error(err);
@@ -295,6 +317,7 @@ Page({
         focus.push(this.data.currentUserInfo.focus[i])
       }
     }
+    
     wx.cloud.callFunction({
       name: "updateUserInfo",
       data: {
@@ -307,6 +330,27 @@ Page({
         this.setData({
           isFocus: false
         })
+        this.getCurrentUserInfo()
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
+    let fans = []
+    for (let i = 0; i < this.data.userInfo.fans.length; i++) {
+      if (this.data.userInfo.fans[i] != app.globalData.openid) {
+        fans.push(this.data.userInfo.fans[i])
+      }
+    }
+    wx.cloud.callFunction({
+      name: "updateUserInfo",
+      data: {
+        openid: this.data.openid,
+        fans: fans
+      },
+      success: res => {
+        console.log(res);
+        this.getUserInfo();
       },
       fail: err => {
         console.error(err);
@@ -455,6 +499,7 @@ Page({
         this.setData({
           agree: agree
         })
+        this.getCommentInfo()
       },
       fail: err => {
         console.error(err);
@@ -499,6 +544,7 @@ Page({
         this.setData({
           agree: agree
         })
+        this.getCommentInfo()
       },
       fail: err => {
         console.error(err);
@@ -527,6 +573,7 @@ Page({
                   recipe_id: this.data._id,
                   name: app.globalData.userInfo.nickName,
                   avatarUrl: app.globalData.userInfo.avatarUrl,
+                  openid: app.globalData.openid,
                   comment: this.data.content
                 },
                 success: res => {
@@ -551,6 +598,26 @@ Page({
             url: '../userInfo/userInfo',
           })
         }
+      }
+    })
+  },
+
+  /**
+   * 添加阅读量
+   */
+  addReading: function () {
+    let reading = this.data.reading + 1;
+    wx.cloud.callFunction({
+      name: "updateRecipeInfo",
+      data: {
+        _id: this.data._id,
+        reading: reading
+      },
+      success: res => {
+        console.log(res);
+      },
+      fail: err => {
+        console.error(err);
       }
     })
   }

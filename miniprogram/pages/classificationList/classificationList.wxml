@@ -1,18 +1,7 @@
 <!--miniprogram/pages/classificationList/classificationList.wxml-->
 <view class="wholeStyle">
   <view class="Title"><text>{{tag}}</text></view>
-  <view class="swiper">
-    <swiper indicator-dots="{{indicatorDots}}"
-      autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-      <block wx:for="{{background}}" wx:key="*this">
-        <swiper-item>
-          <view class="swiper-item {{item}}">
-            <image style="border-radius: 10rpx" src="{{item}}"></image>
-          </view>
-        </swiper-item>
-      </block>
-    </swiper>
-  </view>
+
   <view class="favoritesList">
     <view wx:for="{{tagRecipes}}" wx:for-item="item">
       <view class="favoritesItem">

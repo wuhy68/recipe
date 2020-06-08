@@ -64,27 +64,12 @@
     <view wx:if="{{recommend == 1 && nearby == 0 && rank == 0}}">
       <view wx:for="{{recipes}}" wx:key="*this" class="pictureCom">
         <navigator url="../recipeInfo/recipeInfo?_id={{item._id}}&&openid={{item.openid}}">
-          <view class="starsAndScore">
-            <view class="fiveStars">
-              <image style="height:55rpx" src="../../images/star.svg"></image>
-              <image style="height:55rpx" src="../../images/star.svg"></image>
-              <image style="height:55rpx" src="../../images/star.svg"></image>
-              <image style="height:55rpx" src="../../images/star.svg"></image>
-              <image style="height:55rpx" src="../../images/star.svg"></image>
-            </view>
-            <view class="score">
-              <text>9.9</text>
-            </view>
-          </view>
           <view class="name">
             <text>{{item.name}}</text>
           </view>
           <view class="authorSet">
             <image class="authorSetIcon" src="../../images/author.svg"></image>
             <text class="authorSetText">{{item.chef}}</text>
-          </view>
-          <view class="commentCount">
-            <text>500人评价过</text>
           </view>
         </navigator>
       </view>

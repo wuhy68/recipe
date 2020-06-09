@@ -1,0 +1,252 @@
+/* miniprogram/pages/restaurantRegister/restaurantRegister.wxss */
+.wholeStyle {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.addCover {
+  width: 100%;
+  height: 260px;
+  background-color: grey;
+  color: rgb(155, 153, 153);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.weui-cells__title {
+  margin-top: 0;
+}
+
+.weui-cell__Item{
+  height: 80rpx;
+  border-bottom: solid rgb(232, 231, 231) 1rpx;
+  border-top: solid rgb(232, 231, 231) 1rpx;
+  display: flex;
+  font-size: small;
+  flex-direction: row;
+}
+
+.weui-cell__Item2{
+  height: 380rpx;
+  border-bottom: solid rgb(232, 231, 231) 1rpx;
+  border-top: solid rgb(232, 231, 231) 1rpx;
+  display: flex;
+  font-size: small;
+  flex-direction: row;
+}
+
+.weui-input {
+  width: 65%;
+  margin-top: 13rpx;
+  margin-left: 30rpx;
+  overflow: hidden;
+}
+
+.weui-input2{
+  width: 65%;
+  margin-top: 13rpx;
+  margin-left: 30rpx;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+}
+
+.weui-getVari{
+  width: 43%;
+  margin-top: 8rpx;
+  text-align: right;
+  font-size: small;
+  color: rgb(169, 244, 57);
+}
+
+.weui-getVari-hover{
+  color: rgb(106, 211, 235);
+}
+
+.radio-group {
+  padding: 10px 0px !important;
+}
+
+.weui-label {
+  width: 28%;
+  margin-top: 18rpx;
+  margin-left: 30rpx;
+  color: black;
+}
+
+.weui-label2 {
+  width: 28%;
+  margin-top: 140rpx;
+  margin-left: 30rpx;
+  color: black;
+}
+
+.radio text {
+  margin: 0rpx 8rpx;
+}
+
+.radio {
+  margin-right: 12rpx;
+}
+
+.weui-btn_yes {
+  background: #e5e74a !important;
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+}
+
+.weui-btn_reset {
+  background: #c75858;
+  color: white;
+  margin-top: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.weui-agree__text{
+  display: flex;
+  flex-direction: row;
+  font-size: small;
+}
+
+.weui-agree__checkbox{
+  transform: scale(0.6,0.6);
+}
+
+.weui-agree__checkbox-text{
+  margin-top: 10rpx;
+}
+
+.weui-agree__link{
+  margin-top: 10rpx;
+  color: rgb(176, 212, 212);
+  border-bottom: solid rgb(176, 212, 212) 1rpx;
+}
+
+.weui-agree__link_hover{
+  color: rgb(41, 236, 236);
+}
+
+.drawer_box {
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  z-index: 1001;
+  background: #FAFAFA;
+  margin: -100rpx 0 0 0;
+  border-radius: 3px;
+}
+
+.drawer_title{
+  padding:35rpx;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.closeIcon{
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.questionIcon{
+  width: 55rpx;
+  height: 55rpx;
+}
+
+.top{
+  padding-top:18rpx;
+  border-bottom: solid rgb(230, 226, 226) 1rpx;
+}
+
+.grid { 
+  display: -webkit-box; 
+  display: box; 
+}
+
+.title {
+	height: 60rpx;
+	line-height: 30rpx;
+	width: 280rpx;
+  text-align: left;
+  margin-left: 25rpx;
+  display: inline-block;
+  font-size: small;
+}
+
+.col-0 {
+  -webkit-box-flex:0;
+  box-flex:0;
+}
+
+.input_base {
+  height: 60rpx;
+	line-height: 30rpx;
+	width: 420rpx;
+  text-align: left;
+  margin-right: 25rpx;
+  display: inline-block;
+  font-size: small;
+  color: rgb(124, 122, 122);
+}
+
+.input_h30{
+	height: 60rpx;
+  line-height: 30rpx;
+  text-align: right;
+}
+
+.col-1 {
+  -webkit-box-flex:1;
+  box-flex:1;
+}
+
+.btn_ok{
+  color: white;
+  background: #24cdeb !important;
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+}
+
+.showContent {
+  display: block;
+}
+
+.hideContent {
+  display: none;
+}
+
+@keyframes slideContentUp {
+  from {
+    height: 0rpx;
+  }
+
+  to {
+    height: 800rpx;
+  }
+}
+
+@keyframes slideContentDown {
+  from {
+    height: 800rpx;
+  }
+
+  to {
+    height: 0;
+  }
+}
+
+/* 显示或关闭内容时动画 */
+.open {
+  animation: slideContentUp 0.05s ease-in both;
+  /* animation-fill-mode: both 动画将会执行 forwards 和 backwards 执行的动作。 */
+}
+
+.close {
+  animation: slideContentDown 0.05s ease-in both;
+  /* animation-fill-mode: both 动画将会执行 forwards 和 backwards 执行的动作。 */
+}

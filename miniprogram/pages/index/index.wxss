@@ -5,17 +5,27 @@
 }
 
 .nextStep{
-	width: 660rpx;
-	height: 90rpx;
+  height: 70rpx;
 	color: rgb(126, 122, 122);
-	background-color: rgb(235, 205, 220);
+	background-color: rgb(244, 234, 239);
 	box-shadow: rgba(193, 52, 52, 1) solid 2rpx;
-	border-radius: 45rpx;
+	border-radius: 20rpx;
 	font-size: 32rpx;
 	line-height: 150%;
   text-align: center;
   display: flex;
   justify-content: center;
+}
+
+.nextStepCancel{
+  height: 70rpx;
+  margin-left: 30rpx;
+  background-color: rgb(198, 195, 196);
+  width: 120rpx;
+  text-align: center;
+  justify-content:center;
+  border-radius: 16rpx;
+  font-size: small;
 }
 
 .image-group {
@@ -35,7 +45,7 @@
   margin-bottom: 40rpx;
 }
 
-.IndexFourBox{
+.indexFourBox{
 	width: 660rpx;
 	height: 190rpx;
 	left: 2rpx;
@@ -45,7 +55,7 @@
   justify-content: space-around;
 }
 
-.IndexPerBox{
+.indexPerBox{
 	width: 160rpx;
 	height: 190rpx;
 	left: 2rpx;
@@ -55,7 +65,7 @@
   text-align: center;
 }
 
-.ImageInIndexPerBox{
+.imageInIndexPerBox{
   margin: 0 auto;
 	width: 100rpx;
 	height: 100rpx;
@@ -63,12 +73,12 @@
 	top: 287rpx;
 }
 
-.TextInIndexPerBox{
+.textInIndexPerBox{
   margin: 15rpx auto;
   font-size: small;
 }
 
-.PictureCom{
+.pictureCom{
   background-image: url("https://s1.ax1x.com/2020/05/04/Y9BcUH.md.jpg");
 	width: 660rpx;
 	height: 280rpx;
@@ -77,13 +87,13 @@
   border-radius: 20rpx;
 }
 
-.StarsAndScore{
+.starsAndScore{
   flex-direction: row;
   display: flex; 
   justify-content: space-between;
 }
 
-.FiveStars{
+.fiveStars{
 	width: 170rpx;
 	height: 55rpx;
   margin:30rpx 0rpx 30rpx 30rpx;
@@ -91,39 +101,72 @@
   display: flex;
 }
 
-.Score{
+.score{
   width: 151rpx;
   height: 55rpx;
   text-align: right;
   margin: 30rpx 30rpx 30rpx 0rpx;
 }
 
-.Name{
+.name{
   width: 170rpx;
 	height: 55rpx;
-  margin: 0rpx 0rpx 0rpx 30rpx;
+  margin: 120rpx 0rpx 0rpx 30rpx;
 }
 
-.AuthorSet{
+.authorSet{
   width: 300rpx;
-  height: 55rpx;
+  height: 45rpx;
 }
 
-.AuthorSetIcon{
+.goodsNum{
+  width: 300rpx;
+  height: 30rpx;
+  margin-left:30rpx;
+  font-size: small;
+  color: #696767;
+  /* margin: 0rpx 30rpx 30rpx 0rpx; */
+}
+
+.authorSetIcon{
   width: 30rpx;
   height:30rpx;
   margin-left:30rpx;
 }
 
-.AuthorSetText{
+.authorSetText{
   color:rgb(163, 163, 163);
   font-size:30rpx;
   margin-left:10rpx;
 }
 
-.CommentCount{
+.commentCount{
   width: 300rpx;
   height: 55rpx; 
   margin-left:30rpx;
   font-size: 30rpx;
+}
+
+.searchHistory{
+  margin: 40rpx 40rpx 30rpx 40rpx;
+}
+
+.searchHistoryItem{
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  margin: 30rpx auto;
+}
+
+.searchHistoryItem_hover{
+  opacity: 0.9;
+  background: #c7c5c5;
+  border-radius: 20rpx;
+}
+
+.searchHistoryItemText{
+  margin:auto 30rpx;
+  color: #a29f9f;
+  font-size: 35rpx;
 }

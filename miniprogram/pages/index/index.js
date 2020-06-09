@@ -1,40 +1,144 @@
 // miniprogram/pages/index/index.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    background: ['../../image/indexImage1.jpg', '../../image/indexImage2.jpg', '../../image/indexImage3.png'],
+    /**
+     * 循环背景图片
+     */
+    background: ['cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/indexImage1.jpg', 'cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/indexImage2.jpg', 'cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/indexImage3.png'],
     indicatorDots: true,
     vertical: true,
     autoplay: true,
     interval: 2000,
     duration: 800,
-    PictureComCount: 4
+    /**
+     * 控制页面显示
+     */
+    search: 0,
+    recommend: 1,
+    nearby: 0,
+    rank: 0,
+
+    /**
+     * 数据库数据
+     */
+    recipes: [],
+    nearbyRestaurant: ['aa','cc'],
+    rankRecipe: ['aa','cc'],
+
+    /**
+     * 查询数据
+     */
+    searchVal: ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getRecipeInfo()
+    this.getAuth()
   },
 
+  onShow: function () {
+    this.onLoad()
+  },
 
   /**
-   * 获取用户信息
-   * 
-   * @param {用户名} name 
+   * 获取授权
    */
-  getUserInfo: function (name) {
+  getAuth: function () {
+    const that = this
+    //查看是否授权
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          console.log("用户授权了")
+          app.globalData.hasLogin = true
+          wx.getUserInfo({
+            success: res => {
+              console.log("获取用户信息成功", res)
+              app.globalData.userInfo = res.userInfo
+              console.log(app.globalData.userInfo);
+            },
+            fail: res => {
+              console.log("获取用户信息失败", res)
+            }
+          })
+        } else {
+          //用户没有授权
+          console.log("用户没有授权")
+          app.globalData.hasLogin = false
+        }
+      }
+    })
+  },
+
+  /**
+   * 获取所有菜单信息
+   */
+  getRecipeInfo: function () {
     wx.cloud.callFunction({
-      name: "getUserInfo",
+      name: "getAllRecipeInfo",
+      success: res => {
+        this.setData({
+          recipes: res.result.data
+        })
+        console.log(res.result.data);
+      },
+      fail: err => {
+        console.log(err);
+      }
+    }) 
+  },
+
+  /**
+   * 通过控制search来跳转到查询页面
+   */
+  toSearchPage: function () {
+    this.setData({
+      search: 1
+    })
+  },
+
+  /**
+   * 通过控制search回到主页
+   */
+  toIndex: function () {
+    this.setData({
+      search: 0
+    })
+  },
+
+  /**
+   * 读取搜索框输入的数据
+   * @param {dataset} e 
+   */
+  input: function (e) {
+    this.setData({
+      searchVal: e.detail.value
+    })
+    console.log(this.data.searchVal);
+  },
+
+  /**
+   * 正则查询（模糊搜索）
+   */
+  search: function () {
+    wx.cloud.callFunction({
+      name: "getSearchRecipeInfo",
       data: {
-        name: name
+        name: this.data.searchVal
       },
       success: res => {
-        console.log(res);
+        this.setData({
+          recipes: res.result.data
+        })
+        console.log(res.result.data);
       },
       fail: err => {
         console.error(err);
@@ -43,54 +147,103 @@ Page({
   },
 
   /**
-   * 添加用户信息
    * 
-   * @param {用户名} name 
-   * @param {用户类型} type 
-   * @param {电话号码} telephone 
-   * @param {经度} longtitude 
-   * @param {纬度} latitude 
    */
-  addUserInfo: function (name, telephone) {
-    wx.cloud.callFunction({
-      name: 'addUserInfo',
-      data: {
-        name: name,
-        telephone: telephone,
-      },
-      success: res => {
-        console.log(res);
-      },
-      fail: err => {
-        console.error(err);
-      }
-    })
-  },
- 
-  /**
-   * 
-   * @param {关注数} fans 
-   * @param {获赞数} praises 
-   */
-  updateUserInfo: function(name, fans, praises) {
-    wx.cloud.callFunction({
-      name: 'updateUserInfo',
-      data: {
-        fans: fans,
-        praises: praises
-      },
-      success: res => {
-        console.log(res);
-      },
-      fail: err => {
-        console.error(err);
+  toUploadRecipe: function () {
+    const that = this
+    //查看是否授权
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          console.log("用户授权了")
+          app.globalData.hasLogin = true
+          wx.getUserInfo({
+            success: res => {
+              console.log("获取用户信息成功", res)
+              app.globalData.userInfo = res.userInfo
+            },
+            fail: res => {
+              console.log("获取用户信息失败", res)
+            }
+          })
+          wx.navigateTo({
+            url: '../uploadRecipe/uploadRecipe'
+          })
+        } else {
+          //用户没有授权
+          console.log("用户没有授权")
+          app.globalData.hasLogin = false
+          wx.switchTab({
+            url: '../userInfo/userInfo',
+          })
+        }
       }
     })
   },
 
-  ToSearchPage: function(){
-    wx.navigateTo({
-      url: '../search/search',
+  /**
+   * 跳转到每日必恰界面
+   */
+  toRecommendation: function () {
+    this.setData({
+      recommend: 1,
+      nearby: 0,
+      rank: 0
+    })
+  },
+
+  /**
+   * 跳转到附近餐厅界面
+   * 获取附近餐厅列表
+   */
+  toNearby: function () {
+    this.setData({
+      recommend: 0,
+      nearby: 1,
+      rank: 0
+    })
+    wx.chooseLocation({
+      success: res => {
+        wx.cloud.callFunction({
+          name: "getNearby",
+          data: {
+            longitude: res.longitude,
+            latitude: res.latitude
+          },
+          success: res => {
+            console.log(res);
+          },
+          fail: err => {
+            console.error(err);
+          }
+        })
+      }
+    })
+  },
+
+  /**
+   * 跳转到排行榜界面
+   * 获取排行榜列表
+   */
+  toRank: function () {
+    this.setData({
+      recommend: 0,
+      nearby: 0,
+      rank: 1,
+    })
+    wx.cloud.callFunction({
+      name: "getRank",
+      data: {
+
+      },
+      success: res => {
+        console.log(res);
+      },
+      fail: err => {
+        console.error(err);
+      }
     })
   }
+
+
 })

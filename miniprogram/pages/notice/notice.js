@@ -1,4 +1,4 @@
-// pages/notice/notice.js
+// miniprogram/pages/notice/notice.js
 Page({
 
   /**

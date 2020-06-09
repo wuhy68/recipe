@@ -1,109 +1,24 @@
-<!-- class='addCover' -->
-<!-- <view wx:if="{{cover==''}}"  bindtap="uploadCover">
+<view wx:if="{{cover==''}}" class='addCover' bindtap="uploadCover">
   <text>+菜谱封面\n诱人的封面是吸引人们的关键</text>
-</view> -->
-
-<!-- <view bindtap="uploadCover">
+</view>
+<view wx:elif="{{cover!=''}}" bindtap="uploadCover">
   <image src="{{cover}}"></image>
-</view> -->
+</view>
 <view class="wholeStyle">
-  <view class='inputKuang'>
-    <input class="inputLine" placeholder="输入这道美食的名字" placeholder-style="text-align: center" style="text-align: center"></input>    
-    <view class="redLine"></view>
-    <view class="inputWarning">
-      <text class="inputWarningText">Username or Password is incorrect.</text>
-    </view>
+  <view class='addTitle'>
+    <input placeholder="输入这道美食的名字" placeholder-style="text-align: center" style="text-align: center" bindinput="{{name}}"></input>
   </view>
-  <view class='inputKuang'>
-    <input class="inputLine" placeholder="请输入TAG，最多六个，以“,”为分隔" placeholder-style="text-align: center" style="text-align: center"></input>    
-    <view class="redLine"></view>
-    <view class="inputWarning">
-      <text class="inputWarningText">Username or Password is incorrect.</text>
-    </view>
-  </view>
-  <view class="tagKuangAll">
-    <view class="tagKuang">
-      <button class="tagButton">川菜</button>
-      <button class="tagButton">粤菜</button>
-      <button class="tagButton">土豆</button>
-    </view>
-    <view class="tagKuang">
-      <button class="tagButton">川菜</button>
-      <button class="tagButton">粤菜</button>
-      <button class="tagButton">土豆</button>
-    </view>
-  </view>
-  <view>
-    <view style="weight:660rpx;text-align:center">
-      <text>菜谱简介</text>
-    </view>
-    <textarea class="addStory" placeholder="输入这道美食背后的故事"></textarea>
-  </view>
-  <view class="pictureUpload">
-    <view class="pictureUploadTitle">
-      <text class="pictureUploadText" >封面上传</text>
-    </view>
-    <view class="pictureAll">
-      <input class="picturePer" data-index="{{index}}" data-tag="picture" bindtap="uploadPicture"></input>
-    </view>
-  </view>
-  <!-- <view class="judgeStep">
-    <text class="judgeStepText">是否上传具体步骤</text>
-    <view class="judgeStepButton">
-      <switch checked bindchange="switch1Change"/>
-    </view>
-  </view> -->
-  <view class="thingsUpload">
-    <view class="thingsUploadTitle">
-      <text class="thingsUploadText">用料列表</text>
-    </view>
-    <view class="weui-cell__input">
-      <view wx:for="{{ingredients}}" class="weui-cell">
-        <icon wx:if="{{temp1 == 0}}" type="clear" data-index="{{index}}" bindtap="deleteIngredient" type="cancel" size="34"></icon>
-        <input placeholder="食材" value="{{item.food}}" data-tag="food" data-index="{{index}}" bindblur="setIngredientsValue" class="food"></input>
-        <input placeholder="用量" value="{{item.count}}" data-tag="count" data-index="{{index}}" bindblur="setIngredientsValue" class="count"></input>
-      </view>
-    </view>
-    <view class="changeIngredients">
-      <button bindtap="addIngredient" class="addIngredient">添加用料</button>
-      <button wx:if="{{temp1 == 1}}" bindtap="changeTemp1" class="addIngredient">修改</button>
-      <button wx:elif="{{temp1 == 0}}" bindtap="changeTemp1" class="addIngredient">完成</button>
-    </view>
-  </view>
-  <view>
-    <view class="thingsUploadTitle">
-      <text class="thingsUploadText">步骤</text>
-    </view>
-    <view wx:for="{{steps}}">
-      <icon wx:if="{{temp2 == 0}}" type="clear" data-index="{{index}}" bindtap="deleteStep"></icon>
-      <view wx:if="{{item.picture==''}}" data-index="{{index}}" data-tag="picture" class='addCover' bindtap="uploadPicture">
-        <text>+步骤图\n上传至少两张步骤图</text>
-      </view>
-      <view wx:elif="{{item.picture!=''}}" data-index="{{index}}" data-tag="picture" class='addCover' bindtap="uploadPicture">
-        <image src="{{item.picture}}"></image>
-      </view>
-      <input placeholder="添加步骤说明" class="addStory" data-tag="step" value="{{item.step}}" bindblur="setStepsValue"></input>
-    </view>
-    <view class="changeIngredients">
-      <button bindtap="addStep" class="addIngredient">添加步骤</button>
-      <button wx:if="{{temp2 == 1}}" bindtap="changeTemp1" class="addIngredient">修改</button>
-      <button wx:elif="{{temp2 == 0}}" bindtap="changeTemp1" class="addIngredient">完成</button>
-    </view>
-  </view>
-  <button class="nextStep">提交菜谱</button>
-
-
-
-  <!-- <view class="container">
+  <view class="container">
+      <!-- 分割线 -->
     <view class="divLine"></view>
   </view>
   <view>
-    <textarea class="addStory" placeholder="输入这道美食背后的故事"></textarea>
+    <textarea class="addStory" placeholder="输入这道美食背后的故事" bindinput="{{introduction}}"></textarea>
   </view>
   <view class="weui_cells__title">用料</view>
   <view class="weui-cell__input">
     <view wx:for="{{ingredients}}" class="weui-cell">
-      <icon wx:if="{{temp1 == 0}}" type="clear" data-index="{{index}}" bindtap="deleteIngredient"></icon>
+      <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/停用.svg" wx:if="{{temp1 == 0}}" data-index="{{index}}" bindtap="deleteIngredient" style="height: 25px; width: 25px"></image>
       <input placeholder="食材" value="{{item.food}}" data-tag="food" data-index="{{index}}" bindblur="setIngredientsValue" style="margin-left:10px"></input>
       <input placeholder="用量" value="{{item.count}}" data-tag="count" data-index="{{index}}" bindblur="setIngredientsValue"></input>
     </view>
@@ -118,14 +33,14 @@
 
   <view> <text>做法</text> </view>
   <view wx:for="{{steps}}">
-    <icon wx:if="{{temp2 == 0}}" type="clear" data-index="{{index}}" bindtap="deleteStep"></icon>
+    <image src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/停用.svg" wx:if="{{temp2 == 0}}" data-index="{{index}}" bindtap="deleteStep" style="height: 25px; width: 25px"></image>
     <view wx:if="{{item.picture==''}}" data-index="{{index}}" data-tag="picture" class='addCover' bindtap="uploadPicture">
       <text>+步骤图\n上传至少两张步骤图</text>
     </view>
     <view wx:elif="{{item.picture!=''}}" data-index="{{index}}" data-tag="picture" class='addCover' bindtap="uploadPicture">
       <image src="{{item.picture}}"></image>
     </view>
-    <input placeholder="添加说明步骤，至少两步" data-tag="step" value="{{item.step}}" bindblur="setStepsValue"></input>
+    <input placeholder="添加说明步骤，至少两步" data-index="{{index}}" data-tag="step" value="{{item.step}}" bindblur="setStepsValue"></input>
   </view>
   <view style="display:flex; flex-direction: row; justify-content: space-between">
     <view><text bindtap="addStep">添加用料</text></view>
@@ -136,7 +51,55 @@
   </view>
   <view> <text>小贴士</text> </view>
   <view>
-    <textarea class="addStory" placeholder="这道菜还有哪些需要注意的细节和小技巧"></textarea>
-  </view> -->
-  
+    <textarea class="addStory" placeholder="这道菜还有哪些需要注意的细节和小技巧" bindinput="{{tip}}"></textarea>
+  </view>
+  <view class='select_box'>
+    <view class='select' catchtap='selectTap'>
+      <text class='select_text'>推荐分类</text>
+      <image class='select_img {{show&&"select_img_rotate"}}' src='image/gobottom.png'></image>   
+    </view>
+    <view class="section {{reply? 'on':'off'}}">
+      <view>
+        <view wx:if="{{tags.length == 0}}">
+          <text>请选择标签，最多两个</text>
+        </view>
+        <view wx:else style="display: flex; flex-direction: row; flex-wrap: wrap;">
+          <view wx:for="{{tags}}">
+            <button class="myButton">{{item}}</button>
+          </view>
+        </view>
+      </view>
+      <view style="display: flex; flex-direction: row">
+        <text bindtap="toA">热门分类 </text>
+        <text style="margin-left: 10px" bindtap="toB">菜式 </text>
+        <text style="margin-left: 10px" bindtap="toC">场景</text>
+      </view>
+      <view wx:if="{{showA}}" style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        <button class="myButton" data-tag="家常菜" bindtap="addTag">家常菜</button>
+        <button class="myButton" data-tag="下饭菜" bindtap="addTag">下饭菜</button>
+        <button class="myButton" data-tag="烘培" bindtap="addTag">烘培</button>
+        <button class="myButton" data-tag="肉类" bindtap="addTag">肉类</button>
+        <button class="myButton" data-tag="早餐" bindtap="addTag">早餐</button>
+        <button class="myButton" data-tag="蔬菜" bindtap="addTag">蔬菜</button>
+        <button class="myButton" data-tag="汤粥主食" bindtap="addTag">汤粥主食</button>
+      </view>
+      <view wx:elif="{{showB}}" style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        <button class="myButton" data-tag="快手菜" bindtap="addTag">快手菜</button>
+        <button class="myButton" data-tag="素菜" bindtap="addTag">素菜</button>
+        <button class="myButton" data-tag="甜品饮品" bindtap="addTag">甜品饮品</button>
+        <button class="myButton" data-tag="小吃" bindtap="addTag">小吃</button>
+        <button class="myButton" data-tag="零食" bindtap="addTag">零食</button>
+        <button class="myButton" data-tag="懒人菜谱" bindtap="addTag">懒人菜谱</button>
+        <button class="myButton" data-tag="沙拉凉菜" bindtap="addTag">沙拉凉菜</button>
+      </view>
+      <view wx:else style="display: flex; flex-direction: row; flex-wrap: wrap;"> 
+        <button class="myButton" data-tag="单人份" bindtap="addTag">单人份</button>
+        <button class="myButton" data-tag="宴请" bindtap="addTag">宴请</button>
+        <button class="myButton" data-tag="下午茶" bindtap="addTag">下午茶</button>
+        <button class="myButton" data-tag="便当" bindtap="addTag">便当</button>
+      </view>
+    </view>
+  </view>
+
+  <button bindtap="uploadRecipe">发布这个菜谱</button>
 </view>

@@ -1,62 +1,52 @@
 {
   "pages": [
-    "pages/RegisterForm/RegisterForm",
-    "pages/ListInfo/ListInfo",
-    "pages/UserAllRecipe/UserAllRecipe",
-    "pages/UserInfo/UserInfo",
-    "pages/MessageInfo/MessageInfo",
-    "pages/RestaurantList/RestaurantList",
-    "pages/RecipeList/RecipeList",
-    "pages/recipeInfo/recipeInfo",
-    "pages/MyRecipe/MyRecipe",
-    "pages/AllList/AllList",
-    
-    "pages/notice/notice",
-    "pages/MyAuthentication/MyAuthentication",
-    "pages/Favorites/Favorites",
-    "pages/followed/followed",
-    "pages/following/following",
-    "pages/commentReceive/commmentReceive",
-    "pages/aboutUs/aboutUs",
-    "pages/search/search",
     "pages/index/index",
-    "pages/uploadRecipe/uploadRecipe",
+    "pages/restaurantInfo/restaurantInfo",
     "pages/restaurant/restaurant",
-    "pages/mine/mine"
+    "pages/userInfo/userInfo",
+    "pages/classification/classification",
+    "pages/recipeInfo/recipeInfo",
+    "pages/uploadRecipe/uploadRecipe",
+    "pages/restaurantRegister/restaurantRegister",
+    "pages/notice/notice",
+    "pages/classificationList/classificationList",
+    "pages/userList/userList"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTitleText": "Recipe",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
-  "style": "v2",
   "tabBar": {
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "主页",
-      "iconPath": "../miniprogram/image/home.png",
-      "selectedIconPath": "../miniprogram/image/home_select.png"
-    },
-    {
-      "pagePath": "pages/AllList/AllList",
-      "text": "分区",
-      "iconPath": "../miniprogram/image/fenqu.png",
-      "selectedIconPath": "../miniprogram/image/fenqu_select.png"
-    },
-    {
-      "pagePath": "pages/restaurant/restaurant",
-      "text": "餐馆",
-      "iconPath": "../miniprogram/image/restaurant.png",
-      "selectedIconPath": "../miniprogram/image/restaurant_select.png"
-    },
-    {
-      "pagePath": "pages/mine/mine",
-      "text": "我的",
-      "iconPath": "../miniprogram/image/mine.png",
-      "selectedIconPath": "../miniprogram/image/mine_select.png"
-    }
-  ]}
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "主页",
+        "iconPath": "../miniprogram/images/home.png",
+        "selectedIconPath": "../miniprogram/images/home_select.png"
+        
+      },
+      {
+        "pagePath": "pages/classification/classification",
+        "text": "分区",
+        "iconPath": "../miniprogram/images/classification.png",
+        "selectedIconPath": "../miniprogram/images/classification_select.png"
+      },
+      {
+        "pagePath": "pages/restaurant/restaurant",
+        "text": "餐馆",
+        "iconPath": "../miniprogram/images/restaurant.png",
+        "selectedIconPath": "../miniprogram/images/restaurant_select.png"
+      },
+      {
+        "pagePath": "pages/userInfo/userInfo",
+        "text": "我的",
+        "iconPath": "../miniprogram/images/user.png",
+        "selectedIconPath": "../miniprogram/images/user_select.png"
+      }
+    ]
+  }
 }

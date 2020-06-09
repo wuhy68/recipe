@@ -9,11 +9,13 @@
 		"newFeature": true,
 		"enhance": true
 	},
-	"appid": "wx8dd81ddfe6d7f957",
-	"projectname": "miniprogram-1",
+	"appid": "wx4f66dbb1a4a93b6e",
+	"projectname": "recipe-master",
 	"libVersion": "2.8.1",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"compileType": "miniprogram",
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"condition": {
 		"search": {
 			"current": -1,

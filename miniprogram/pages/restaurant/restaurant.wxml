@@ -1,2 +1,17 @@
 <!--pages/restaurant/restaurant.wxml-->
-<text>pages/restaurant/restaurant.wxml</text>
+<view class="wholeStyle">
+	<view class="favoritesList">
+		<view wx:for="{{restaurantList}}" wx:for-item="item">
+			<navigator url="../userList/userList?openid={{item.openid}}">
+				<view class="favoritesItem">
+					<image src="{{item.cover}}" class="favoritesItemImage" mode="aspectFill"></image>
+					<text class="favoritesItemName">{{item.name}}</text>
+					<view class="favoritesItemAuthor">
+						<image src="../../image/position.png" class="favoritesItemAuthorIcon"></image>
+						<text class="favoritesItemAuthorText">{{item.address}}</text>
+					</view>
+				</view>
+			</navigator>
+		</view>
+	</view>
+</view>

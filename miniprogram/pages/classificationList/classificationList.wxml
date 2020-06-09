@@ -1,0 +1,14 @@
+<!--miniprogram/pages/classificationList/classificationList.wxml-->
+<view class="wholeStyle">
+  <view class="Title"><text>{{tag}}</text></view>
+
+  <view class="favoritesList">
+    <view wx:for="{{tagRecipes}}" wx:for-item="item">
+      <view class="favoritesItem">
+        <image src="{{item.cover}}" class="favoritesItemImage" mode="aspectFill"></image>
+        <text class="favoritesItemName">{{item.name}}</text>
+        <text class="favoritesItemTime">发布于: {{item.date}}</text>
+      </view>
+    </view>
+  </view>
+</view>

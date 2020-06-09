@@ -1,0 +1,108 @@
+<!--pages/restaurantInfo/restaurantInfo.wxml-->
+<view class="body">
+	<view class="restaurantImage">
+		<image src="../../images/indexImage.png" style="border-radius: 10rpx; height:420rpx;" mode="aspectFill"></image>
+	</view>
+	<view class="address">
+		<view class="address-name">好再来 </view>
+		<button bindtap="concern" class="concern-button">关注</button>
+	</view>
+	<view class="review">
+		<text class="review-txt">公关之荣，中大人最爱</text>
+	</view>
+
+	<view class="iton">
+		<view class="iton-body">
+			<image src="../../images/park.png"></image>
+			<text>Parking</text>
+		</view>
+		<view class="iton-body2">
+			<image src="../../images/phonepay.png"></image>
+			<text>Mobile Pay</text>
+		</view>
+		<view class="iton-body3">
+			<image src="../../images/wifi.png"></image>
+			<text>Wifi</text>
+		</view>
+	</view>
+	<view class="address-position">
+		<image src="../../images/position.png" style="width:40rpx;height:40rpx;margin-bottom:35rpx;"></image>
+		<text class="address-position-text">广州市大学城外环东路中山大学22号</text>
+	</view>
+	<view class="address-position">
+		<image src="../../images/phone.png" style="width:40rpx;height:40rpx;margin-bottom:35rpx;"></image>
+		<text class="address-position-text">020-12345678</text>
+	</view>
+	<text style="margin: 40rpx auto;">————热门精选————</text>
+
+	<view wx:for="{{count}}">
+		<view class="recipeList">
+			<view>
+				<image src="../../images/indexImage.png" class="recipeLeft"></image>
+			</view>
+			<view class="recipeRight">
+				<view style="height:10rpx;"></view>
+				<view class="name">
+					<text>炒米粉</text>
+				</view>
+				<view class="goodsNum">
+					<text>点赞数：2</text>
+					<text style="margin-left:30rpx;">阅读量：2</text>
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<text style="margin: 40rpx auto;">————评论————</text>
+	<view class="CommentList">
+		<view class="CommentItem" wx:for="{{commentList}}">
+			<view class="CommentUserInfoAndAgreeCount">
+				<view class="CommentUserHeadImage">
+					<navigator url="../userList/userList?openid={{item.openid}}">
+						<image class="CommentUserHeadImageImage" src="{{item.avatarUrl}}"></image>
+					</navigator>
+				</view>
+				<view class="CommentUserNameAndTime">
+					<view class="CommentUserName"><text>{{item.name}}</text></view>
+					<view class="CommentUserTime"><text>{{item.date}}</text></view>
+				</view>
+				<view class="CommentAgreeCount">
+					<view class="CommentAgreeCountImage">
+						<view wx:if="{{!agree[index]}}" style="margin-left: 10rpx;">
+							<image class="CommentAgreeCountIcon" src="../../images/agree.png" data-comment_id="{{item._id}}" bindtap="addCommentAgree"></image>
+						</view>
+						<view wx:else style="margin-left: 10rpx;">
+							<image class="CommentAgreeCountIcon" src="../../images/agree-o.png" data-comment_id="{{item._id}}" bindtap="deleteCommentAgree"></image>
+						</view>
+					</view>
+					<view class="CommentAgreeCountText"><text>{{item.agree.length}}</text></view>
+				</view>
+			</view>
+			<view class="CommentContext"><text>{{item.comment}}</text></view>
+		</view>
+	</view>
+
+	<view style="height:40rpx;"></view>
+	<view class="fixComment">
+		<view class='commentInput'>
+			<textarea bindfocus="textAreaFocus" bindblur="textAreaBlur" auto-height maxlength="200" value="{{content}}" placeholder="我要评论" placeholder-style="text-align:left;" cursor-spacing="100rpx"></textarea>
+		</view>
+		<view wx:if="{{!isHide}}" style="display: flex; flex-direction: row;">
+			<view wx:if="{{!isFollowing}}" style="margin-left: 15rpx;">
+				<image class="CommentAgreeCountIcon" src="../../images/like.png" bindtap="addCollection"></image>
+			</view>
+			<view wx:else style="margin-left: 15rpx;">
+				<image class="CommentAgreeCountIcon" src="../../images/like-o.png" bindtap="deleteColletion"></image>
+			</view>
+			<view wx:if="{{!isPraise}}" style="margin-left: 15rpx;" bindtap="">
+				<image class="CommentAgreeCountIcon" src="../../images/agree.png" bindtap="addPraise"></image>
+			</view>
+			<view wx:else style="margin-left: 15rpx;">
+				<image class="CommentAgreeCountIcon" src="../../images/agree-o.png" bindtap="deletePraise"></image>
+			</view>
+		</view>
+		<view wx:else>
+			<button class="send" bindtap="send">发送</button>
+		</view>
+	</view>
+</view>

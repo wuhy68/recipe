@@ -7,11 +7,14 @@ const db = cloud.database()
 exports.main = async (event, context) => {
   try {
     return await db.collection('users').where({
-      name: event.name
+      openid: event.openid
     }).update({
       data: {
         fans: event.fans,
-        praises: event.praises
+        praises: event.praises,
+        introduction: event.introduction,
+        collections: event.collections,
+        focus: event.focus
       }
     })
   }

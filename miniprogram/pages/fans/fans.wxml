@@ -1,0 +1,29 @@
+<!--miniprogram/pages/fans/fans.wxml-->
+<view class="wholeStyle">
+  <view class="followedList">
+		<view wx:for="{{fansList}}" wx:for-item="item">
+			<view class="followedItem">
+				<view class="followedCount">
+					<view class="followedUserHeadImage">
+						<image class="followedUserHeadImageImage" src="{{item.avatarUrl}}"></image>
+					</view>
+					<view class="followedUserNameAndButton">
+						<view class="followedUserName"><text>{{item.nickname}}</text></view>
+						<view class="followedUserFollowNum"><text>关注数: {{item.fans.length}}</text></view>
+
+					</view>
+          <view wx:if="{{!fansFlag[index]}}" class="followUserButton" bindtap="addFocus" data-openid="{{item.openid}}" data-index="{{index}}" hover-class="followUserButton-hover" hover-stay-time="100">
+						<view class="followUserButtonImage">
+							<image class="followUserButtonIcon" src="../../image/follow.png"></image>
+						</view>
+						<view class="followUserButtonText"><text>关注</text></view>
+					</view>
+					<view wx:else class="followUserButtonDone" bindtap="deleteFocus" data-openid="{{item.openid}}" data-index="{{index}}" hover-class="followUserButton-hover" hover-stay-time="100">
+						<view class="followUserButtonTextDone"><text>取消关注</text></view>
+					</view>
+				</view>
+			</view>
+		</view>
+  </view>
+</view>
+

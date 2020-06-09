@@ -10,6 +10,7 @@ Page({
      * 用户数据
      */
     userInfo: {},
+    userDetail: {},
 
     userCollections: [],
     userRecipes: [],
@@ -66,10 +67,38 @@ Page({
         }
       }
     })
-
+    this.getUserInfo()
     this.getRecipes()
     this.getRestaurant()
   },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.onLoad()
+  },
+
+  /**
+   * 获取用户详细信息
+   */
+  getUserInfo: function () {
+    wx.cloud.callFunction({
+      name: "getUserInfo",
+      data: {
+        openid: app.globalData.openid
+      },
+      success: res => {
+        console.log(res);
+        this.setData({
+          userDetail: res.result.data[0]
+        })
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
+  },
 
   getRecipes: function () {
     wx.cloud.callFunction({
@@ -205,5 +234,23 @@ Page({
       restaurant: 1
     })
     this.getRestaurant()
+  },
+
+  /**
+   * 跳转到关注列表
+   */
+  toFocusList: function () {
+    wx.navigateTo({
+      url: '../focus/focus'
+    })
+  },
+
+  /**
+   * 跳转到粉丝列表
+   */
+  toFansList: function () {
+    wx.navigateTo({
+      url: '../fans/fans'
+    })
   }
 })

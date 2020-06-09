@@ -14,8 +14,8 @@
     <view style="flex: 2; margin-left: 5%">
       <open-data type="userNickName"></open-data> 
       <view class="layout" style="margin-top: 60px;">
-        <text>关注:{{userInfo.focus.length}}</text>
-        <text>粉丝{{userInfo.fans.length}}</text>
+        <button bindtap="toFocusList">关注:{{userDetail.focus.length}}</button>
+        <button bindtap="toFansList">粉丝:{{userDetail.fans.length}}</button>
       </view>
     </view>
     <view style="flex: 1; margin-right: 5%"> 

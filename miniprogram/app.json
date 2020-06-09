@@ -9,7 +9,9 @@
     "pages/restaurantRegister/restaurantRegister",
     "pages/notice/notice",
     "pages/classificationList/classificationList",
-    "pages/userList/userList"
+    "pages/userList/userList",
+    "pages/fans/fans",
+    "pages/focus/focus"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

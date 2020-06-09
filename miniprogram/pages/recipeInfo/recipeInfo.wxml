@@ -83,7 +83,7 @@
 					<image class="CommentAgreeCountIcon" src="../../images/agree.png" bindtap="addPraise"></image>
 				</view>
 				<view wx:else style="margin-left: 10px;" >
-					<image class="CommentAgreeCountIcon" src="../../images/agree.png" bindtap="deletePraise"></image>
+					<image class="CommentAgreeCountIcon" src="../../images/agree-o.png" bindtap="deletePraise"></image>
 				</view>
 			</view>
 			<view wx:else>

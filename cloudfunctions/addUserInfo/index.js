@@ -14,6 +14,7 @@ exports.main = async (event, context) => {
         fans: 0,
         praises: 0,
         introduction: "",
+        history: [],
         collections: [],
         focus: [],
         recipes: [],

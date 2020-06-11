@@ -17,7 +17,7 @@
 }
 
 .addTitle {
-  height: 50px;
+  height: 80rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -32,14 +32,13 @@
 }
 
 .addStory {
-  height: 80px; 
+  height: 115rpx; 
   width: 90%; 
-  margin-top: 12px;
+  margin-top: 18rpx;
 }
 
 .select_box{
-  background: #fff;
-  width: 80%;
+  width: 100%;
   margin: 30rpx auto;
   position: relative;
   z-index: 1;
@@ -102,11 +101,12 @@
 }
 
 .myButton{
-  border: 1px solid grey;
-  font-size: 12px;
-  margin: 4px;
+  border: 1rpx solid grey;
+  font-size: 27rpx;
+  margin: 4rpx;
 }
 
 .myButton::after{
   border: none; 
 }
+

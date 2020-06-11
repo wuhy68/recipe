@@ -580,6 +580,9 @@ Page({
                   console.log(res);
                   // 重新获取评论
                   this.getCommentInfo()
+                  this.setData({
+                    content: ""
+                  })
                 },
                 fail: err => {
                   console.error(err);

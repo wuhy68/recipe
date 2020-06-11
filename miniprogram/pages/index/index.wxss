@@ -5,16 +5,27 @@
 }
 
 .nextStep{
-	height: 90rpx;
+  height: 70rpx;
 	color: rgb(126, 122, 122);
-	background-color: rgb(235, 205, 220);
+	background-color: rgb(244, 234, 239);
 	box-shadow: rgba(193, 52, 52, 1) solid 2rpx;
-	border-radius: 45rpx;
+	border-radius: 20rpx;
 	font-size: 32rpx;
 	line-height: 150%;
   text-align: center;
   display: flex;
   justify-content: center;
+}
+
+.nextStepCancel{
+  height: 70rpx;
+  margin-left: 30rpx;
+  background-color: rgb(198, 195, 196);
+  width: 120rpx;
+  text-align: center;
+  justify-content:center;
+  border-radius: 16rpx;
+  font-size: small;
 }
 
 .image-group {
@@ -68,10 +79,8 @@
 }
 
 .pictureCom{
-  background-image: url("https://s1.ax1x.com/2020/05/04/Y9BcUH.md.jpg");
-	width: 660rpx;
-	height: 280rpx;
-	margin: 30rpx auto;
+  width: 660rpx;
+  margin: 30rpx auto;
   border: solid 2rpx;
   border-radius: 20rpx;
 }
@@ -100,12 +109,21 @@
 .name{
   width: 170rpx;
 	height: 55rpx;
-  margin: 0rpx 0rpx 0rpx 30rpx;
+  margin: 120rpx 0rpx 0rpx 30rpx;
 }
 
 .authorSet{
   width: 300rpx;
-  height: 55rpx;
+  height: 45rpx;
+}
+
+.goodsNum{
+  width: 300rpx;
+  height: 30rpx;
+  margin-left:30rpx;
+  font-size: small;
+  color: #696767;
+  /* margin: 0rpx 30rpx 30rpx 0rpx; */
 }
 
 .authorSetIcon{
@@ -149,4 +167,10 @@
   margin:auto 30rpx;
   color: #a29f9f;
   font-size: 35rpx;
+}
+
+.myButton{
+  border: 1px solid grey;
+  font-size: 12px;
+  margin: 4px;
 }

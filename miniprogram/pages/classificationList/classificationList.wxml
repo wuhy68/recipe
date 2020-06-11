@@ -5,9 +5,12 @@
   <view class="favoritesList">
     <view wx:for="{{tagRecipes}}" wx:for-item="item">
       <view class="favoritesItem">
-        <image src="{{item.cover}}" class="favoritesItemImage" mode="aspectFill"></image>
+        <image src="{{item.cover}}" mode="widthFix" class="favoritesItemImage"></image>
         <text class="favoritesItemName">{{item.name}}</text>
-        <text class="favoritesItemTime">发布于: {{item.date}}</text>
+        <view class="authorSet">
+          <image class="authorSetIcon" src="../../images/author.svg"></image>
+          <text class="authorSetText">{{item.chef}}</text>
+        </view>
       </view>
     </view>
   </view>

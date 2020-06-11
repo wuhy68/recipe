@@ -4,7 +4,7 @@
 		<text>展示餐厅的面貌</text>
 	</view>
 	<view wx:elif="{{cover!=''}}" bindtap="uploadCover">
-		<image src="{{cover}}"></image>
+		<image src="{{cover}}" style="width: 100%" mode="widthFix"></image>
 	</view>
 	<form bindsubmit="formSubmit">
 		<!-- <view class="weui-cells__title">请填写基本信息</view> -->

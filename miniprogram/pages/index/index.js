@@ -33,7 +33,17 @@ Page({
     /**
      * 查询数据
      */
-    searchVal: ""
+    searchVal: "",
+
+    /**
+     * 搜索历史
+     */
+    history: [],
+
+    /**
+     * 用户标签
+     */
+    openid: ""
   },
 
   /**
@@ -79,6 +89,34 @@ Page({
   },
 
   /**
+   * 获取用户历史记录
+   */
+  getUserHistory: function () {
+    wx.cloud.callFunction({
+      name: "getUserInfo",
+      data: {
+        openid: app.globalData.openid
+      },
+      success: res => {
+        console.log(res);
+        this.setData({
+          history: res.result.data[0].history
+        })
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
+  },
+
+  /**
+   * 删除历史记录
+   */
+  deleteUserHistory: function () {
+
+  },
+
+  /**
    * 获取所有菜单信息
    */
   getRecipeInfo: function () {
@@ -100,6 +138,7 @@ Page({
    * 通过控制search来跳转到查询页面
    */
   toSearchPage: function () {
+    this.getUserHistory()
     this.setData({
       search: 1
     })
@@ -136,7 +175,52 @@ Page({
       },
       success: res => {
         this.setData({
-          recipes: res.result.data
+          recipes: res.result.data,
+          search: 0,
+          searchVal: ""
+        })
+        console.log(res.result.data);
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
+
+    let history = this.data.history
+    if (history.indexOf(this.data.searchVal) == -1) {
+      history.push(this.data.searchVal)
+    }
+    wx.cloud.callFunction({
+      name: "updateUserInfo",
+      data: {
+        openid: app.globalData.openid,
+        history: history
+      },
+      success: res => {
+        console.log(res);
+        this.setData({
+          history: history
+        })
+      },
+      fail: err => {
+        console.error(err);
+      }
+    })
+  },
+
+  /**
+   * 设置searchVal位历史数据并跳转
+   */
+  setHistoryData: function (e) {
+    wx.cloud.callFunction({
+      name: "getSearchRecipeInfo",
+      data: {
+        name: e.currentTarget.dataset.history
+      },
+      success: res => {
+        this.setData({
+          recipes: res.result.data,
+          search: 0
         })
         console.log(res.result.data);
       },
@@ -147,7 +231,7 @@ Page({
   },
 
   /**
-   * 
+   * 转到上传菜谱界面
    */
   toUploadRecipe: function () {
     const that = this
@@ -185,6 +269,8 @@ Page({
    * 跳转到每日必恰界面
    */
   toRecommendation: function () {
+    this.getRecipeInfo()
+
     this.setData({
       recommend: 1,
       nearby: 0,

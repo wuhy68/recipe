@@ -32,7 +32,7 @@
 	<view class="StepList">
 		<text style="margin-bottom: 40rpx">————制作步骤————</text>
 		<view wx:for="{{stepList}}" wx:for-item="item">
-			<view class="StepTitle"><text>步骤{{index}}</text></view>
+			<view class="StepTitle"><text>步骤  {{index+1}}</text></view>
 			<image src="{{item.picture}}" class="StepImage"></image>
 			<view class="StepInfo"><text>{{item.step}}</text></view>
 		</view>
@@ -53,10 +53,10 @@
 					</view>
 					<view class="CommentAgreeCount">
 						<view class="CommentAgreeCountImage">
-							<view wx:if="{{!agree[index]}}" style="margin-left: 10px;">
+							<view wx:if="{{!agree[index]}}" style="margin-left: 10rpx;">
 								<image class="CommentAgreeCountIcon" src="../../images/agree.png" data-comment_id="{{item._id}}" bindtap="addCommentAgree"></image>
 							</view>
-							<view wx:else style="margin-left: 10px;" >
+							<view wx:else style="margin-left: 10rpx;"> 
 								<image class="CommentAgreeCountIcon" src="../../images/agree-o.png" data-comment_id="{{item._id}}" bindtap="deleteCommentAgree"></image>
 							</view>
 						</view>
@@ -67,22 +67,22 @@
 			</view>
 		</view>
     <!-- addMaxShowComment 这里想要做的是每次点击More就多显示2个 -->
-
-		<view style="display: flex; flex-direction: row;">
+		<view style="height:40rpx;"></view>
+		<view class="fixComment">
 			<view class='commentInput'>
-				<input bindfocus="textAreaFocus" bindblur="textAreaBlur" auto-height value="{{content}}" placeholder="我要评论" cursor-spacing="100px"></input>
+				<textarea bindfocus="textAreaFocus" bindblur="textAreaBlur" auto-height maxlength="200" value="{{content}}" placeholder="我要评论" placeholder-style="text-align:left;" cursor-spacing="100rpx"></textarea>
 			</view>
 			<view wx:if="{{!isHide}}" style="display: flex; flex-direction: row;">
-				<view wx:if="{{!isFollowing}}" style="margin-left: 10px;">
+				<view wx:if="{{!isFollowing}}" style="margin-left: 15rpx;">
 					<image class="CommentAgreeCountIcon" src="../../images/like.png" bindtap="addCollection"></image>
 				</view>
-				<view wx:else style="margin-left: 10px;">
+				<view wx:else style="margin-left: 15rpx;">
 					<image class="CommentAgreeCountIcon" src="../../images/like-o.png" bindtap="deleteColletion"></image>
 				</view>
-				<view wx:if="{{!isPraise}}" style="margin-left: 10px;" bindtap="">
+				<view wx:if="{{!isPraise}}" style="margin-left: 15rpx;" bindtap="">
 					<image class="CommentAgreeCountIcon" src="../../images/agree.png" bindtap="addPraise"></image>
 				</view>
-				<view wx:else style="margin-left: 10px;" >
+				<view wx:else style="margin-left: 15rpx;" >
 					<image class="CommentAgreeCountIcon" src="../../images/agree-o.png" bindtap="deletePraise"></image>
 				</view>
 			</view>

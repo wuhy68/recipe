@@ -14,7 +14,8 @@ exports.main = async (event, context) => {
         praises: event.praises,
         introduction: event.introduction,
         collections: event.collections,
-        focus: event.focus
+        focus: event.focus,
+        history: event.history
       }
     })
   }

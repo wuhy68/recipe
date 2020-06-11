@@ -15,6 +15,10 @@ Page({
     this.getAllRestaurant()
   },
 
+  onShow: function () {
+    this.onLoad()
+  },
+
   /**
    * 获取全部餐厅
    */

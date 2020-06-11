@@ -14,7 +14,6 @@
 
 .favoritesItem{
   width: 320rpx;
-  height: 400rpx;
   display: flex;
   flex-direction: column;
   margin-top: 30rpx;
@@ -24,7 +23,6 @@
 
 .favoritesItemImage{
   width: 320rpx;
-  height: 250rpx;  
   border-radius: 10rpx;
 }
 

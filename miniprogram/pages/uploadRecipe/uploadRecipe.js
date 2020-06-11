@@ -82,7 +82,7 @@ Page({
      */
     showA: true,
     showB: false,
-    showC: false
+    showC: false,
   },
 
   /**
@@ -91,6 +91,7 @@ Page({
   onLoad: function (options) {
     this.getUserRecipeIndex()
   },
+  
 
   /**
    * 获取菜谱数量
@@ -135,13 +136,35 @@ Page({
             //上传成功后会返回永久地址
             console.log(res.fileID);
             this.setData({
-              cover: res.fileID
+              cover: res.fileID,
             })
           }
         })    
         console.log(this.data.cover);
       },
     })
+  },
+
+  /**
+   * 设置菜谱名
+   * @param {*} e 
+   */
+  setName: function (e) {
+    this.setData({
+      name: e.detail.value
+    })
+    console.log(this.data.name);
+  },
+
+  /**
+   * 设置菜谱简介
+   * @param {*} e 
+   */
+  setIntroduction: function (e) {
+    this.setData({
+      introduction: e.detail.value
+    })
+    console.log(this.data.introduction);
   },
 
   /**
@@ -244,7 +267,7 @@ Page({
             console.log(res.fileID);
             array[index][tag] = res.fileID
             this.setData({
-              steps: array
+              steps: array,
             })
           }
         }) 
@@ -303,12 +326,24 @@ Page({
   },
 
   /**
+   * 设置菜谱简介
+   * @param {*} e 
+   */
+  setTip: function () {
+    this.setData({
+      tip: e.detail.value
+    })
+    console.log(this.data.tip);
+  },
+
+  /**
    * 上传菜谱
    */
   uploadRecipe: function () {
     wx.cloud.callFunction({
       name: "addRecipeInfo",
       data: {
+        cover: this.data.cover,
         chef: app.globalData.userInfo.nickName,
         openid: app.globalData.openid,
         ingredients: this.data.ingredients,
@@ -331,26 +366,6 @@ Page({
         console.log(res)    
       },
     })
-  },
-
-  /**
-   * 
-   */
-  selectTap(){
-    this.setData({
-      show: !this.data.show,
-      reply: !this.data.reply
-    });
-  },
-
-  /**
-   * 点击下拉列表
-   * @param {*} e 
-   */
-  optionTap(){
-    this.setData({
-      show: !this.data.show
-    });
   },
 
   toA: function () {

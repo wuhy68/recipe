@@ -8,15 +8,17 @@ exports.main = async (event, context) => {
   try {
     return await db.collection('recipes').add({
       data: {
+        cover: event.cover,
         chef: event.chef,
         openid: event.openid,
         ingredients: event.ingredients,
         introduction: event.introduction,
         name: event.name,
-        praise: 0,
+        praise: [],
         steps: event.steps,
         tip: event.tip,
         tags: event.tags,
+        reading: 0,
         date: new Date()
       }
     })

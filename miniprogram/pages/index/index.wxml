@@ -1,97 +1,139 @@
 <!--miniprogram/pages/index/index.wxml-->
 <view class="wholeStyle">
-  <view wx:if ="{{search == 0}}" style="display: flex; flex-direction: row">
-    <input bindtap="toSearchPage" bindinput="input" placeholder="搜索餐厅或者菜谱" value="{{searchVal}}" class="nextStep" style="width: 660rpx;">
-      <icon type="search" size="48rpx" style="margin:20rpx" bindtap="search"></icon>
-    </input>
-  </view>
-  <view wx:else style="display: flex; flex-direction: row">
-    <input bindtap="toSearchPage" bindinput="input" placeholder="搜索餐厅或者菜谱" value="{{searchVal}}" class="nextStep" style="width: 590rpx;">
-      <icon type="search" size="48rpx" style="margin:20rpx" bindtap="search"></icon>
-    </input>
-    <view  bindtap="toIndex"> <text>取消</text> </view>
-  </view>
-  <!--搜索界面-->
-  <view wx:if ="{{search == 1}}">
-    <view class="searchHistory">
-      <text>搜索历史</text>
-      <view wx:for="{{historyCount}}">
-        <view class="searchHistoryItem" hover-class='searchHistoryItem_hover' hover-stay-time="50">
-          <text class="searchHistoryItemText">背景</text>
-          <icon type="clear" size="15" style="margin:auto 30rpx;"></icon>
-        </view>
+	<view wx:if="{{search == 0}}" style="display: flex; flex-direction: row">
+		<icon type="search" size="35rpx" style="margin:20rpx" bindtap="search"></icon>
+		<input bindtap="toSearchPage" bindinput="input" placeholder="搜索餐厅或者菜谱" placeholder-style="text-align:left;" value="{{searchVal}}" class="nextStep" style="width: 660rpx;">
+		</input>
+	</view>
+	<view wx:else style="display: flex; flex-direction: row">
+		<icon type="search" size="35rpx" style="margin:20rpx" bindtap="search"></icon>
+		<input bindtap="toSearchPage" bindinput="input" placeholder="搜索餐厅或者菜谱" placeholder-style="text-align:left;" value="{{searchVal}}" class="nextStep" style="width: 450rpx;">
+		</input>
+		<button bindtap="toIndex" class="nextStepCancel">取消</button>
+	</view>
+	<!--搜索界面-->
+	<view wx:if="{{search == 1}}">
+		<view class="searchHistory">
+			<text>搜索历史</text>
+			<view style="display: flex; flex-direction: row; flex-wrap: wrap; margin-top: 20rpx"> 
+        	<view wx:for="{{history}}">
+					<button class="myButton" data-history="{{item}}" bindtap="setHistoryData">
+						{{item}}
+					</button>
+				</view>
       </view>
-    </view>
-  </view>
+		</view>
+	</view>
 
-  <!--主页-->
-  <view  wx:elif="{{search == 0}}">
+	<!--主页-->
+	<view wx:elif="{{search == 0}}">
 
-    <!--头版菜谱-->
-    <view class="swiper">
-      <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-        <block wx:for="{{background}}" wx:key="*this">
-          <swiper-item>
-            <view class="swiper-item {{item}}">
-              <image style="border-radius: 10rpx" src="{{item}}"></image>
-            </view>
-          </swiper-item>
-        </block>
-      </swiper>
-    </view>
+		<!--头版菜谱-->
+		<view class="swiper">
+			<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+				<block wx:for="{{background}}" wx:key="*this">
+					<swiper-item>
+						<view class="swiper-item {{item}}">
+							<image style="border-radius: 10rpx; width:100%;" src="{{item}}"></image>
+						</view>
+					</swiper-item>
+				</block>
+			</swiper>
+		</view>
 
-    <!--内容导航栏-->
-    <view class="indexFourBox">
-      <view class="indexPerBox" bindtap="toUploadRecipe">
-        <image class="imageInIndexPerBox" src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/upload.png"></image>
-        <text class="textInIndexPerBox">上传菜谱</text>
-      </view>
-      <view class="indexPerBox" bindtap="toRecommendation">
-        <image class="imageInIndexPerBox" src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/recommend.png"></image>
-        <text class="textInIndexPerBox">每周必恰</text>
-      </view>
-      <view class="indexPerBox" bindtap="toNearby">
-        <image class="imageInIndexPerBox" src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/nearby.png"></image>
-        <text class="textInIndexPerBox">附近餐厅</text>
-      </view>
-      <view class="indexPerBox" bindtap="toRank">
-        <image class="imageInIndexPerBox" src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/rank.png"></image>
-        <text class="textInIndexPerBox">排行榜</text>
-      </view>
-    </view>
+		<!--内容导航栏-->
+		<view class="indexFourBox">
+			<view class="indexPerBox" bindtap="toUploadRecipe">
+				<image class="imageInIndexPerBox" src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/upload.png"></image>
+				<text class="textInIndexPerBox">上传菜谱</text>
+			</view>
+			<view class="indexPerBox" bindtap="toRecommendation">
+				<image class="imageInIndexPerBox" src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/recommend.png"></image>
+				<text class="textInIndexPerBox">每周必恰</text>
+			</view>
+			<view class="indexPerBox" bindtap="toNearby">
+				<image class="imageInIndexPerBox" src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/nearby.png"></image>
+				<text class="textInIndexPerBox">附近餐厅</text>
+			</view>
+			<view class="indexPerBox" bindtap="toRank">
+				<image class="imageInIndexPerBox" src="cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/rank.png"></image>
+				<text class="textInIndexPerBox">排行榜</text>
+			</view>
+		</view>
 
-    <!--每日必恰-->
-    <view wx:if="{{recommend == 1 && nearby == 0 && rank == 0}}">
-      <view wx:for="{{recipes}}" wx:key="*this" class="pictureCom">
-        <navigator url="../recipeInfo/recipeInfo?_id={{item._id}}&&openid={{item.openid}}">
-          <view class="name">
-            <text>{{item.name}}</text>
-          </view>
-          <view class="authorSet">
-            <image class="authorSetIcon" src="../../images/author.svg"></image>
-            <text class="authorSetText">{{item.chef}}</text>
-          </view>
-        </navigator>
-      </view>
-    </view>
+		<!--每日必恰-->
+		<view wx:if="{{recommend == 1 && nearby == 0 && rank == 0}}">
+			<view wx:for="{{recipes}}" wx:key="*this" class="pictureCom">
+				<image src="{{item.cover}}" style="width: 100%" mode="widthFix"></image>
+				<view style="margin-top: -100rpx">
+					<navigator url="../recipeInfo/recipeInfo?_id={{item._id}}&&openid={{item.openid}}" >
+						<view class="name">
+							<text>{{item.name}}</text>
+						</view>
+						<view class="authorSet">
+							<image class="authorSetIcon" src="../../images/author.svg"></image>
+							<text class="authorSetText">{{item.chef}}</text>
+						</view>
+						<view class="goodsNum">
+							<text>点赞数：{{item.praise.length}}</text>
+							<text style="margin-left:30rpx;">阅读量：{{item.reading}}</text>
+						</view>
+					</navigator>
+				</view>
+			</view>
+		</view>
 
-    <!--附近餐厅-->
-    <view wx:elif="{{recommend == 0 && nearby == 1 && rank == 0}}">
-      <view wx:if="nearbyRestaurant.length == 0">
-        暂无附近餐厅
-      </view>
-      <view wx:else>
-      
-      </view>
-    </view>
+		<!--附近餐厅-->
+		<view wx:elif="{{recommend == 0 && nearby == 1 && rank == 0}}">
+			<view wx:if="{{nearbyRestaurant.length == 0}}">
+				暂无附近餐厅
+			</view>
+			<view wx:else>
+				<view wx:for="{{nearbyRestaurant}}" wx:key="*this" class="pictureCom">
+					<navigator url="../recipeInfo/recipeInfo?_id={{item._id}}&&openid={{item.openid}}">
+						<view style="height:10rpx;"></view>
+						<view class="name">
+							<text>{{item.name}}</text>
+						</view>
+						<view class="authorSet">
+							<image class="authorSetIcon" src="../../images/position.png"></image>
+							<text class="authorSetText">{{item.chef}}</text>
+						</view>
+						<view class="goodsNum">
+							<text>点赞数：{{item.praise.length}}</text>
+							<text style="margin-left:30rpx;">阅读量：{{item.reading}}</text>
+						</view>
+					</navigator>
+				</view>
+			</view>
+		</view>
 
-    <!--排行榜-->
-    <view wx:else>  
-      <view wx:if="rankRecipe.length == 0">
-        排行榜尚未更新
-      </view>
-      <view wx:else></view>
-    </view>
+		<!--排行榜-->
+		<view wx:elif="{{recommend == 0 && nearby == 0 && rank == 1}}">
+			<view wx:if="{{rankRecipe.length == 0}}">
+				排行榜尚未更新
+			</view>
+			<view wx:else>
+				<view wx:for="{{rankRecipe}}" wx:key="*this" class="pictureCom">
+					<view style="background-image: url({{item.cover}}); width: 660rpx" mode="widthFix">
+						<navigator url="../recipeInfo/recipeInfo?_id={{item._id}}&&openid={{item.openid}}">
+							<view style="height:10rpx;"></view>
+							<view class="name">
+								<text>{{item.name}}</text>
+							</view>
+							<view class="authorSet">
+								<image class="authorSetIcon" src="../../images/position.png"></image>
+								<text class="authorSetText">{{item.chef}}</text>
+							</view>
+							<view class="goodsNum">
+								<text>点赞数：{{item.praise.length}}</text>
+								<text style="margin-left:30rpx;">阅读量：{{item.reading}}</text>
+							</view>
+						</navigator>
+					</view>
+				</view>
+			</view>
+		</view>
 
-  </view>
+	</view>
 </view>

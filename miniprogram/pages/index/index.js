@@ -43,7 +43,12 @@ Page({
     /**
      * 用户标签
      */
-    openid: ""
+    openid: "",
+
+    /**
+     * 封面高度
+     */
+    height: []
   },
 
   /**
@@ -120,6 +125,9 @@ Page({
    * 获取所有菜单信息
    */
   getRecipeInfo: function () {
+    this.setData({
+      height: []
+    })
     wx.cloud.callFunction({
       name: "getAllRecipeInfo",
       success: res => {
@@ -133,6 +141,7 @@ Page({
       }
     }) 
   },
+
 
   /**
    * 通过控制search来跳转到查询页面

@@ -79,10 +79,14 @@
 }
 
 .pictureCom{
-  width: 660rpx;
-  margin: 30rpx auto;
+	width: 660rpx;
+	height: 280rpx;
+	margin: 30rpx auto;
   border: solid 2rpx;
   border-radius: 20rpx;
+  background-repeat:no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
 }
 
 .starsAndScore{

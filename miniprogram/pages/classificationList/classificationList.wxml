@@ -1,6 +1,13 @@
 <!--miniprogram/pages/classificationList/classificationList.wxml-->
 <view class="wholeStyle">
-  <view class="Title"><text>{{tag}}</text></view>
+  <view class="Title">
+    <text>{{tag}}</text>
+    <view wx:for="{{List}}" wx:for-item="item">
+      <view wx:if="{{item.id === tag[0]}}">
+        {{item.name}}
+      </view>
+    </view>
+  </view>
 
   <view class="favoritesList">
     <view wx:for="{{tagRecipes}}" wx:for-item="item">

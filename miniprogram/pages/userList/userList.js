@@ -43,7 +43,13 @@ Page({
     this.getRestaurant()
   },
 
+  /**
+   * 获取用户详细信息
+   */
   getUserInfo: function () {
+    this.setData({
+      userCollections: []
+    })
     wx.cloud.callFunction({
       name: "getUserInfo",
       data: {
@@ -52,8 +58,27 @@ Page({
       success: res => {
         console.log(res);
         this.setData({
-          userInfo: res.result.data[0]
+          userDetail: res.result.data[0]
         })
+        for (let i = 0; i < res.result.data[0].collections.length; i++) {
+          wx.cloud.callFunction({
+            name: "getRecipeInfo",
+            data: {
+              _id: res.result.data[0].collections[i]
+            },
+            success: res => {
+              console.log(res);
+              let userCollections = this.data.userCollections
+              userCollections.push(res.result.data[0])
+              this.setData({
+                userCollections: userCollections
+              })
+            },
+            fail: err => {
+              console.error(err);
+            }
+          })
+        }
       },
       fail: err => {
         console.error(err);
@@ -61,6 +86,9 @@ Page({
     })
   },
 
+    /**
+   * 获取菜谱信息
+   */
   getRecipes: function () {
     wx.cloud.callFunction({
       name: "getUserRecipeInfo",
@@ -79,6 +107,9 @@ Page({
     })
   },
 
+  /**
+   * 获取用户餐馆
+   */
   getRestaurant: function () {
     wx.cloud.callFunction({
       name: "getUserRestaurant",

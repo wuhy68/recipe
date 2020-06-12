@@ -2,14 +2,14 @@
 <view>
   <view class="layout" style="margin-top: 20px;">
     <view style="flex: 2; margin-left: 5%">
-      <text>{{userInfo.nickname}}</text>
+      <open-data type="userNickName" style="font-size:large"></open-data> 
       <view class="layout" style="margin-top: 60px;">
-        <text>关注:{{userInfo.focus.length}}</text>
-        <text>粉丝{{userInfo.fans.length}}</text>
+        <button bindtap="toFocusList">关注:{{userDetail.focus.length}}</button>
+        <button bindtap="toFansList">粉丝:{{userDetail.fans.length}}</button>
       </view>
     </view>
     <view style="flex: 1; margin-right: 5%"> 
-      <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+      <open-data type="userAvatarUrl" class="avatar"></open-data>
     </view>
   </view>
   <view class="container">
@@ -18,28 +18,29 @@
   </view>
 
   <view class="layout" style="justify-content: center; margin-top: 10px">
-    <text bindtap="toCollection">收藏</text>
-    <text style="margin-left: 5px" bindtap="toRecipe">菜谱</text>
-    <text style="margin-left: 5px" bindtap="toRestaurant">餐馆</text>
+    <button style="color:rgb(160, 122, 221)" bindtap="toCollection">收藏</button>
+    <button style="margin-left: 4%;   color:rgb(160, 122, 221)" bindtap="toRecipe">菜谱</button>
+    <button style="margin-left: 4% ;  color:rgb(160, 122, 221)" bindtap="toRestaurant">餐馆</button>
   </view>
   <!--收藏-->
   <view wx:if="{{collection == 1 && recipe == 0 && restaurant == 0}}">
-    <view wx:if="{{userCollections.length == 0}}">
-      无收藏
+    <view wx:if="{{userCollections.length == 0}}" class="beauttext">
+      暂无收藏，请选择你喜欢的作品
     </view>
     <view wx:else>
       <view class="wholeStyle">
         <view class="favoritesList">
           <view wx:for="{{userCollections}}" wx:for-item="item">
-            <view class="favoritesItem">
-              <image src="{{item.imageUrl}}" class="favoritesItemImage" mode="aspectFill"></image>
-              <text class="favoritesItemName">{{item.recipe.name}}</text>
-              <view class="favoritesItemAuthor">
-                <image src="../../image/author.svg" class="favoritesItemAuthorIcon"></image>
-                <text class="favoritesItemAuthorText">{{item.recipe.chef}}</text>
+            <navigator url="../recipeInfo/recipeInfo?_id={{item._id}}&&openid={{item.openid}}">
+              <view class="favoritesItem">
+                <image src="{{item.cover}}" class="favoritesItemImage" mode="widthFix" style="width:100%"></image>
+                <text class="favoritesItemName">{{item.name}}</text>
+                <view class="favoritesItemAuthor">
+                  <image src="../../images/author.svg" class="favoritesItemAuthorIcon"></image>
+                  <text class="favoritesItemAuthorText">{{item.chef}}</text>
+                </view>
               </view>
-              <text class="favoritesItemTime">收藏于: {{item.date}}</text>
-            </view>
+            </navigator>
           </view>
         </view>
       </view>
@@ -48,18 +49,19 @@
 
   <!--菜谱-->
   <view wx:elif="{{collection == 0 && recipe == 1 && restaurant == 0}}">
-    <view wx:if="{{userRecipes.length == 0}}">
-      无菜谱
+    <view wx:if="{{userRecipes.length == 0}}" class="beauttext">
+      暂无菜谱，请上传您的作品
     </view>
     <view wx:else>
       <view class="wholeStyle">
         <view class="favoritesList">
           <view wx:for="{{userRecipes}}" wx:for-item="item">
-            <view class="favoritesItem">
-              <image src="{{item.headImageUrl}}" class="favoritesItemImage" mode="aspectFill"></image>
-              <text class="favoritesItemName">{{item.name}}</text>
-              <text class="favoritesItemTime">发布于: {{item.date}}</text>
-            </view>
+            <navigator url="../recipeInfo/recipeInfo?_id={{item._id}}&&openid={{item.openid}}">
+              <view class="favoritesItem">
+                <image src="{{item.cover}}" class="favoritesItemImage" mode="widthFix" style="width: 100%"></image>
+                <text class="favoritesItemName">{{item.name}}</text>
+              </view>
+            </navigator>
           </view>
         </view>
       </view>
@@ -68,11 +70,18 @@
 
   <!--餐厅-->
   <view wx:else>
-    <view wx:if="{{userRestaurant.length == 0}}">
-      <text>暂无餐厅</text>
+    <view wx:if="{{userRestaurant.length == 0}}" class="beauttext">
+      暂无餐厅
     </view>
     <view wx:else>
-      
+      <view wx:for="{{userRestaurant}}" wx:for-item="item">
+        <navigator url="../restaurantInfo/restaurantInfo?openid={{item.openid}}&&_id={{item._id}}">
+        <view class="favoritesItem">
+          <image src="{{item.cover}}" mode="widthFix" class="favoritesItemImage"></image>
+          <text class="favoritesItemName">{{item.name}}</text>
+        </view>
+        </navigator>
+      </view>
     </view>
   </view> 
 </view>

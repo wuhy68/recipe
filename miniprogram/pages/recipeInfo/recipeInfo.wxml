@@ -49,7 +49,6 @@
 					</view>
 					<view class="CommentUserNameAndTime">
 						<view class="CommentUserName"><text>{{item.name}}</text></view>
-						<view class="CommentUserTime"><text>{{item.date}}</text></view>
 					</view>
 					<view class="CommentAgreeCount">
 						<view class="CommentAgreeCountImage">

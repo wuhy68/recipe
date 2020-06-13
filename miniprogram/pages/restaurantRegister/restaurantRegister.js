@@ -50,13 +50,14 @@ Page({
    * 获得临时地址
    */
   uploadCover: function () {
+    let that = this
     wx.chooseImage({
       count: 1,
       sizeType: ['original'],
       sourceType: ['album', 'camera'],
       complete: (res) => {
         //选择完成会先返回一个临时地址保存备用
-        const tempFilePaths = res.tempFilePaths
+        const tempFilePaths = res.tempFilePaths[0]
         this.setData({
           cover: tempFilePaths
         })
@@ -67,12 +68,12 @@ Page({
           success(res) {
             //上传成功后会返回永久地址
             console.log(res.fileID);
-            this.setData({
+            that.setData({
               cover: res.fileID
             })
           }
         })    
-        console.log(this.data.cover);
+        console.log(that.data.cover);
       },
     })
   },

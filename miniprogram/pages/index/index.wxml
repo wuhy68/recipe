@@ -1,13 +1,13 @@
 <!--miniprogram/pages/index/index.wxml-->
 <view class="wholeStyle">
 	<view wx:if="{{search == 0}}" style="display: flex; flex-direction: row">
-		<icon type="search" size="35rpx" style="margin:20rpx" bindtap="search"></icon>
+		<icon type="search" size="35rpx" style="margin:20rpx"></icon>
 		<input bindtap="toSearchPage" bindinput="input" placeholder="搜索餐厅或者菜谱" placeholder-style="text-align:left;" value="{{searchVal}}" class="nextStep" style="width: 660rpx;">
 		</input>
 	</view>
 	<view wx:else style="display: flex; flex-direction: row">
 		<icon type="search" size="35rpx" style="margin:20rpx" bindtap="search"></icon>
-		<input bindtap="toSearchPage" bindinput="input" placeholder="搜索餐厅或者菜谱" placeholder-style="text-align:left;" value="{{searchVal}}" class="nextStep" style="width: 450rpx;">
+		<input bindinput="input" placeholder="搜索餐厅或者菜谱" placeholder-style="text-align:left;" value="{{searchVal}}" class="nextStep" style="width: 450rpx;">
 		</input>
 		<button bindtap="toIndex" class="nextStepCancel">取消</button>
 		<!-- <text style="margin-top:40%;">取消</text> -->
@@ -91,19 +91,7 @@
 			</view>
 			<view wx:else>
 				<view wx:for="{{nearbyRestaurant}}" wx:key="*this" class="pictureCom">
-					<navigator url="../recipeInfo/recipeInfo?_id={{item._id}}&&openid={{item.openid}}">
-						<view style="height:10rpx;"></view>
-						<view class="name">
-							<text>{{item.name}}</text>
-						</view>
-						<view class="authorSet">
-							<image class="authorSetIcon" src="../../images/position.png"></image>
-							<text class="authorSetText">{{item.chef}}</text>
-						</view>
-						<view class="goodsNum">
-							<text>点赞数：{{item.praise.length}}</text>
-							<text style="margin-left:30rpx;">阅读量：{{item.reading}}</text>
-						</view>
+					<navigator url="../restaurantInfo/restaurantInfo?_id={{item._id}}&&openid={{item.openid}}">
 					</navigator>
 				</view>
 			</view>

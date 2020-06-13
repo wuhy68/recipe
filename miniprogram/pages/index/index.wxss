@@ -80,7 +80,6 @@
 
 .pictureCom{
 	width: 660rpx;
-	height: 280rpx;
 	margin: 30rpx auto;
   border: solid 2rpx;
   border-radius: 20rpx;
@@ -125,6 +124,7 @@
   width: 300rpx;
   height: 30rpx;
   margin-left:30rpx;
+  margin-bottom: 10rpx;
   font-size: small;
   color: #696767;
   /* margin: 0rpx 30rpx 30rpx 0rpx; */

@@ -124,6 +124,7 @@ Page({
    * 获得临时地址
    */
   uploadCover: function () {
+    let that = this
     wx.chooseImage({
       count: 1,
       sizeType: ['original'],
@@ -140,13 +141,13 @@ Page({
           filePath: tempFilePaths,
           success(res) {
             //上传成功后会返回永久地址
-            console.log(res.fileID);
-            this.setData({
+            console.log("永久地址", res.fileID);
+            that.setData({
               cover: res.fileID,
             })
+            console.log(that.data.cover);
           }
         })    
-        console.log(this.data.cover);
       },
     })
   },

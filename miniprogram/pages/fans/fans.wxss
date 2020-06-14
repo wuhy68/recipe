@@ -73,7 +73,7 @@
 }
 
 .followUserButton {
-  width: 30%;
+  width: 40%;
   height: 48%;
   flex-direction: row;
   display: flex;  
@@ -84,7 +84,7 @@
 }
 
 .followUserButtonDone {
-  width: 30%;
+  width: 40%;
   height: 48%;
   flex-direction: row;
   display: flex;  
@@ -114,7 +114,7 @@
   width: 100%;
   height: 40rpx;
   margin-top: 6rpx;
-  text-align: left;
+  text-align: center;
   font-size: 35rpx;
   color: rgb(255, 255, 255);
 }
@@ -123,8 +123,7 @@
   width: 100%;
   height: 40rpx;
   margin-top: 6rpx;
-  margin-left: 22rpx;
-  text-align: left;
+  text-align: center;
   font-size: 35rpx;
   color: rgb(255, 255, 255);
 }

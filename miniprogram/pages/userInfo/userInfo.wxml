@@ -1,23 +1,25 @@
+<!--miniprogram/pages/userInfo/userInfo.wxml-->
 <view wx:if="{{isHide}}">
   <view wx:if="{{canIUse}}">
     <view>
       <text class="title">开始准备好好吃饭</text>
-      <button type='primary' open-type='getUserInfo' bindgetuserinfo='bindGetUserInfo' style="width: 80%">微信授权登录</button>
+      <textarea class="subtitle" value=""></textarea>
+      <button type='primary' open-type='getUserInfo' bindgetuserinfo='bindGetUserInfo'>微信授权登录</button>
     </view>
   </view>
   <view wx:else>请升级微信版本</view>
 </view>
 <view wx:else>
-  <view class="layout" style="margin-top: 20px;">
-    <view style="flex: 2; margin-left: 5%">
-      <open-data type="userNickName" style="font-size:large"></open-data> 
-      <view class="layout" style="margin-top: 60px;">
-        <button bindtap="toFocusList">关注:{{userDetail.focus.length}}</button>
-        <button bindtap="toFansList">粉丝:{{userDetail.fans.length}}</button>
-      </view>
+  <view class="layout" style="margin-top: 20rpx;">
+    <view style="flex: 1; margin-left: 8%; text-align: center;"> 
+      <image class="avatar" src="{{userDetail.avatarUrl}}"></image>
+      <text style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">{{userDetail.nickname}}</text> 
     </view>
-    <view style="flex: 1; margin-right: 5%"> 
-      <open-data type="userAvatarUrl" class="avatar"></open-data>
+    <view style="flex: 2; margin-left: 5%">
+      <view class="layout" style="margin-top: 60px;">
+        <button bindtap="toFocusList" class="butt" hover-class="button1">关注:{{userDetail.focus.length}}</button>
+        <button bindtap="toFansList" class="butt" hover-class="button1">粉丝:{{userDetail.fans.length}}</button>
+      </view>
     </view>
   </view>
   <view class="container">
@@ -25,15 +27,28 @@
     <view class="divLine"></view>
   </view>
 
-  <view class="layout" style="justify-content: center; margin-top: 10px">
-    <button style="color:rgb(160, 122, 221)" bindtap="toCollection">收藏</button>
-    <button style="margin-left: 4%;   color:rgb(160, 122, 221)" bindtap="toRecipe">菜谱</button>
-    <button style="margin-left: 4% ;  color:rgb(160, 122, 221)" bindtap="toRestaurant">餐馆</button>
+  <view>
+    <view wx:if="{{collection == 1 && recipe == 0 && restaurant == 0}}"  class="layout" style="justify-content: center; margin-top: 10px; width: 70%; margin-left: 15%;">
+      <button style="color:rgb(160, 122, 221)" bindtap="toCollection">收藏</button>
+      <button style="margin-left: 20rpx; color: black" bindtap="toRecipe" >菜谱</button>
+      <button style="margin-left: 20rpx; color: black" bindtap="toRestaurant">餐馆</button>
+    </view>
+    <view wx:elif="{{collection == 0 && recipe == 1 && restaurant == 0}}"  class="layout" style="justify-content: center; margin-top: 10px; width: 70%; margin-left: 15%;">
+      <button style="color: black" bindtap="toCollection">收藏</button>
+      <button style="margin-left: 5rpx; color: rgb(160, 122, 221)" bindtap="toRecipe" >菜谱</button>
+      <button style="margin-left: 5rpx; color: black" bindtap="toRestaurant">餐馆</button>
+    </view>
+    <view wx:else  class="layout" style="justify-content: center; margin-top: 10px; width: 70%; margin-left: 15%;">
+      <button style="color: black" bindtap="toCollection">收藏</button>
+      <button style="margin-left: 20rpx; color: black" bindtap="toRecipe">菜谱</button>
+      <button style="margin-left: 20rpx; color: rgb(160, 122, 221)" bindtap="toRestaurant">餐馆</button>
+    </view>
   </view>
+  
   <!--收藏-->
   <view wx:if="{{collection == 1 && recipe == 0 && restaurant == 0}}">
-    <view wx:if="{{userCollections.length == 0}}" class="beauttext">
-      暂无收藏，请选择你喜欢的作品
+    <view wx:if="{{userCollections.length == 0}}" class="beauttext" style="text-align: center">
+      暂无收藏
     </view>
     <view wx:else>
       <view class="wholeStyle">
@@ -57,8 +72,8 @@
 
   <!--菜谱-->
   <view wx:elif="{{collection == 0 && recipe == 1 && restaurant == 0}}">
-    <view wx:if="{{userRecipes.length == 0}}" class="beauttext">
-      暂无菜谱，请上传您的作品
+    <view wx:if="{{userRecipes.length == 0}}" class="beauttext" style="text-align: center">
+      <navigator url="../uploadRecipe/uploadRecipe">创建你的第一个菜谱</navigator>
     </view>
     <view wx:else>
       <view class="wholeStyle">
@@ -78,8 +93,8 @@
 
   <!--餐厅-->
   <view wx:else>
-    <view wx:if="{{userRestaurant.length == 0}}" class="beauttext">
-      <navigator url="../restaurantRegister/restaurantRegister">暂无餐厅，请创建您的餐厅</navigator>
+    <view wx:if="{{userRestaurant.length == 0}}" class="beauttext" style="text-align: center">
+      <navigator url="../restaurantRegister/restaurantRegister">创建您的餐厅</navigator>
     </view>
     <view wx:else>
       <view wx:for="{{userRestaurant}}" wx:for-item="item">
@@ -93,5 +108,4 @@
     </view>
   </view> 
 </view>
-
 

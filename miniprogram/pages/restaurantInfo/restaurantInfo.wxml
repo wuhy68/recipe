@@ -39,6 +39,7 @@
 	</view>
 	<view wx:else>
 		<view wx:for="{{recipes}}">
+			<navigator url="../recipeInfo/recipeInfo?_id={{item._id}}&&openid={{item.openid}}">
 			<view class="recipeList">
 				<view>
 					<image src="{{item.cover}}" class="recipeLeft"></image>
@@ -54,6 +55,7 @@
 					</view>
 				</view>
 			</view>
+			</navigator>
 		</view>
 	</view>
 </view>

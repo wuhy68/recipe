@@ -76,13 +76,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.onLoad()
+
   },
 
   /**
    * 获取用户详细信息
    */
   getUserInfo: function () {
+    let that = this
     this.setData({
       userCollections: []
     })
@@ -104,9 +105,9 @@ Page({
             },
             success: res => {
               console.log(res);
-              let userCollections = this.data.userCollections
+              let userCollections = that.data.userCollections
               userCollections.push(res.result.data[0])
-              this.setData({
+              that.setData({
                 userCollections: userCollections
               })
             },

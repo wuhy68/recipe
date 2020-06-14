@@ -311,7 +311,7 @@
 
 .commentInput{
   width:80%;
-  height: 80%;
+  height: 60rpx;
   background-color:#fff;
   font-size:15px;
   border-radius:2rpx;
@@ -334,14 +334,8 @@
 }
 
 .fixComment{
-  height: 7%;
+  height: 10%;
   width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
-  z-index: 100;
   display: flex; 
   flex-direction: row;
 }

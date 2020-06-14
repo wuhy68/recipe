@@ -80,9 +80,13 @@
 
 .pictureCom{
   width: 660rpx;
-  margin: 30rpx auto;
+  height: 400rpx;
+	margin: 30rpx auto;
   border: solid 2rpx;
   border-radius: 20rpx;
+  background-repeat:no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
 }
 
 .starsAndScore{
@@ -109,7 +113,9 @@
 .name{
   width: 170rpx;
 	height: 55rpx;
-  margin: 120rpx 0rpx 0rpx 30rpx;
+  margin-top: 250rpx;
+  margin-left: 30rpx;
+  color: grey;
 }
 
 .authorSet{
@@ -118,12 +124,12 @@
 }
 
 .goodsNum{
-  width: 300rpx;
+  width: 350rpx;
   height: 30rpx;
   margin-left:30rpx;
+  margin-bottom: 20rpx;
   font-size: small;
   color: #696767;
-  /* margin: 0rpx 30rpx 30rpx 0rpx; */
 }
 
 .authorSetIcon{

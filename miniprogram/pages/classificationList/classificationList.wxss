@@ -8,6 +8,7 @@
   text-align: center;
   margin: 50rpx auto;
   font-weight: bold;
+  color: rgb(152, 190, 202);
 }
 
 .favoritesList{
@@ -92,10 +93,20 @@
   width: 30rpx;
   height:30rpx;
   margin-left:30rpx;
+
 }
 
 .authorSetText{
   color:rgb(163, 163, 163);
   font-size:30rpx;
   margin-left:10rpx;
+}
+
+.background {
+  margin-left: 5%;
+  width: 80%;
+  height: 20%;
+  position:fixed; 
+  background-size:100% 100%;
+  z-index: -1;
 }

@@ -1,11 +1,10 @@
 <!--pages/restaurantInfo/restaurantInfo.wxml-->
 <view class="body">
 	<view class="restaurantImage">
-		<image src="../../images/indexImage.png" style="border-radius: 10rpx; height:420rpx;" mode="aspectFill"></image>
+		<image src="{{restaurantInfo.cover}}" style="border-radius: 10rpx; height:420rpx;" mode="aspectFill"></image>
 	</view>
 	<view class="address">
 		<view class="address-name">{{restaurantInfo.name}}</view>
-		<button bindtap="concern" class="concern-button">关注</button>
 	</view>
 	<view class="review">
 		<text class="review-txt">{{restaurantInfo.introduction}}</text>
@@ -40,6 +39,7 @@
 	</view>
 	<view wx:else>
 		<view wx:for="{{recipes}}">
+			<navigator url="../recipeInfo/recipeInfo?_id={{item._id}}&&openid={{item.openid}}">
 			<view class="recipeList">
 				<view>
 					<image src="{{item.cover}}" class="recipeLeft"></image>
@@ -55,6 +55,7 @@
 					</view>
 				</view>
 			</view>
+			</navigator>
 		</view>
 	</view>
 </view>

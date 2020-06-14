@@ -39,6 +39,9 @@
 	</view>
 	<view class="CommentList">
 		<text style="margin-bottom: 40rpx">————评论————</text>
+		<view wx:if="{{commentList.length == 0}}">
+			还没有人评论，快来抢沙发吧！
+		</view>
 		<view>
 			<view class="CommentItem"  wx:for="{{commentList}}">
 				<view class="CommentUserInfoAndAgreeCount">
@@ -49,7 +52,6 @@
 					</view>
 					<view class="CommentUserNameAndTime">
 						<view class="CommentUserName"><text>{{item.name}}</text></view>
-						<view class="CommentUserTime"><text>{{item.date}}</text></view>
 					</view>
 					<view class="CommentAgreeCount">
 						<view class="CommentAgreeCountImage">

@@ -18,7 +18,7 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "Recipe",
+    "navigationBarTitleText": "舌尖上的厨房",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",

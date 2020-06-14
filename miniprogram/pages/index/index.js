@@ -9,7 +9,7 @@ Page({
     /**
      * 循环背景图片
      */
-    background: ['cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/indexImage1.jpg', 'cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/indexImage2.jpg', 'cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/indexImage3.png'],
+    background: ['cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/pic1.jpg', 'cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/pic2.png', 'cloud://recipe-ihcta.7265-recipe-ihcta-1301986134/images/pic3.png'],
     indicatorDots: true,
     vertical: true,
     autoplay: true,
@@ -43,7 +43,12 @@ Page({
     /**
      * 用户标签
      */
-    openid: ""
+    openid: "",
+
+    /**
+     * 封面高度
+     */
+    height: []
   },
 
   /**
@@ -120,6 +125,10 @@ Page({
    * 获取所有菜单信息
    */
   getRecipeInfo: function () {
+    let that = this
+    this.setData({
+      height: []
+    })
     wx.cloud.callFunction({
       name: "getAllRecipeInfo",
       success: res => {
@@ -127,12 +136,29 @@ Page({
           recipes: res.result.data
         })
         console.log(res.result.data);
+        for (let i = 0; i < that.data.recipes.length; i++) {
+          wx.cloud.getTempFileURL({
+            fileList: [that.data.recipes[i].cover],
+            success: res => {
+              let med = that.data.recipes
+              med[i].cover = res.fileList[0].tempFileURL
+              that.setData({
+                recipes: med
+              })
+              console.log("缓存图片",that.data.recipes[i].cover)
+            },
+            fail: err => {
+              console.error(err);
+            }
+          })
+        }
       },
       fail: err => {
         console.log(err);
       }
     }) 
   },
+
 
   /**
    * 通过控制search来跳转到查询页面
@@ -149,7 +175,8 @@ Page({
    */
   toIndex: function () {
     this.setData({
-      search: 0
+      search: 0,
+      searchVal: ""
     })
   },
 

@@ -11,7 +11,7 @@
           <image src="{{item.cover}}" mode="widthFix" class="favoritesItemImage"></image>
           <text class="favoritesItemName">{{item.name}}</text>
           <view class="favoritesItemAuthor">
-            <image src="../../image/position.png" class="favoritesItemAuthorIcon"></image>
+            <image src="../../images/position.png" class="favoritesItemAuthorIcon"></image>
             <text class="favoritesItemAuthorText">{{item.address}}</text>
           </view>
         </view>

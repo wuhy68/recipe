@@ -64,7 +64,7 @@ Page({
         //将照片上传至云端需要刚才存储的临时地址
         wx.cloud.uploadFile({
           cloudPath: app.globalData.openid + "/" + "restaurant" + "/" + "cover.png",
-          filePath: tempFilePaths[0],
+          filePath: tempFilePaths,
           success(res) {
             //上传成功后会返回永久地址
             console.log(res.fileID);

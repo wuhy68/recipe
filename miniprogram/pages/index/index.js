@@ -166,7 +166,7 @@ Page({
   toSearchPage: function () {
     this.getUserHistory()
     this.setData({
-      search: 1
+      search: 1,
     })
   },
 
@@ -176,7 +176,7 @@ Page({
   toIndex: function () {
     this.setData({
       search: 0,
-      searchVal: ""
+      searchVal: "",
     })
   },
 
@@ -195,6 +195,7 @@ Page({
    * 正则查询（模糊搜索）
    */
   search: function () {
+    let that = this
     wx.cloud.callFunction({
       name: "getSearchRecipeInfo",
       data: {
@@ -206,6 +207,22 @@ Page({
           search: 0,
           searchVal: ""
         })
+        for (let i = 0; i < that.data.recipes.length; i++) {
+          wx.cloud.getTempFileURL({
+            fileList: [that.data.recipes[i].cover],
+            success: res => {
+              let med = that.data.recipes
+              med[i].cover = res.fileList[0].tempFileURL
+              that.setData({
+                recipes: med
+              })
+              console.log("缓存图片",that.data.recipes[i].cover)
+            },
+            fail: err => {
+              console.error(err);
+            }
+          })
+        }
         console.log(res.result.data);
       },
       fail: err => {
@@ -239,6 +256,7 @@ Page({
    * 设置searchVal位历史数据并跳转
    */
   setHistoryData: function (e) {
+    let that = this
     wx.cloud.callFunction({
       name: "getSearchRecipeInfo",
       data: {
@@ -249,6 +267,22 @@ Page({
           recipes: res.result.data,
           search: 0
         })
+        for (let i = 0; i < that.data.recipes.length; i++) {
+          wx.cloud.getTempFileURL({
+            fileList: [that.data.recipes[i].cover],
+            success: res => {
+              let med = that.data.recipes
+              med[i].cover = res.fileList[0].tempFileURL
+              that.setData({
+                recipes: med
+              })
+              console.log("缓存图片",that.data.recipes[i].cover)
+            },
+            fail: err => {
+              console.error(err);
+            }
+          })
+        }
         console.log(res.result.data);
       },
       fail: err => {

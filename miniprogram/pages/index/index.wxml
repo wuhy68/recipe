@@ -1,32 +1,11 @@
 <!--miniprogram/pages/index/index.wxml-->
 <view class="wholeStyle">
-	<view wx:if="{{search == 0}}" style="display: flex; flex-direction: row">
-		<icon type="search" size="35rpx" style="margin:20rpx"></icon>
-		<input bindtap="toSearchPage" bindinput="input" placeholder="搜索餐厅或者菜谱" placeholder-style="text-align:left;" value="{{searchVal}}" class="nextStep" style="width: 660rpx;">
-		</input>
-	</view>
-	<view wx:else style="display: flex; flex-direction: row">
-		<icon type="search" size="35rpx" style="margin:20rpx" bindtap="search"></icon>
-		<input bindinput="input" placeholder="搜索餐厅或者菜谱" placeholder-style="text-align:left;" value="{{searchVal}}" class="nextStep" style="width: 450rpx;">
-		</input>
-		<button bindtap="toIndex" class="nextStepCancel">取消</button>
-		<!-- <text style="margin-top:40%;">取消</text> -->
-	</view>
-	<!--搜索界面-->
-	<view wx:if="{{search == 1}}">
-		<view class="searchHistory">
-			<text>搜索历史</text>
-			<view wx:for="{{historyCount}}">
-				<view class="searchHistoryItem" hover-class='searchHistoryItem_hover' hover-stay-time="50">
-					<text class="searchHistoryItemText">背景</text>
-					<icon type="clear" size="15" style="margin:auto 30rpx;"></icon>
-				</view>
-			</view>
+	<view wx:if="{{search == 0}}">
+		<view style="display: flex; flex-direction: row">
+			<icon type="search" size="35rpx" style="margin:20rpx"></icon>
+			<button bindtap="toSearchPage" bindinput="input"  class="nextStep" style="width: 660rpx;"><text>搜索餐厅或者菜谱</text> 
+			</button>
 		</view>
-	</view>
-
-	<!--主页-->
-	<view wx:elif="{{search == 0}}">
 
 		<!--头版菜谱-->
 		<view class="swiper">
@@ -80,7 +59,6 @@
 					</view>
 				</navigator>
 				</view>
-				
 			</view>
 		</view>
 
@@ -121,6 +99,23 @@
 				</view>
 			</view>
 		</view>
+	</view>
 
+	<!--搜索界面-->
+	<view wx:else>
+		<view style="display: flex; flex-direction: row">
+			<icon type="search" size="35rpx" style="margin:20rpx" bindtap="search"></icon>
+			<input bindinput="input" placeholder="搜索餐厅或者菜谱" placeholder-style="text-align:left;" value="{{searchVal}}" class="nextStep" style="width: 450rpx;">
+			</input>
+			<button bindtap="toIndex" class="nextStepCancel">取消</button>
+		</view>
+		<view class="searchHistory">
+			<text>搜索历史</text>
+			<view wx:for="{{history}}">
+				<view style="display: flex; flex-direction: row; flex-wrap: wrap; margin-top: 10rpx">
+					<button class="myButton" data-history="{{item}}" bindtap="setHistoryData">{{item}}</button>
+				</view>
+			</view>
+		</view>
 	</view>
 </view>

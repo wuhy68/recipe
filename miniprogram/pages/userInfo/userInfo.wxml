@@ -97,13 +97,17 @@
       <navigator url="../restaurantRegister/restaurantRegister">创建您的餐厅</navigator>
     </view>
     <view wx:else>
-      <view wx:for="{{userRestaurant}}" wx:for-item="item">
-        <navigator url="../restaurantInfo/restaurantInfo?openid={{item.openid}}&&_id={{item._id}}">
-        <view class="favoritesItem">
-          <image src="{{item.cover}}" mode="widthFix" class="favoritesItemImage"></image>
-          <text class="favoritesItemName">{{item.name}}</text>
+      <view class="wholeStyle">
+        <view class="favoritesList">
+          <view wx:for="{{userRestaurant}}" wx:for-item="item">
+            <navigator url="../restaurantInfo/restaurantInfo?openid={{item.openid}}&&_id={{item._id}}">
+            <view class="favoritesItem">
+              <image src="{{item.cover}}" mode="widthFix" class="favoritesItemImage"></image>
+              <text class="favoritesItemName">{{item.name}}</text>
+            </view>
+            </navigator>
+          </view>
         </view>
-        </navigator>
       </view>
     </view>
   </view> 
